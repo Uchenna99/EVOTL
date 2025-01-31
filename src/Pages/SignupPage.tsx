@@ -54,11 +54,23 @@ const SignupPage = () => {
                 <input id="reg" type="text" value={region}
                   style={{color:region === 'Select a region'? 'gray':'black'}}
                 />
+
                 {
                   regionSelect? <GoChevronUp id="pass-eye" onClick={()=> setRegionSelect(false)}/>
                   :
                   <GoChevronDown id="pass-eye" onClick={()=> setRegionSelect(true)}/>
                 }
+
+                <div className="region-dropdown" style={{display: regionSelect? 'flex':'none'}}>
+                  <div className="region-unit"><p>Rumuola</p></div>
+                  <div className="region-unit"><p>Rumuigbo</p></div>
+                  <div className="region-unit"><p>Rumuokwuta</p></div>
+                  <div className="region-unit"><p>Rumuokoro</p></div>
+                  <div className="region-unit"><p>Rumudara</p></div>
+                  <div className="region-unit"><p>Rumubiakani</p></div>
+                  <div className="region-unit"><p>Rumuodumaya</p></div>
+                  <div className="region-unit"><p>Rumuogba</p></div>
+                </div>
               </div>
             </div>
 
