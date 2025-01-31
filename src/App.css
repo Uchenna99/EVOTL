@@ -24,10 +24,11 @@
   background-color: white;
   display: flex;
   justify-content: center;
-  box-shadow: 0 0 3px 3px lightgray;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 15;
 }
 
 
@@ -55,16 +56,40 @@
 .nav-mid{
   width: 200px;
   height: 100%;
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
 }
 
 
 .nav-right{
   width: 200px;
   height: 100%;
+  /* background-color: bisque; */
   display: flex;
-  background-color: bisque;
+  align-items: center;
+  justify-content: end;
 }
+
+#get-started{
+  width: fit-content;
+  height: 40px;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  transition: 300ms;
+}
+
+#get-started:hover{
+  background-color: black;
+  color: white;
+}
+
 
 
 
@@ -79,5 +104,67 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 250px;
+}
+
+
+.hero-section{
+  width: 100%;
+  height: 800px;
+  background-color: black;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+.hero-image{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.558);
+  background-image: url(./assets/Images/Pelican-2.0-Front.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-blend-mode: darken;
+}
+
+
+
+
+
+
+
+/* INFO SECTION */
+
+.transparent-cover{
+  width: 100%;
+  height: 660px;
+  background-color: transparent;
+}
+
+.page-wrap2{
+  width: 100%;
+  height: fit-content;
+  background-color: white;
+  position: relative;
+  z-index: 10;
+}
+
+.info-section{
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+}
+
+
+.supplies{
+  width: 100%;
+  height: 800px;
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import logo from "../assets/Images/evotl_logo_small.jpg"
 
 const Navbar = () => {
@@ -11,7 +12,11 @@ const Navbar = () => {
 
                 <div className="nav-mid"></div>
 
-                <div className="nav-right"></div>
+                <div className="nav-right">
+                  <Link id="get-started" to={'/signup'}>
+                    <p>Get Started</p>
+                  </Link>
+                </div>
             </div>
         </div>
     </>
