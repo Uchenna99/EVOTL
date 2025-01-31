@@ -1,0 +1,111 @@
+.signup-wrap{
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+}
+
+
+.signup-left{
+    width: 40%;
+    height: 100%;
+    border-right: 2px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-left > img{
+    width: 100%;
+}
+
+.signup-left > h2{
+    text-align: center;
+    font-size: 35px;
+}
+
+
+
+
+.signup-right{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.form-wrap{
+    width: 500px;
+    height: 100%;
+    /* background-color: pink; */
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    overflow-y: scroll;
+}
+
+.form-wrap::-webkit-scrollbar{
+    visibility: hidden;
+}
+
+.input-wrap{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-wrap > label{
+    font-size: 17px;
+}
+
+.input-wrap > input{
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: 1px solid black;
+    border-radius: 3px;
+    background-color: whitesmoke;
+    padding: 0 15px;
+    font-size: 18px;
+}
+
+@keyframes input {
+    from{outline: 1px solid black;}
+    to{outline: 3px solid black;}
+}
+
+.input-wrap > input:focus{
+    animation: input 300ms 1 forwards linear;
+}
+
+.input-wrap2{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+button.register{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 25px;
+    font-size: 18px;
+    border: 2px solid black;
+    border-radius: 3px;
+    transition: 300ms;
+    margin-top: 20px;
+}
+
+button.register:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}

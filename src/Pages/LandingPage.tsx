@@ -19,7 +19,7 @@ const LandingPage = () => {
             <div className="info-section">
               <h2>MEDICAL SUPPLIES, <br/> DRONE DELIVERED ON TIME.</h2>
 
-              <Link id="get-started" to={'/signup'}>
+              <Link id="get-started" to={'/signup'} style={{fontSize:'20px'}}>
                 <p>Get Started</p>
               </Link>
             </div>

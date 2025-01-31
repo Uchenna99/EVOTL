@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import logo from "../assets/Images/evotl_logo_small.jpg"
 
 const Navbar = () => {
   return (
@@ -7,7 +6,7 @@ const Navbar = () => {
         <div className="navbar-container">
             <div className="laptop-navbar">
                 <div className="nav-left">
-                    <img src={logo} alt="" />
+                    <h2>EVTOL</h2>
                 </div>
 
                 <div className="nav-mid"></div>
