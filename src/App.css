@@ -1,0 +1,11 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: roboto-reg;
+}
+
+@font-face {
+  font-family: roboto-reg;
+  src: url(./assets/Fonts/RobotoFlex-Regular.ttf);
+}
