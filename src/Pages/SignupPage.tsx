@@ -5,15 +5,46 @@ import { GoChevronDown } from "react-icons/go";
 import { GoChevronUp } from "react-icons/go";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 
 const SignupPage = () => {
+  const navigate = useNavigate();
+
   const [eye, setEye] = useState(false);
   const [regionSelect, setRegionSelect] = useState(false);
 
-  const [region, setRegion] = useState('Select a region');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [age, setAge] = useState<number>();
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
 
-  const selectRegion = ['Rumuola','Rumuigbo','Rumuokwuta','Rumuokoro','Rumudara','Rumubiakani','Rumuodumaya','Rumuogba']
+  const [region, setRegion] = useState('Select a region');
+  const selectRegion = ['Rumuola','Rumuigbo','Rumuokwuta','Rumuokoro','Rumudara','Rumubiakani','Rumuodumaya','Rumuogba'];
+
+  const submitData = {
+    firstName: firstName,
+    lastName: lastName,
+    phoneNumber: phone,
+    age: age,
+    region: region,
+    email: email,
+    password: password
+  }
+
+
+  const handleRegister = async ()=>{
+    await axios.post('http://localhost:4000/api/v1/users/create-user', submitData)
+    .then((response)=>{
+      localStorage.setItem('user', response.data);
+      navigate('/email-verification');
+    })
+  }
 
   return (
     <>
@@ -29,23 +60,27 @@ const SignupPage = () => {
           <div className="form-wrap">
             <div className="input-wrap">
               <label htmlFor="fname">First name</label>
-              <input id="fname" type="text" />
+              <input id="fname" type="text" value={firstName} onChange={(e)=> setFirstName(e.target.value)}/>
             </div>
 
             <div className="input-wrap">
-              <label htmlFor="lname">Last name</label>
-              <input id="lname" type="text" />
+              <label htmlFor="lname">Surname</label>
+              <input id="lname" type="text" value={lastName} onChange={(e)=> setLastName(e.target.value)}/>
             </div>
 
             <div className="input-wrap2">
               <div className="input-wrap" style={{width:'fit-content'}}>
                 <label htmlFor="age">Age</label>
-                <input id="age" type="number" style={{width:'100px'}} />
+                <input id="age" type="number" style={{width:'100px'}}
+                  value={age} onChange={(e)=> setAge(parseInt(e.target.value))} 
+                />
               </div>
 
               <div className="input-wrap" style={{width:'fit-content'}}>
                 <label htmlFor="phone">Phone</label>
-                <input id="phone" type="text" style={{width:'200px'}} />
+                <input id="phone" type="text" style={{width:'200px'}}
+                  value={phone} onChange={(e)=> setPhone(e.target.value)}
+                />
               </div>
             </div>
 
@@ -80,14 +115,16 @@ const SignupPage = () => {
 
             <div className="input-wrap">
               <label htmlFor="email">Email</label>
-              <input id="email" type="email" />
+              <input id="email" type="email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
             </div>
 
 
             <div className="input-wrap">
               <label htmlFor="pass">Password</label>
               <div className="inner-input-wrap">
-                <input id="pass" type={eye? 'text' : 'password'} />
+                <input id="pass" type={eye? 'text' : 'password'} 
+                  value={password} onChange={(e)=> setPassword(e.target.value)}
+                />
                 { 
                   eye? <FaRegEye id="pass-eye" onClick={()=> setEye(false)}/> 
                   : 
@@ -96,7 +133,7 @@ const SignupPage = () => {
               </div>
             </div>
 
-            <button className="register">Register</button>
+            <button className="register" onClick={()=>{handleRegister}}>Register</button>
 
           </div>
         </div>
