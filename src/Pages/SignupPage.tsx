@@ -13,6 +13,8 @@ const SignupPage = () => {
 
   const [region, setRegion] = useState('Select a region');
 
+  const selectRegion = ['Rumuola','Rumuigbo','Rumuokwuta','Rumuokoro','Rumudara','Rumubiakani','Rumuodumaya','Rumuogba']
+
   return (
     <>
       <div className="signup-wrap">
@@ -21,7 +23,6 @@ const SignupPage = () => {
           <img src={drone} alt="" />
           <h2>Register and <br/> get started</h2>
         </div>
-
 
 
         <div className="signup-right">
@@ -62,14 +63,17 @@ const SignupPage = () => {
                 }
 
                 <div className="region-dropdown" style={{display: regionSelect? 'flex':'none'}}>
-                  <div className="region-unit"><p>Rumuola</p></div>
-                  <div className="region-unit"><p>Rumuigbo</p></div>
-                  <div className="region-unit"><p>Rumuokwuta</p></div>
-                  <div className="region-unit"><p>Rumuokoro</p></div>
-                  <div className="region-unit"><p>Rumudara</p></div>
-                  <div className="region-unit"><p>Rumubiakani</p></div>
-                  <div className="region-unit"><p>Rumuodumaya</p></div>
-                  <div className="region-unit"><p>Rumuogba</p></div>
+                  {
+                    selectRegion.map((reg)=>(
+                      <div className="region-unit" 
+                        onClick={()=>{
+                          setRegionSelect(false);
+                          setRegion(reg);
+                        }}>
+                        <p> {reg} </p>
+                      </div>
+                    ))
+                  }
                 </div>
               </div>
             </div>
