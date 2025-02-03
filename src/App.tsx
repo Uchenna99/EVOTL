@@ -5,20 +5,24 @@ import SignupPage from './Pages/SignupPage'
 import VerificationPage from './Pages/VerificationPage'
 import LoginPage from './Pages/LoginPage'
 import Dashboard from './Pages/Dashboard'
+import useGlobalState from './State'
+import { useEffect } from 'react'
 
 function App() {
+  const { loggedIn, setLoggedIn } = useGlobalState();
+
 
   return (
     <>
       <Routes>
         <Route path='/' element={<LandingPage/>} />
-        <Route path='/signup' element={<SignupPage/>} />
-        <Route path='/email-verification' element={<VerificationPage/>} />
-        <Route path='/login' element={<LoginPage/>} />
-        <Route path='/dashboard' element={<Dashboard/>} />
+        <Route path='/signup' element={ loggedIn? <Dashboard/> : <SignupPage/> } />
+        <Route path='/email-verification' element={ loggedIn? <Dashboard/> : <VerificationPage/> } />
+        <Route path='/login' element={ loggedIn? <Dashboard/> : <LoginPage/> } />
+        <Route path='/dashboard' element={ loggedIn? <Dashboard/> : <LoginPage/>} />
       </Routes>
     </>
   )
 }
 
-export default App
+export default App;

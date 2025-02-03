@@ -5,9 +5,12 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import { JwtResponse } from "../Components/interface";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import useGlobalState, { JwtCode } from "../State";
 
 
 const LoginPage = () => {
+  const {setJwtDecoded, setLoggedIn} = useGlobalState();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -20,16 +23,21 @@ const LoginPage = () => {
     }
 
     const handleLogin = async ()=>{
-        try {
-            await axios.post('http://localhost:4000/api/v1/auth/login', loginData)
-            .then((response)=>{
-                const responseData = response.data as JwtResponse;
-                localStorage.setItem('token', responseData.accessToken);
-                navigate('/dashboard');
-            })
-        } catch (error) {
-            
-        }
+      try {
+          await axios.post('http://localhost:4000/api/v1/auth/login', loginData)
+          .then((response)=>{
+              const responseData = response.data as JwtResponse;
+              localStorage.setItem('token', responseData.accessToken);
+              localStorage.setItem('isLoggedIn', 'true');
+              const decode = jwtDecode(responseData.accessToken);
+              setJwtDecoded(decode as JwtCode)
+              console.log(decode);
+              setLoggedIn(true);
+              navigate('/dashboard');
+          })
+      } catch (error) {
+          console.log(error);
+      }
     }
 
   return (
@@ -65,7 +73,7 @@ const LoginPage = () => {
               </div>
             </div>
 
-            <button className="register" onClick={handleLogin}>Register</button>
+            <button className="register" onClick={handleLogin}>Login</button>
 
           </div>
         </div>

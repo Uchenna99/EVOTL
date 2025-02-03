@@ -61,7 +61,7 @@
 
 
 .nav-right{
-  width: 200px;
+  width: fit-content;
   height: 100%;
   /* background-color: bisque; */
   display: flex;
@@ -83,11 +83,36 @@
   font-size: 18px;
   font-weight: 600;
   transition: 300ms;
+  cursor: pointer;
 }
 
 #get-started:hover{
   background-color: black;
   color: white;
+}
+
+
+.nav_user-info{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav_user-info > h4{
+  font-size: 18px;
+}
+
+#nav-login{
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+  text-decoration: none;
+}
+
+#nav-login:hover{
+  text-decoration: underline;
 }
 
 

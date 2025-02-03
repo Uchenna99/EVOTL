@@ -1,22 +1,53 @@
 import { Link } from "react-router-dom"
+import useGlobalState, { JwtCode } from "../State"
 
-const Navbar = () => {
+interface NavProps {
+  user: JwtCode | null;
+  logout: ()=>void;
+}
+
+const Navbar = ({user, logout}: NavProps) => {
+  const {  } = useGlobalState();
+  
+
+  const handleLogout = ()=>{
+    localStorage.removeItem('token');
+    localStorage.setItem('isLoggedIn', 'false');
+    logout();
+  };
+
+
   return (
     <>
         <div className="navbar-container">
-            <div className="laptop-navbar">
-                <div className="nav-left">
-                    <h2>EVTOL</h2>
+          <div className="laptop-navbar">
+            <div className="nav-left">
+                <h2>EVTOL</h2>
+            </div>
+
+            <div className="nav-mid"></div>
+
+            <div className="nav-right">
+              {
+                user?
+                <div className="nav_user-info">
+                  <h4>Hi, {user.name}</h4>
+                  <button id="get-started" onClick={handleLogout}>
+                    Logout
+                  </button>
                 </div>
-
-                <div className="nav-mid"></div>
-
-                <div className="nav-right">
+                :
+                <div className="nav_user-info">
+                  <Link id="nav-login" to={'/login'}>
+                    Login
+                  </Link>
                   <Link id="get-started" to={'/signup'}>
                     <p>Get Started</p>
                   </Link>
                 </div>
+              }
             </div>
+          </div>
         </div>
     </>
   )
