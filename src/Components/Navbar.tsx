@@ -6,13 +6,14 @@ interface NavProps {
 }
 
 const Navbar = ({user}: NavProps) => {
-  const {  } = useGlobalState();
+  const { setLoggedIn } = useGlobalState();
   const navigate = useNavigate();
   
 
   const handleLogout = ()=>{
     localStorage.removeItem('token');
     localStorage.setItem('isLoggedIn', 'false');
+    setLoggedIn(false);
     navigate('/login');
   };
 
