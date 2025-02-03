@@ -1,19 +1,19 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import useGlobalState, { JwtCode } from "../State"
 
 interface NavProps {
   user: JwtCode | null;
-  logout: ()=>void;
 }
 
-const Navbar = ({user, logout}: NavProps) => {
+const Navbar = ({user}: NavProps) => {
   const {  } = useGlobalState();
+  const navigate = useNavigate();
   
 
   const handleLogout = ()=>{
     localStorage.removeItem('token');
     localStorage.setItem('isLoggedIn', 'false');
-    logout();
+    navigate('/login');
   };
 
 

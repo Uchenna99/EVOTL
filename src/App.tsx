@@ -11,6 +11,17 @@ import { useEffect } from 'react'
 function App() {
   const { loggedIn, setLoggedIn } = useGlobalState();
 
+  useEffect(()=>{
+    const getUser = ()=>{
+      const token = localStorage.getItem('token');
+      if(token){
+        setLoggedIn(true);
+      }
+
+    }
+    getUser();
+  },[])
+
 
   return (
     <>

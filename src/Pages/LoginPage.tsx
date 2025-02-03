@@ -23,6 +23,9 @@ const LoginPage = () => {
     }
 
     const handleLogin = async ()=>{
+      if(!email || !password){
+        alert('All input fields are required')
+      }
       try {
           await axios.post('http://localhost:4000/api/v1/auth/login', loginData)
           .then((response)=>{

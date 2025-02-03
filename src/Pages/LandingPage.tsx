@@ -24,7 +24,7 @@ const LandingPage = () => {
 
   return (
     <>
-        <Navbar user={user} logout={()=>setUser(null)}/>
+        <Navbar user={user} />
 
         <div className="page-wrap">
           <div className="hero-section">
