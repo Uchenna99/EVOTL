@@ -1,17 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../Stylesheets/SignupPage.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const VerificationPage = () => {
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
 
-    const user = localStorage.getItem('user');
-    console.log(user);
+    useEffect(()=>{
+        const getEmail = ()=>{
+            const user = localStorage.getItem('user');
+            if(user){
+                setEmail(user);
+            }
+        }
+
+        getEmail();
+    },[])
+
     const [otp, setOtp] = useState('');
 
     const verify = {
-        email: user,
+        email: email,
         otp: otp
     }
 
@@ -42,7 +52,7 @@ const VerificationPage = () => {
                     />
                 </div>
 
-                <button className="register" onClick={()=>handleVerify}>Verify</button>
+                <button className="register" onClick={handleVerify}>Verify</button>
 
                 <p style={{fontSize:'13px', color:'red', marginTop:'20px'}}>
                     otp will expire after 10 minutes
