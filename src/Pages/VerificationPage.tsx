@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 const VerificationPage = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
+    const [otp, setOtp] = useState('');
+
 
     useEffect(()=>{
         const getEmail = ()=>{
@@ -18,19 +20,19 @@ const VerificationPage = () => {
         getEmail();
     },[])
 
-    const [otp, setOtp] = useState('');
 
     const verify = {
         email: email,
         otp: otp
     }
 
-    const handleVerify = async ()=>{
+    const handleVerify = async ()=>{        
         try {
             await axios.post('http://localhost:4000/api/v1/auth/verify-email', verify)
             .then(()=>{
                 navigate('/login')
             })
+            .catch(err=>alert(err))
             
         } catch (error) {
             console.error('Verification failed');

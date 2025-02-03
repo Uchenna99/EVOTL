@@ -15,5 +15,10 @@ export interface EvtolUser {
     otpExpiry: string | null;
     createdAt: string;
     updatedAt: string;
-  }
+}
+
+
+export interface JwtResponse {
+    accessToken: string;
+}
   
