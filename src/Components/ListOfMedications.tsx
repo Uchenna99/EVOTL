@@ -1,5 +1,14 @@
+import axios from "axios";
+import { useEffect } from "react";
 
 const ListOfMedications = () => {
+    useEffect(()=>{
+        const getMeds = ()=>{
+            axios.get('http://localhost:4000/api/v1/evtol')
+        };
+        getMeds();
+    },[])
+
   return (
     <>
         <div className="meds-display">
