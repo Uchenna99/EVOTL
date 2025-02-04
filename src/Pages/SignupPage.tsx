@@ -6,7 +6,7 @@ import { GoChevronUp } from "react-icons/go";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { EvtolUser } from "../Components/interface";
 
 
@@ -50,7 +50,8 @@ const SignupPage = () => {
       .catch(err=> console.log(err))
       
     } catch (error) {
-      console.error('Failed to register new user')
+      console.log('Failed to register new user');
+      alert(error);
     }
   }
 
@@ -142,6 +143,8 @@ const SignupPage = () => {
             </div>
 
             <button className="register" onClick={handleRegister}>Register</button>
+
+            <p>Already have an account? <Link id="form-login" to={'/login'}>Login</Link></p>
 
           </div>
         </div>

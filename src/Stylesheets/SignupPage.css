@@ -52,8 +52,23 @@
     gap: 20px;
 }
 
+.form-wrap > p{
+    font-size: 14px;
+    margin-top: 10px;
+}
+
 .form-wrap::-webkit-scrollbar{
     visibility: hidden;
+}
+
+#form-login{
+    font-size: 15px;
+    color: blue;
+    text-decoration: none;
+}
+
+#form-login:hover{
+    text-decoration: underline;
 }
 
 .input-wrap{

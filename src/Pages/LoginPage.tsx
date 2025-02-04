@@ -4,7 +4,7 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import { JwtResponse } from "../Components/interface";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import useGlobalState, { JwtCode } from "../State";
 
@@ -40,6 +40,7 @@ const LoginPage = () => {
           })
       } catch (error) {
           console.log(error);
+          alert(error);
       }
     }
 
@@ -77,6 +78,8 @@ const LoginPage = () => {
             </div>
 
             <button className="register" onClick={handleLogin}>Login</button>
+
+            <p>Don't have an account? <Link id="form-login" to={'/signup'}>Sign Up</Link></p>
 
           </div>
         </div>
