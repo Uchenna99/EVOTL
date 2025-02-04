@@ -91,14 +91,14 @@
 .dash-right{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
     padding: 20px;
 }
 
 
 .searchbar-section{
     width: 100%;
-    height: fit-content;
+    height: 10vh;
     padding: 5px;
     /* background-color: beige; */
 }
@@ -148,7 +148,7 @@
 
 .dash-display-board{
     width: 100%;
-    height: 80vh;
+    height: 82vh;
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 15px;
@@ -159,4 +159,85 @@
 .meds-display{
     width: 100%;
     height: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.meds-display > p{
+    font-size: 18px;
+}
+
+
+.med-list-card{
+    width: 75%;
+    height: 100px;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+    align-items: end;
+    gap: 10px;
+    padding: 10px;
+}
+
+.med-list-card:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.med-list-image{
+    min-width: 100px;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+
+.med-list-info{
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid black; */
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.quantity{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 10px;
+}
+
+input#qty{
+    height: 100%;
+    width: 60px;
+    padding: 0 3px 0 10px;
+    border: none;
+    outline: 1px solid black;
+    border-radius: 5px;
+}
+
+button#add-to-cart{
+    min-width: fit-content;
+    height: fit-content;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    text-wrap: nowrap;
+    /* font-weight: 600; */
+    transition: 300ms;
+    cursor: pointer;
+
+}
+ 
+button#add-to-cart:hover{
+background-color: black;
+color: white;
 }
