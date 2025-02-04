@@ -44,7 +44,7 @@ const SignupPage = () => {
       await axios.post('http://localhost:4000/api/v1/users/create-user', submitData)
       .then((response)=>{
         const responseData = response.data as EvtolUser;
-        localStorage.setItem('user', responseData.email);
+        localStorage.setItem('userEmail', responseData.email);
         navigate('/email-verification');
       })
       .catch(err=> console.log(err))

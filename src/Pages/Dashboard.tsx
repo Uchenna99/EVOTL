@@ -1,13 +1,30 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "../Stylesheets/Dashboard.css"
 import { useNavigate } from "react-router-dom";
-import useGlobalState from "../State";
+import useGlobalState, { JwtCode } from "../State";
+import { jwtDecode } from "jwt-decode";
+import { GoSearch } from "react-icons/go";
+import ListOfMedications from "../Components/ListOfMedications";
 
 const Dashboard = () => {
   const { setLoggedIn } = useGlobalState();
   const navigate = useNavigate();
+  const [user, setUser] = useState<JwtCode | null>(null);
   const [delivery, setDelivery] = useState(false);
   const [history, setHistory] = useState(false);
+
+  useEffect(()=>{
+    const getUser = ()=>{
+      const user = localStorage.getItem('token');
+      if(user){
+        const decoded = jwtDecode(user);
+        setUser(decoded as JwtCode);
+      }else{
+        console.log('Could not decode user');
+      }
+    };
+    getUser();
+  },[]);
 
   const handleLogout = ()=>{
     localStorage.removeItem('token');
@@ -23,6 +40,14 @@ const Dashboard = () => {
             <div className="dashboard-wrap">
 
               <div className="dash-left">
+
+                <div className="dash-user">
+                  <div className="dash-user-image"></div>
+                  <div className="dash-user-name">
+                    <p>Hello</p>
+                    <p>{user?.name}</p>
+                  </div>
+                </div>
 
                 <div className="dash-left-options">
 
@@ -48,7 +73,22 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="dash-right"></div>
+
+              <div className="dash-right">
+
+                <div className="searchbar-section">
+                  <div className="search-bar">
+                    <input type="text" />
+                    <div className="search-icon">
+                      <GoSearch id="dash-search-icon"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="dash-display-board">
+                  <ListOfMedications />
+                </div>
+              </div>
             </div>
         </>
     </>

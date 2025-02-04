@@ -11,7 +11,7 @@ const VerificationPage = () => {
 
     useEffect(()=>{
         const getEmail = ()=>{
-            const user = localStorage.getItem('user');
+            const user = localStorage.getItem('userEmail');
             if(user){
                 setEmail(user);
             }
