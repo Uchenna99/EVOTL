@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Medication } from "./interface";
+import { Medication, Order } from "./interface";
 
 const ListOfMedications = () => {
     const [medsList, setMedsList] = useState<Medication[] | null>(null);
     const [quantity, setQuantity] = useState(1);
     const [modal, setModal] = useState(false);
+    const [selectedMed, setSelectedMed] = useState<Medication | null>(null);
 
 
     useEffect(()=>{
@@ -16,8 +17,25 @@ const ListOfMedications = () => {
                 console.log(response.data)
             })
         };
+        const order = localStorage.getItem('order');
+        if(order){null}else{
+            const orderList = [] as Order[];
+            const saveOrder = JSON.stringify(orderList)
+            localStorage.setItem('order', saveOrder);
+        };
         getMeds();
     },[])
+
+    const addOrder = (order: Order)=>{
+        const getOrder = localStorage.getItem('order');
+        if(!getOrder){null}else{
+            const orderList: Order[] = JSON.parse(getOrder);
+            orderList.push(order);
+            const saveOrder = JSON.stringify(orderList);
+            localStorage.setItem('order', saveOrder);
+            console.log(saveOrder)
+        }
+    }
 
   return (
     <>
@@ -32,7 +50,9 @@ const ListOfMedications = () => {
                 :
                 medsList?.map((meds)=>(
                     <div className="med-list-card" key={meds.code}>
-                        <div className="med-list-image"></div>
+                        <div className="med-list-image"
+                            style={{backgroundImage:`url(${meds.image})`}}
+                        ></div>
 
                         <div className="med-list-info">
                             <p>{meds.name}</p>
@@ -48,6 +68,7 @@ const ListOfMedications = () => {
                         <div className="med-list-btn">
                             <button id="add-to-cart"
                             onClick={()=>{
+                                setSelectedMed(meds);
                                 setModal(true);
                             }}>
                                 Select
@@ -61,9 +82,9 @@ const ListOfMedications = () => {
                                 <div className="select-modal-cover" onClick={()=>setModal(false)}></div>
 
                                 <div className="select-modal">
-                                    <div className="select-modal-image"></div>
-                                    <p>{meds.name}</p>
-                                    <p>₦ {meds.price}</p>
+                                    <div className="select-modal-image" style={{backgroundImage:`url(${selectedMed?.image})`}}></div>
+                                    <p>{selectedMed?.name}</p>
+                                    <p>₦ {selectedMed?.price}</p>
                                     <div className="quantity">
                                         <label htmlFor="qty">Quantity</label>
                                         <input id="qty" type="number" value={quantity}
@@ -74,8 +95,9 @@ const ListOfMedications = () => {
                                     <button id="add-to-cart"
                                         onClick={()=>{
                                             setModal(false);
+                                            addOrder({id: selectedMed!.id, quantity: quantity});
                                         }}>
-                                            Add to checkout
+                                            Add to order
                                     </button>
                                 </div>
 

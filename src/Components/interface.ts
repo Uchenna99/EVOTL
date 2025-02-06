@@ -32,3 +32,8 @@ export interface Medication {
     price: number;
 }
   
+
+export interface Order {
+    id: number;
+    quantity: number;
+}
