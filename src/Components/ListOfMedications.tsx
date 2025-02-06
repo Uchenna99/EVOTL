@@ -39,6 +39,7 @@ const ListOfMedications = ({next}: Props) => {
         getMeds();
     },[])
 
+
     const addOrder = (order: Order)=>{
         const getOrder = localStorage.getItem('order');
         if(!getOrder){null}else{
@@ -49,6 +50,23 @@ const ListOfMedications = ({next}: Props) => {
             console.log(saveOrder)
         }
     }
+
+
+    const confirmOrder = ()=>{
+        const getOrder = localStorage.getItem('order');
+        if(!getOrder){
+            console.log('Order not found');
+        }else{
+            const orderList: Order[] = JSON.parse(getOrder);
+            if(!orderList){
+                alert('You have not selected any items yet');
+            }else{
+                next();
+            }
+        }
+
+    }
+
 
   return (
     <>
@@ -140,7 +158,7 @@ const ListOfMedications = ({next}: Props) => {
                     medsList.length === 0?
                     '' :
                     <button id="add-to-cart" style={{marginTop:'20px'}}
-                        onClick={next}>
+                        onClick={confirmOrder}>
                         Next
                     </button>
                     )
