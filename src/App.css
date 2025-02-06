@@ -115,6 +115,15 @@
   text-decoration: underline;
 }
 
+#name-link{
+  color: black;
+  text-decoration: none;
+}
+
+#name-link:hover{
+  text-decoration: underline;
+}
+
 
 
 

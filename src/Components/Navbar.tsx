@@ -32,8 +32,11 @@ const Navbar = ({user}: NavProps) => {
               {
                 user?
                 <div className="nav_user-info">
-                  <h4>Hi, {user.name}</h4>
-                  <button id="get-started" onClick={handleLogout}>
+                  <h4>
+                    Hi, 
+                    <Link id="name-link" to={'/dashboard'}> {user.name}</Link>
+                  </h4>
+                  <button id="add-to-cart" onClick={handleLogout}>
                     Logout
                   </button>
                 </div>

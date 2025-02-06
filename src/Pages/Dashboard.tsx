@@ -90,12 +90,12 @@ const Dashboard = () => {
                 <div className="dash-display-board">
                   {
                     delivery &&
-                    [
+                    (
                       newOrder === 'meds-list'?
                       <ListOfMedications next={()=>setNewOrder('drone-list')} /> :
                       newOrder === 'drone-list'?
                       <ListOfDrones next={()=>setNewOrder('')} /> : ''
-                    ]
+                    )
                   }
                 </div>
               </div>
