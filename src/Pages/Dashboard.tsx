@@ -5,6 +5,7 @@ import useGlobalState, { JwtCode } from "../State";
 import { jwtDecode } from "jwt-decode";
 import { GoSearch } from "react-icons/go";
 import ListOfMedications from "../Components/ListOfMedications";
+import ListOfDrones from "../Components/ListOfDrones";
 
 const Dashboard = () => {
   const { setLoggedIn } = useGlobalState();
@@ -12,6 +13,7 @@ const Dashboard = () => {
   const [user, setUser] = useState<JwtCode | null>(null);
   const [delivery, setDelivery] = useState(false);
   const [history, setHistory] = useState(false);
+  const [newOrder, setNewOrder] = useState('meds-list');
 
   useEffect(()=>{
     const getUser = ()=>{
@@ -86,7 +88,15 @@ const Dashboard = () => {
                 </div>
 
                 <div className="dash-display-board">
-                  <ListOfMedications />
+                  {
+                    delivery &&
+                    [
+                      newOrder === 'meds-list'?
+                      <ListOfMedications next={()=>setNewOrder('drone-list')} /> :
+                      newOrder === 'drone-list'?
+                      <ListOfDrones next={()=>setNewOrder('')} /> : ''
+                    ]
+                  }
                 </div>
               </div>
             </div>

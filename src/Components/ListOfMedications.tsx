@@ -2,7 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Medication, Order } from "./interface";
 
-const ListOfMedications = () => {
+interface Props{
+    next: ()=>void;
+  }
+
+const ListOfMedications = ({next}: Props) => {
     const [medsList, setMedsList] = useState<Medication[] | null>(null);
     const [quantity, setQuantity] = useState(1);
     const [modal, setModal] = useState(false);
@@ -111,7 +115,8 @@ const ListOfMedications = () => {
             {
                 medsList?.length === 0?
                 '' :
-                <button id="add-to-cart" style={{marginTop:'20px'}}>
+                <button id="add-to-cart" style={{marginTop:'20px'}}
+                    onClick={next}>
                     Next
                 </button>
             }
