@@ -41,7 +41,7 @@ const SignupPage = () => {
 
   const handleRegister = async ()=>{
     try {
-      await axios.post('http://localhost:4000/api/v1/users/create-user', submitData)
+      await axios.post('https://evtol-backend-mquf.onrender.com/api/v1/users/create-user', submitData)
       .then((response)=>{
         const responseData = response.data as EvtolUser;
         localStorage.setItem('userEmail', responseData.email);

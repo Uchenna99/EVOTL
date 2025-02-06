@@ -21,4 +21,14 @@ export interface EvtolUser {
 export interface JwtResponse {
     accessToken: string;
 }
+
+
+export interface Medication {
+    id: number;
+    name: string;
+    weight: string;
+    code: string;
+    image: string;
+    price: number;
+}
   
