@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { Order } from "./interface";
+import { DB_Evtol, Order } from "./interface";
+import axios from "axios";
+import { TailSpin } from "react-loader-spinner";
 
 
 interface Props{
@@ -7,30 +9,59 @@ interface Props{
 }
 
 const ListOfDrones = ({next}: Props) => {
-  const [orders, setOrders] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [evtols, setEvtols] = useState<DB_Evtol[]|null>(null);
 
   useEffect(()=>{
-    const getOrders = ()=>{
-      const savedOrder = localStorage.getItem('order');
-      if(!savedOrder){null}else{
-        const order: Order[] = JSON.parse(savedOrder);
-
+    const getEvtols = async ()=>{
+      setIsLoading(true);
+      try {
+        await axios.get('https://evtol-backend-mquf.onrender.com/api/v1/evtol/fetch-all-evtols')
+        .then((response)=>{
+          const data = response.data as DB_Evtol[];
+          setEvtols(data);
+          setIsLoading(false);
+        })
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
       }
     }
+    getEvtols();
   },[])
+
 
   return (
     <>
+      {
+        isLoading?
+        <div className="loader">
+          <TailSpin
+              height="80"
+              width="80"
+              color="black"
+              ariaLabel="loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+          />
+        </div>
+        :
         <div className="drone-list-wrap">
           {/* <p>Select a drone </p> */}
-          <div className="drone-list-card">
-            <div className="drone-list-image"></div>
-            <p>Model: {}</p>
-            <button id="add-to-cart" style={{alignSelf:'center', marginTop:'10px'}}>
-              Select
-            </button>
-          </div>
+          {
+            evtols &&
+            evtols.map((evtol)=>(
+              <div className="drone-list-card">
+                <div className="drone-list-image" style={{backgroundImage:`url(${evtol.image})`}}></div>
+                <p>Model: {evtol.model}</p>
+                <button id="add-to-cart" style={{alignSelf:'center', marginTop:'10px'}}>
+                  Select
+                </button>
+              </div>
+            ))
+          }
         </div>
+      }
     </>
   )
 }

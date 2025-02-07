@@ -1,3 +1,12 @@
+export enum EvtolState {
+    IDLE,
+    LOADING,
+    LOADED,
+    DELIVERING,
+    DELIVERED,
+    RETURNING
+}
+
 
 export interface EvtolUser {
     id: number;
@@ -36,4 +45,21 @@ export interface Medication {
 export interface Order {
     id: number;
     quantity: number;
+}
+
+export interface DB_Order {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    evtolId: number;
+}
+
+
+export interface DB_Evtol {
+    id: number;
+    serialNumber: string;
+    model: string;
+    image: string;
+    batteryCapacity: number;
+    state: EvtolState;
 }
