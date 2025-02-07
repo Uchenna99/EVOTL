@@ -45,6 +45,8 @@ export interface Medication {
 export interface Order {
     medicationsId: number;
     quantity: number;
+    evtolId: number;
+    orderId: string;
 }
 
 export interface DB_Order {
@@ -62,4 +64,13 @@ export interface DB_Evtol {
     image: string;
     batteryCapacity: number;
     state: EvtolState;
+}
+
+
+export interface DB_Load {
+    id: string;
+    medicationsId: number;
+    quantity: number;
+    orderId: string;
+    evtolId: number;
 }

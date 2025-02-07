@@ -140,7 +140,12 @@ const ListOfMedications = ({next}: Props) => {
                                         <button id="add-to-cart"
                                             onClick={()=>{
                                                 setModal(false);
-                                                addOrder({medicationsId: selectedMed!.id, quantity: quantity});
+                                                addOrder({
+                                                    medicationsId: selectedMed!.id, 
+                                                    quantity: quantity,
+                                                    evtolId: 0,
+                                                    orderId: ''
+                                                });
                                             }}>
                                                 Add to order
                                         </button>

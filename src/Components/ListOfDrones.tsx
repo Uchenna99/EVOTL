@@ -11,7 +11,6 @@ interface Props{
 const ListOfDrones = ({next}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [evtols, setEvtols] = useState<DB_Evtol[]|null>(null);
-  const [selectedId, setSelectedId] = useState<number|null>(null);
 
   useEffect(()=>{
     const getEvtols = async ()=>{
@@ -68,11 +67,11 @@ const ListOfDrones = ({next}: Props) => {
                       .then(async(response)=>{
                         const resp = response.data as DB_Order;
                         const orders: Order[] = JSON.parse(savedOrders);
-                        const mapped = orders.map((order)=>({...order, evtolId: evtol.id, orderId: resp.id}))
+                        const mapped = orders.map((order)=>({...order, evtolId: evtol.id, orderId: resp.id}));
                         await axios.post('https://evtol-backend-mquf.onrender.com/api/v1/evtol/create-load/', mapped)
                         .then((response)=>{
-                          const jsonOrder = JSON.stringify(mapped);
-                          localStorage.setItem('order', jsonOrder);
+                          const stringOrders = JSON.stringify(mapped);
+                          localStorage.setItem('order', stringOrders);
                           console.log(response.data.message);
                         })
                       })
