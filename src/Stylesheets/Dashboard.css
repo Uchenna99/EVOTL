@@ -314,6 +314,14 @@ color: white;
 
 /* DRONE LIST */
 
+.drone-list-main-wrapper{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .drone-list-wrap{
     width: 100%;
     height: 100%;
@@ -344,4 +352,21 @@ color: white;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+
+
+
+/* SUMMARY */
+
+.summary-wrap{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#h4-header{
+    font-size: 22px;
 }

@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { GoSearch } from "react-icons/go";
 import ListOfMedications from "../Components/ListOfMedications";
 import ListOfDrones from "../Components/ListOfDrones";
+import OrderSummary from "../Components/OrderSummary";
 
 const Dashboard = () => {
   const { setLoggedIn } = useGlobalState();
@@ -94,7 +95,9 @@ const Dashboard = () => {
                       newOrder === 'meds-list'?
                       <ListOfMedications next={()=>setNewOrder('drone-list')} /> :
                       newOrder === 'drone-list'?
-                      <ListOfDrones next={()=>setNewOrder('')} /> : ''
+                      <ListOfDrones next={()=>setNewOrder('summary')} /> :
+                      newOrder === 'summary'?
+                      <OrderSummary /> : ''
                     )
                   }
                 </div>

@@ -58,7 +58,7 @@ const ListOfMedications = ({next}: Props) => {
             console.log('Order not found');
         }else{
             const orderList: Order[] = JSON.parse(getOrder);
-            if(!orderList){
+            if(!orderList[0]){
                 alert('You have not selected any items yet');
             }else{
                 next();
@@ -140,7 +140,7 @@ const ListOfMedications = ({next}: Props) => {
                                         <button id="add-to-cart"
                                             onClick={()=>{
                                                 setModal(false);
-                                                addOrder({id: selectedMed!.id, quantity: quantity});
+                                                addOrder({medicationsId: selectedMed!.id, quantity: quantity});
                                             }}>
                                                 Add to order
                                         </button>
