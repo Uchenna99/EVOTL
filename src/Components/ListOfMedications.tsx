@@ -96,7 +96,22 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
             </div>
             :
             <div className="meds-display">
-                <p>Select Medications</p>
+                <div className="summary-header">
+                    
+                <h4 id="h4-header">Select Medications</h4>
+
+                {
+                    medsList && (
+                    medsList.length === 0?
+                    '' :
+                    <button id="add-to-cart" style={{}}
+                        onClick={confirmOrder}>
+                        Next
+                    </button>
+                    )
+                }
+
+                </div>
 
 
                 {
@@ -105,81 +120,133 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
                         Something went wrong! Could not fetch list of medications
                     </p>
                     :
-                    medsList?.map((meds)=>(
-                        <div className="med-list-card" key={meds.id}>
-                            <div className="med-list-image"
-                                style={{backgroundImage:`url(${meds.image})`}}
-                            ></div>
+                    <div className="med-list-card-grid">
 
-                            <div className="med-list-info">
-                                <p>{meds.name}</p>
-                                <p>₦ {meds.price}</p>
-                                <div className="quantity">
-                                    <label htmlFor="qty">Quantity</label>
-                                    <input id="qty" type="number" 
-                                        onChange={(e)=>{setQuantity(parseInt(e.target.value))}}
-                                    />
-                                </div>
-                            </div>
+                        {
+                            medsList &&
+                            medsList.map((meds, index)=>(
+                                <div className="med-list-main-card" key={index} onClick={()=>{
+                                        setModal(true);
+                                        setSelectedMed(meds);
+                                    }}>
+                                    <div className="med-card-list-image"
+                                        style={{backgroundImage:`url(${meds.image})`}}
+                                    ></div>
 
-                            <div className="med-list-btn">
-                                <button id="add-to-cart"
-                                onClick={()=>{
-                                    setSelectedMed(meds);
-                                    setModal(true);
-                                }}>
-                                    Select
-                                </button>
-                            </div>
-
-                            {
-                                modal &&
-                                <div className="select-modal-back" >
-
-                                    <div className="select-modal-cover" onClick={()=>setModal(false)}></div>
-
-                                    <div className="select-modal">
-                                        <div className="select-modal-image" style={{backgroundImage:`url(${selectedMed?.image})`}}></div>
-                                        <p>{selectedMed?.name}</p>
-                                        <p>₦ {selectedMed?.price}</p>
-                                        <div className="quantity">
-                                            <label htmlFor="qty">Quantity</label>
-                                            <input id="qty" type="number" value={quantity}
-                                                onChange={(e)=>{setQuantity(parseInt(e.target.value))}}
-                                            />
-                                        </div>
-
-                                        <button id="add-to-cart"
-                                            onClick={()=>{
-                                                addOrder({
-                                                    medicationsId: selectedMed!.id, 
-                                                    quantity: quantity,
-                                                    evtolId: 0,
-                                                    orderId: ''
-                                                });
-                                                setModal(false);
-                                            }}>
-                                                Add to order
-                                        </button>
+                                    <div className="med-card-list-info">
+                                        <p>Name: {meds.name}</p>
+                                        <p>Price: ₦ {meds.price}</p>
+                                        <p>Weight: {meds.weight}</p>
+                                        
                                     </div>
 
                                 </div>
-                            }
+                                
+                            ))
+                            
+                        }
 
-                        </div>
-                    ))
+                        {
+                            modal &&
+                            <div className="select-modal-back" >
+
+                                <div className="select-modal-cover" onClick={()=>setModal(false)}></div>
+
+                                <div className="select-modal">
+                                    <div className="select-modal-image" style={{backgroundImage:`url(${selectedMed?.image})`}}></div>
+                                    <p>{selectedMed?.name}</p>
+                                    <p>₦ {selectedMed?.price}</p>
+                                    <div className="quantity">
+                                        <label htmlFor="qty">Quantity</label>
+                                        <input id="qty" type="number" value={quantity}
+                                            onChange={(e)=>{setQuantity(parseInt(e.target.value))}}
+                                        />
+                                    </div>
+
+                                    <button id="add-to-cart"
+                                        onClick={()=>{
+                                            addOrder({
+                                                medicationsId: selectedMed!.id, 
+                                                quantity: quantity,
+                                                evtolId: 0,
+                                                orderId: ''
+                                            });
+                                            setModal(false);
+                                        }}>
+                                            Add to order
+                                    </button>
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+
+                    // medsList?.map((meds)=>(
+                    //     <div className="med-list-card" key={meds.id}>
+                    //         <div className="med-list-image"
+                    //             style={{backgroundImage:`url(${meds.image})`}}
+                    //         ></div>
+
+                    //         <div className="med-list-info">
+                    //             <p>{meds.name}</p>
+                    //             <p>₦ {meds.price}</p>
+                    //             <div className="quantity">
+                    //                 <label htmlFor="qty">Quantity</label>
+                    //                 <input id="qty" type="number" 
+                    //                     onChange={(e)=>{setQuantity(parseInt(e.target.value))}}
+                    //                 />
+                    //             </div>
+                    //         </div>
+
+                    //         <div className="med-list-btn">
+                    //             <button id="add-to-cart"
+                    //             onClick={()=>{
+                    //                 setSelectedMed(meds);
+                    //                 setModal(true);
+                    //             }}>
+                    //                 Select
+                    //             </button>
+                    //         </div>
+
+                    //         {
+                    //             modal &&
+                    //             <div className="select-modal-back" >
+
+                    //                 <div className="select-modal-cover" onClick={()=>setModal(false)}></div>
+
+                    //                 <div className="select-modal">
+                    //                     <div className="select-modal-image" style={{backgroundImage:`url(${selectedMed?.image})`}}></div>
+                    //                     <p>{selectedMed?.name}</p>
+                    //                     <p>₦ {selectedMed?.price}</p>
+                    //                     <div className="quantity">
+                    //                         <label htmlFor="qty">Quantity</label>
+                    //                         <input id="qty" type="number" value={quantity}
+                    //                             onChange={(e)=>{setQuantity(parseInt(e.target.value))}}
+                    //                         />
+                    //                     </div>
+
+                    //                     <button id="add-to-cart"
+                    //                         onClick={()=>{
+                    //                             addOrder({
+                    //                                 medicationsId: selectedMed!.id, 
+                    //                                 quantity: quantity,
+                    //                                 evtolId: 0,
+                    //                                 orderId: ''
+                    //                             });
+                    //                             setModal(false);
+                    //                         }}>
+                    //                             Add to order
+                    //                     </button>
+                    //                 </div>
+
+                    //             </div>
+                    //         }
+
+                    //     </div>
+                    // ))
                 }
 
-                {
-                    medsList && (
-                    medsList.length === 0?
-                    '' :
-                    <button id="add-to-cart" style={{marginTop:'20px', position:'fixed', bottom:40, right:50}}
-                        onClick={confirmOrder}>
-                        Next
-                    </button>
-                    )
-                }
 
             </div>
         }

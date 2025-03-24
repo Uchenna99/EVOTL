@@ -184,8 +184,9 @@
     height: 85vh;
     border: 1px solid lightgray;
     border-radius: 5px;
-    padding: 15px;
+    padding: 0 15px;
     overflow-y: auto;
+    position: relative;
 }
 
 .dash-display-board::-webkit-scrollbar{
@@ -360,6 +361,65 @@ color: white;
 }
 
 
+.med-list-card-grid{
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 25px;
+}
+
+.summary-header{
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+    padding: 20px 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+.med-list-main-card{
+    height: 300px;
+    /* border: 1px solid; */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+    border-radius: 15px;
+}
+
+.med-list-main-card:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.med-card-list-image{
+    width: 100%;
+    height: 200px;
+    /* background-color: gray; */
+    border-radius: 15px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.med-card-list-info{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.med-card-list-info > p{
+    font-size: 14px;
+}
+
+
 
 
 
@@ -420,5 +480,5 @@ color: white;
 }
 
 #h4-header{
-    font-size: 22px;
+    font-size: 18px;
 }
