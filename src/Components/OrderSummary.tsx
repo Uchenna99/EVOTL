@@ -6,6 +6,7 @@ import { DB_Load, Order } from "./interface";
 
 const OrderSummary = () => {
     const [summary, setSummary] = useState<DB_Load[]|null>(null);
+    
     useEffect(()=>{
         const getLoad = async ()=>{
             const savedOrder = localStorage.getItem('order');

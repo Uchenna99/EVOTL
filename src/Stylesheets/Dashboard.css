@@ -162,8 +162,8 @@
 }
 
 .cart-item-count{
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background-color: black;
     position: absolute;
@@ -173,7 +173,7 @@
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 
