@@ -5,9 +5,9 @@ import useGlobalState, { JwtCode } from "../State";
 import { jwtDecode } from "jwt-decode";
 import { GoSearch } from "react-icons/go";
 import ListOfMedications from "../Components/ListOfMedications";
-import ListOfDrones from "../Components/ListOfDrones";
 import OrderSummary from "../Components/OrderSummary";
 import { GiDeliveryDrone } from "react-icons/gi";
+import { Order } from "../Components/interface";
 
 const Dashboard = () => {
   const { setLoggedIn } = useGlobalState();
@@ -17,6 +17,7 @@ const Dashboard = () => {
   const [history, setHistory] = useState(false);
   const [newOrder, setNewOrder] = useState('meds-list');
   const [itemCount, setItemCount] = useState(0);
+  const [cartUpdate, setCartUpdate] = useState(false);
 
   useEffect(()=>{
     const getUser = ()=>{
@@ -30,6 +31,14 @@ const Dashboard = () => {
     };
     getUser();
   },[]);
+
+  useEffect(()=>{
+    const order = localStorage.getItem('order');
+    if(order){
+      const orderList: Order[] = JSON.parse(order);
+      setItemCount(orderList.length);
+    }
+  },[cartUpdate]);
 
   const handleLogout = ()=>{
     localStorage.removeItem('token');
@@ -100,7 +109,7 @@ const Dashboard = () => {
                     delivery &&
                     (
                       newOrder === 'meds-list'?
-                      <ListOfMedications next={()=>setNewOrder('summary')} /> :
+                      <ListOfMedications next={()=>setNewOrder('summary')} cartUpdate={()=>setCartUpdate(!cartUpdate)} /> :
                       // newOrder === 'drone-list'?
                       // <ListOfDrones next={()=>setNewOrder('summary')} /> :
                       newOrder === 'summary'?

@@ -6,14 +6,16 @@ import { toast } from "sonner";
 
 interface Props{
     next: ()=>void;
+    cartUpdate: ()=>void;
   }
 
-const ListOfMedications = ({next}: Props) => {
+const ListOfMedications = ({next, cartUpdate}: Props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [medsList, setMedsList] = useState<Medication[] | null>(null);
     const [quantity, setQuantity] = useState(1);
     const [modal, setModal] = useState(false);
     const [selectedMed, setSelectedMed] = useState<Medication | null>(null);
+    // const [orderArray, setOrderArray] = useState<Order[]>([]);
 
 
     useEffect(()=>{
@@ -43,12 +45,21 @@ const ListOfMedications = ({next}: Props) => {
 
     const addOrder = (order: Order)=>{
         const getOrder = localStorage.getItem('order');
-        if(!getOrder){null}else{
-            const orderList: Order[] = JSON.parse(getOrder);
-            orderList.push(order);
+        if(getOrder){
+            let orderList: Order[] = JSON.parse(getOrder);
+            const orderExists = orderList.some((medOrder)=> medOrder.medicationsId === order.medicationsId);
+
+            if(orderExists){
+                const update = orderList.map((medOrder)=> medOrder.medicationsId === order.medicationsId?
+                    {...medOrder, quantity: medOrder.quantity + order.quantity} : medOrder
+                )
+                orderList = update
+                
+            }else{ orderList.push(order); }
+
             const saveOrder = JSON.stringify(orderList);
             localStorage.setItem('order', saveOrder);
-            console.log(saveOrder)
+            cartUpdate();
         }
     }
 
@@ -140,13 +151,13 @@ const ListOfMedications = ({next}: Props) => {
 
                                         <button id="add-to-cart"
                                             onClick={()=>{
-                                                setModal(false);
                                                 addOrder({
                                                     medicationsId: selectedMed!.id, 
                                                     quantity: quantity,
                                                     evtolId: 0,
                                                     orderId: ''
                                                 });
+                                                setModal(false);
                                             }}>
                                                 Add to order
                                         </button>
