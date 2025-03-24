@@ -31,6 +31,7 @@ const VerificationPage = () => {
             await axios.post('http://localhost:4000/api/v1/auth/verify-email', verify)
             .then(()=>{
                 navigate('/login')
+                alert("Verification successful");
             })
             .catch(err=>alert(err))
             

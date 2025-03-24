@@ -7,6 +7,7 @@ import LoginPage from './Pages/LoginPage'
 import Dashboard from './Pages/Dashboard'
 import useGlobalState from './State'
 import { useEffect } from 'react'
+import { Toaster } from 'sonner'
 
 function App() {
   const { loggedIn, setLoggedIn } = useGlobalState();
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <>
+      <Toaster/>
       <Routes>
         <Route path='/' element={<LandingPage/>} />
         <Route path='/signup' element={ loggedIn? <Dashboard/> : <SignupPage/> } />

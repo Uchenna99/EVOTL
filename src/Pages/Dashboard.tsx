@@ -7,6 +7,7 @@ import { GoSearch } from "react-icons/go";
 import ListOfMedications from "../Components/ListOfMedications";
 import ListOfDrones from "../Components/ListOfDrones";
 import OrderSummary from "../Components/OrderSummary";
+import { GiDeliveryDrone } from "react-icons/gi";
 
 const Dashboard = () => {
   const { setLoggedIn } = useGlobalState();
@@ -15,6 +16,7 @@ const Dashboard = () => {
   const [delivery, setDelivery] = useState(false);
   const [history, setHistory] = useState(false);
   const [newOrder, setNewOrder] = useState('meds-list');
+  const [itemCount, setItemCount] = useState(0);
 
   useEffect(()=>{
     const getUser = ()=>{
@@ -86,6 +88,11 @@ const Dashboard = () => {
                       <GoSearch id="dash-search-icon"/>
                     </div>
                   </div>
+
+                  <div className="drone-cart">
+                    <GiDeliveryDrone id="cart-icon"/>
+                    <div className="cart-item-count"> {itemCount} </div>
+                  </div>
                 </div>
 
                 <div className="dash-display-board">
@@ -93,9 +100,9 @@ const Dashboard = () => {
                     delivery &&
                     (
                       newOrder === 'meds-list'?
-                      <ListOfMedications next={()=>setNewOrder('drone-list')} /> :
-                      newOrder === 'drone-list'?
-                      <ListOfDrones next={()=>setNewOrder('summary')} /> :
+                      <ListOfMedications next={()=>setNewOrder('summary')} /> :
+                      // newOrder === 'drone-list'?
+                      // <ListOfDrones next={()=>setNewOrder('summary')} /> :
                       newOrder === 'summary'?
                       <OrderSummary /> : ''
                     )

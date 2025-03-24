@@ -27,7 +27,7 @@ const LoginPage = () => {
         alert('All input fields are required')
       }
       try {
-          await axios.post('https://evtol-backend-mquf.onrender.com/api/v1/auth/login', loginData)
+          await axios.post('http://localhost:4000/api/v1/auth/login', loginData)
           .then((response)=>{
               const responseData = response.data as JwtResponse;
               localStorage.setItem('token', responseData.accessToken);

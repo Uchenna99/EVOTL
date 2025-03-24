@@ -17,7 +17,7 @@ const OrderSummary = () => {
                     evtolId: orders[0].evtolId,
                     orderId: orders[0].orderId
                 }
-                await axios.post('https://evtol-backend-mquf.onrender.com/api/v1/evtol/evtol-load', getOrder)
+                await axios.post('http://localhost:4000/api/v1/evtol/evtol-load', getOrder)
                 .then((response)=>{
                     setSummary(response.data as DB_Load[]);
                 })

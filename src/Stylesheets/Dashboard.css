@@ -1,7 +1,7 @@
 
 .dashboard-wrap{
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 4fr;
 }
@@ -99,14 +99,17 @@
 
 .searchbar-section{
     width: 100%;
-    height: 10vh;
+    min-height: 8vh;
     padding: 5px;
     /* background-color: beige; */
+    display: flex;
+    align-items: center;
+    gap: 50px;
 }
 
 .search-bar{
     width: 450px;
-    height: 50px;
+    height: 40px;
     display: flex;
     align-items: center;
     position: relative;
@@ -144,16 +147,58 @@
     cursor: pointer;
 }
 
+.drone-cart{
+    width: 50px;
+    height: 50px;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#cart-icon{
+    font-size: 30px;
+}
+
+.cart-item-count{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    right: -15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 13px;
+}
+
 
 
 
 .dash-display-board{
     width: 100%;
-    height: 82vh;
+    height: 85vh;
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 15px;
     overflow-y: auto;
+}
+
+.dash-display-board::-webkit-scrollbar{
+    width: 5px;
+}
+
+.dash-display-board::-webkit-scrollbar-thumb{
+    background-color: lightgray;
+    border-radius: 20px;
+}
+
+.dash-display-board::-webkit-scrollbar-thumb:hover{
+    background-color: gray;
 }
 
 .loader{
@@ -169,10 +214,11 @@
 
 .meds-display{
     width: 100%;
-    height: 100%;
+    min-height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    /* background-color: teal; */
 }
 
 .meds-display > p{
@@ -183,7 +229,7 @@
 .med-list-card{
     width: 65%;
     height: 100px;
-    border: 2px solid black;
+    border: 2px solid lightgray;
     border-radius: 5px;
     display: flex;
     align-items: end;
@@ -198,7 +244,7 @@
 .med-list-image{
     min-width: 100px;
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid lightgray;
     border-radius: 5px;
     background-position: center;
     background-size: cover;
@@ -249,7 +295,6 @@ button#add-to-cart{
     /* font-weight: 600; */
     transition: 300ms;
     cursor: pointer;
-
 }
  
 button#add-to-cart:hover{
@@ -284,18 +329,25 @@ color: white;
     z-index: 2;
 }
 
+@keyframes modal {
+    from {transform: scale(0.8);}
+    to {transform: scale(1);}
+}
+
 .select-modal{
     width: 400px;
     height: 450px;
     background-color: white;
     border-radius: 5px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 15px;
+    padding: 15px 25px;
     position: relative;
     z-index: 5;
+    scale: 0.8;
+    animation: modal 100ms 1 forwards linear;
 }
 
 .select-modal-image{

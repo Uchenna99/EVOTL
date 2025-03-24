@@ -8,6 +8,7 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { EvtolUser } from "../Components/interface";
+import { TailSpin } from "react-loader-spinner";
 
 
 
@@ -16,6 +17,7 @@ const SignupPage = () => {
 
   const [eye, setEye] = useState(false);
   const [regionSelect, setRegionSelect] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -40,9 +42,11 @@ const SignupPage = () => {
 
 
   const handleRegister = async ()=>{
+    setLoading(true);
     try {
-      await axios.post('https://evtol-backend-mquf.onrender.com/api/v1/users/create-user', submitData)
+      await axios.post('http://localhost:4000/api/v1/users/create-user', submitData)
       .then((response)=>{
+        alert("Successfull");
         const responseData = response.data as EvtolUser;
         localStorage.setItem('userEmail', responseData.email);
         navigate('/email-verification');
@@ -52,6 +56,7 @@ const SignupPage = () => {
     } catch (error) {
       console.log('Failed to register new user');
       alert(error);
+      setLoading(false);
     }
   }
 
@@ -142,7 +147,21 @@ const SignupPage = () => {
               </div>
             </div>
 
-            <button className="register" onClick={handleRegister}>Register</button>
+            <button className="register" onClick={handleRegister}>
+              {
+                loading?
+                <TailSpin
+                  height="24"
+                  width="24"
+                  color="black"
+                  ariaLabel="loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+                :
+                <p>Register</p>
+              }
+            </button>
 
             <p>Already have an account? <Link id="form-login" to={'/login'}>Login</Link></p>
 

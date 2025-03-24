@@ -16,7 +16,7 @@ const ListOfDrones = ({next}: Props) => {
     const getEvtols = async ()=>{
       setIsLoading(true);
       try {
-        await axios.get('https://evtol-backend-mquf.onrender.com/api/v1/evtol/fetch-all-evtols')
+        await axios.get('http://localhost:4000/api/v1/evtol/fetch-all-evtols')
         .then((response)=>{
           const data = response.data as DB_Evtol[];
           setEvtols(data);
@@ -37,12 +37,12 @@ const ListOfDrones = ({next}: Props) => {
         isLoading?
         <div className="loader">
           <TailSpin
-              height="80"
-              width="80"
-              color="black"
-              ariaLabel="loading"
-              wrapperStyle={{}}
-              wrapperClass=""
+            height="80"
+            width="80"
+            color="black"
+            ariaLabel="loading"
+            wrapperStyle={{}}
+            wrapperClass=""
           />
         </div>
         :
@@ -63,12 +63,12 @@ const ListOfDrones = ({next}: Props) => {
                       alert('Orders not found');
                     }else{
                       const createOrder = {evtolId: evtol.id};
-                      await axios.post('https://evtol-backend-mquf.onrender.com/api/v1/users/create-order', createOrder)
+                      await axios.post('http://localhost:4000/api/v1/users/create-order', createOrder)
                       .then(async(response)=>{
                         const resp = response.data as DB_Order;
                         const orders: Order[] = JSON.parse(savedOrders);
                         const mapped = orders.map((order)=>({...order, evtolId: evtol.id, orderId: resp.id}));
-                        await axios.post('https://evtol-backend-mquf.onrender.com/api/v1/evtol/create-load/', mapped)
+                        await axios.post('http://localhost:4000/api/v1/evtol/create-load/', mapped)
                         .then((response)=>{
                           const stringOrders = JSON.stringify(mapped);
                           localStorage.setItem('order', stringOrders);

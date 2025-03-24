@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Medication, Order } from "./interface";
 import {TailSpin } from "react-loader-spinner";
+import { toast } from "sonner";
 
 interface Props{
     next: ()=>void;
@@ -19,7 +20,7 @@ const ListOfMedications = ({next}: Props) => {
         const getMeds = ()=>{
             setIsLoading(true);
             try {
-                axios.get('https://evtol-backend-mquf.onrender.com/api/v1/users/fetch-meds')
+                axios.get('http://localhost:4000/api/v1/users/fetch-meds')
                 .then((response)=>{
                     setMedsList(response.data as Medication[]);
                     console.log(response.data)
@@ -55,11 +56,11 @@ const ListOfMedications = ({next}: Props) => {
     const confirmOrder = ()=>{
         const getOrder = localStorage.getItem('order');
         if(!getOrder){
-            console.log('Order not found');
+            toast.warning("Order not found", {position: "top-right"})
         }else{
             const orderList: Order[] = JSON.parse(getOrder);
             if(!orderList[0]){
-                alert('You have not selected any items yet');
+                toast.warning('You have not selected any items yet', {position: "top-right"});
             }else{
                 next();
             }
@@ -162,7 +163,7 @@ const ListOfMedications = ({next}: Props) => {
                     medsList && (
                     medsList.length === 0?
                     '' :
-                    <button id="add-to-cart" style={{marginTop:'20px'}}
+                    <button id="add-to-cart" style={{marginTop:'20px', position:'fixed', bottom:40, right:50}}
                         onClick={confirmOrder}>
                         Next
                     </button>
