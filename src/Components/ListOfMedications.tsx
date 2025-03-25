@@ -128,7 +128,7 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
                                 <div className="med-list-main-card" key={index} onClick={()=>{
                                         setModal(true);
                                         setSelectedMed(meds);
-                                    }}>
+                                    }} style={{cursor:'pointer'}}>
                                     <div className="med-card-list-image"
                                         style={{backgroundImage:`url(${meds.image})`}}
                                     ></div>
@@ -136,7 +136,7 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
                                     <div className="med-card-list-info">
                                         <p>Name: {meds.name}</p>
                                         <p>Price: ₦ {meds.price.toLocaleString()}</p>
-                                        <p>Weight: {meds.weight}</p>
+                                        <p>Weight: {meds.weight}g</p>
                                         
                                     </div>
 

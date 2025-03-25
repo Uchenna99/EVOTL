@@ -33,8 +33,8 @@ const LoginPage = () => {
               localStorage.setItem('token', responseData.accessToken);
               localStorage.setItem('isLoggedIn', 'true');
               const decode = jwtDecode(responseData.accessToken);
-              setJwtDecoded(decode as JwtCode)
-              console.log(decode);
+              localStorage.setItem('evtolUser', JSON.stringify(decode));
+              setJwtDecoded(decode as JwtCode);
               setLoggedIn(true);
               navigate('/dashboard');
           })

@@ -26,6 +26,20 @@ export interface EvtolUser {
     updatedAt: string;
 }
 
+export interface DB_GetUser {
+    id: string;
+    googleId: string | null;
+    firstName: string;
+    lastName: string;
+    age: string;
+    email: string;
+    phoneNumber: string;
+    image: string | null;
+    region: string;
+    role: "USER" | "ADMIN";
+    emailVerified: boolean;
+}
+
 
 export interface JwtResponse {
     accessToken: string;
@@ -53,7 +67,8 @@ export interface DB_Order {
     id: string;
     createdAt: string;
     updatedAt: string;
-    evtolId: number;
+    evtolId: number | null;
+    userId: string;
 }
 
 

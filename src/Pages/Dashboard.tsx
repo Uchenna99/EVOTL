@@ -7,26 +7,34 @@ import { GoSearch } from "react-icons/go";
 import ListOfMedications from "../Components/ListOfMedications";
 import OrderSummary from "../Components/OrderSummary";
 import { GiDeliveryDrone } from "react-icons/gi";
-import { Order } from "../Components/interface";
+import { DB_GetUser, Order } from "../Components/interface";
+import { toast } from "sonner";
+import axios from "axios";
+import CartItems from "../Components/CartItems";
 
 const Dashboard = () => {
   const { setLoggedIn } = useGlobalState();
   const navigate = useNavigate();
-  const [user, setUser] = useState<JwtCode | null>(null);
+  const [user, setUser] = useState<DB_GetUser|null>(null);
   const [delivery, setDelivery] = useState(false);
   const [history, setHistory] = useState(false);
   const [newOrder, setNewOrder] = useState('meds-list');
   const [itemCount, setItemCount] = useState(0);
   const [cartUpdate, setCartUpdate] = useState(false);
+  const [showCart, setShowCart] = useState(true);
 
   useEffect(()=>{
-    const getUser = ()=>{
+    const getUser = async()=>{
       const user = localStorage.getItem('token');
       if(user){
-        const decoded = jwtDecode(user);
-        setUser(decoded as JwtCode);
+        const decoded: JwtCode = jwtDecode(user);
+        await axios.get(`http://localhost:4000/api/v1/users/get-user/${decoded.id}`)
+        .then((response)=>{
+          setUser(response.data as DB_GetUser);
+          localStorage.setItem('GetUser', JSON.stringify(response.data));
+        })
       }else{
-        console.log('Could not decode user');
+        toast.warning('Could not get user');
       }
     };
     getUser();
@@ -43,6 +51,8 @@ const Dashboard = () => {
   const handleLogout = ()=>{
     localStorage.removeItem('token');
     localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('evtolUser');
+    localStorage.removeItem('GetUser');
     setLoggedIn(false);
     navigate('/login');
   };
@@ -56,10 +66,10 @@ const Dashboard = () => {
               <div className="dash-left">
 
                 <div className="dash-user">
-                  <div className="dash-user-image"></div>
+                  <div className="dash-user-image" style={{backgroundImage: `url(${user?.image})`}}></div>
                   <div className="dash-user-name">
                     <p>Hello</p>
-                    <p>{user?.name}</p>
+                    <p>{`${user?.firstName} ${user?.lastName}`}</p>
                   </div>
                 </div>
 
@@ -98,7 +108,7 @@ const Dashboard = () => {
                     </div>
                   </div>
 
-                  <div className="drone-cart">
+                  <div className="drone-cart" onClick={()=> setShowCart(true)}>
                     <GiDeliveryDrone id="cart-icon"/>
                     <div className="cart-item-count"> {itemCount} </div>
                   </div>
@@ -117,6 +127,8 @@ const Dashboard = () => {
                     )
                   }
                 </div>
+
+                <CartItems />
               </div>
             </div>
         </>

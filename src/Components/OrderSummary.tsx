@@ -5,7 +5,6 @@ import { Order } from "./interface";
 
 
 const OrderSummary = () => {
-    // const [summary, setSummary] = useState<DB_Load[]|null>(null);
     const [orderInfo, setOrderInfo] = useState<Order[]>([]);
     const [total, setTotal] = useState(0);
 
@@ -35,7 +34,13 @@ const OrderSummary = () => {
         getLoad();
     },[]);
 
-    const handleOrder = async ()=>{};
+    const handleOrder = async ()=>{
+        const user = localStorage.getItem('evtolUser');
+        if(user){
+            const evtolUser = JSON.parse(user);
+        }
+        await axios.post(`http://localhost:4000/api/v1/users/create-order`)
+    };
 
   return (
     <>
@@ -70,7 +75,7 @@ const OrderSummary = () => {
                             </div>
 
                         </div>
-                        ))
+                    ))
                 }
 
             </div>

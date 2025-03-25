@@ -3,7 +3,7 @@
     width: 100%;
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 260px 1fr;
 }
 
 
@@ -30,7 +30,10 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 2px solid black;
+    border: 2px solid lightgray;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .dash-user-name{
@@ -148,8 +151,8 @@
 }
 
 .drone-cart{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     /* background-color: blue; */
     display: flex;
     justify-content: center;
@@ -158,22 +161,22 @@
 }
 
 #cart-icon{
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .cart-item-count{
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background-color: black;
     position: absolute;
     top: 0;
-    right: -15px;
+    right: -10px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 
@@ -495,4 +498,39 @@ color: white;
 
 #h4-header{
     font-size: 18px;
+}
+
+
+
+.cart-items-div{
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    animation: modal 120ms 1 forwards linear;
+}
+
+.cart-items-div > p{
+    font-weight: 500;
+    font-size: 18px;
+    min-height: 35px;
+}
+
+.cart-items-scroll{
+    width: 100%;
+    height: 100%;
+    /* background-color: lightblue; */
+}
+
+.cart-items-grid{
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 20px;
 }
