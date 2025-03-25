@@ -43,7 +43,7 @@ export interface Medication {
   
 
 export interface Order {
-    medicationsId: number;
+    medication: Medication;
     quantity: number;
     evtolId: number;
     orderId: string;

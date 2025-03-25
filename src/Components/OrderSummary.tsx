@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { DB_Load, Order } from "./interface";
-import pelican from "../assets/Images/Pelican-2.0-Home.png"
+import { Order } from "./interface";
 
 
 
 const OrderSummary = () => {
-    const [summary, setSummary] = useState<DB_Load[]|null>(null);
+    // const [summary, setSummary] = useState<DB_Load[]|null>(null);
     const [orderInfo, setOrderInfo] = useState<Order[]>([]);
+    const [total, setTotal] = useState(0);
 
     useEffect(()=>{
         const getLoad = async ()=>{
@@ -17,6 +17,11 @@ const OrderSummary = () => {
             }else{
                 const orders: Order[] = JSON.parse(savedOrder);
                 setOrderInfo(orders);
+                
+                let incr: number = 0
+                orders.map((order)=> incr = incr + (order.medication.price * order.quantity));
+                setTotal(incr);
+
                 // const getOrder = {
                 //     evtolId: orders[0].evtolId,
                 //     orderId: orders[0].orderId
@@ -38,6 +43,8 @@ const OrderSummary = () => {
                 
                 <h4 id="h4-header">Your order summary</h4>
 
+                <p>Total Amount: {total}</p>
+
                 <button id="add-to-cart">
                     Confirm order
                 </button>
@@ -51,14 +58,13 @@ const OrderSummary = () => {
                     orderInfo.map((order, index)=>(
                         <div className="med-list-main-card" key={index}>
                             <div className="med-card-list-image"
-                                style={{backgroundImage:`url(${pelican})`}}
+                                style={{backgroundImage:`url(${order.medication.image})`}}
                             ></div>
 
                             <div className="med-card-list-info">
-                                <p>Name: {order.medicationsId}</p>
-                                <p>Price: ₦ {order.quantity}</p>
+                                <p>Name: {order.medication.name}</p>
                                 <p>Quantity: {order.quantity}</p>
-                                
+                                <p>Total: { order.quantity * order.medication.price}</p>
                             </div>
 
                         </div>

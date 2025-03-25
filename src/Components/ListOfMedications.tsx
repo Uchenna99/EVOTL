@@ -25,7 +25,6 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
                 axios.get('http://localhost:4000/api/v1/users/fetch-meds')
                 .then((response)=>{
                     setMedsList(response.data as Medication[]);
-                    console.log(response.data)
                     setIsLoading(false);
                 })
             } catch (error) {
@@ -47,10 +46,10 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
         const getOrder = localStorage.getItem('order');
         if(getOrder){
             let orderList: Order[] = JSON.parse(getOrder);
-            const orderExists = orderList.some((medOrder)=> medOrder.medicationsId === order.medicationsId);
+            const orderExists = orderList.some((medOrder)=> medOrder.medication.id === order.medication.id);
 
             if(orderExists){
-                const update = orderList.map((medOrder)=> medOrder.medicationsId === order.medicationsId?
+                const update = orderList.map((medOrder)=> medOrder.medication.id === order.medication.id?
                     {...medOrder, quantity: medOrder.quantity + order.quantity} : medOrder
                 )
                 orderList = update
@@ -166,12 +165,13 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
                                     <button id="add-to-cart"
                                         onClick={()=>{
                                             addOrder({
-                                                medicationsId: selectedMed!.id, 
+                                                medication: selectedMed!, 
                                                 quantity: quantity,
                                                 evtolId: 0,
                                                 orderId: ''
                                             });
                                             setModal(false);
+                                            toast.success('Item added to cart.', {position: 'top-right'})
                                         }}>
                                             Add to order
                                     </button>
@@ -182,69 +182,6 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
 
                     </div>
 
-                    // medsList?.map((meds)=>(
-                    //     <div className="med-list-card" key={meds.id}>
-                    //         <div className="med-list-image"
-                    //             style={{backgroundImage:`url(${meds.image})`}}
-                    //         ></div>
-
-                    //         <div className="med-list-info">
-                    //             <p>{meds.name}</p>
-                    //             <p>₦ {meds.price}</p>
-                    //             <div className="quantity">
-                    //                 <label htmlFor="qty">Quantity</label>
-                    //                 <input id="qty" type="number" 
-                    //                     onChange={(e)=>{setQuantity(parseInt(e.target.value))}}
-                    //                 />
-                    //             </div>
-                    //         </div>
-
-                    //         <div className="med-list-btn">
-                    //             <button id="add-to-cart"
-                    //             onClick={()=>{
-                    //                 setSelectedMed(meds);
-                    //                 setModal(true);
-                    //             }}>
-                    //                 Select
-                    //             </button>
-                    //         </div>
-
-                    //         {
-                    //             modal &&
-                    //             <div className="select-modal-back" >
-
-                    //                 <div className="select-modal-cover" onClick={()=>setModal(false)}></div>
-
-                    //                 <div className="select-modal">
-                    //                     <div className="select-modal-image" style={{backgroundImage:`url(${selectedMed?.image})`}}></div>
-                    //                     <p>{selectedMed?.name}</p>
-                    //                     <p>₦ {selectedMed?.price}</p>
-                    //                     <div className="quantity">
-                    //                         <label htmlFor="qty">Quantity</label>
-                    //                         <input id="qty" type="number" value={quantity}
-                    //                             onChange={(e)=>{setQuantity(parseInt(e.target.value))}}
-                    //                         />
-                    //                     </div>
-
-                    //                     <button id="add-to-cart"
-                    //                         onClick={()=>{
-                    //                             addOrder({
-                    //                                 medicationsId: selectedMed!.id, 
-                    //                                 quantity: quantity,
-                    //                                 evtolId: 0,
-                    //                                 orderId: ''
-                    //                             });
-                    //                             setModal(false);
-                    //                         }}>
-                    //                             Add to order
-                    //                     </button>
-                    //                 </div>
-
-                    //             </div>
-                    //         }
-
-                    //     </div>
-                    // ))
                 }
 
 
