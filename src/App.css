@@ -3,11 +3,20 @@
   margin: 0;
   box-sizing: border-box;
   font-family: roboto-reg;
+  color: var(--text);
 }
 
 @font-face {
   font-family: roboto-reg;
   src: url(./assets/Fonts/RobotoFlex-Regular.ttf);
+}
+
+:root {
+  --primary: #5A67D8;   /* Indigo */
+  --secondary: #3182CE; /* Blue */
+  --accent: #F56565;    /* Warm Red */
+  --background: #EDF2F7; /* Soft Gray */
+  --text: #1A202C;      /* Dark Gray */
 }
 
 
