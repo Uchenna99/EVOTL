@@ -33,7 +33,9 @@ const OrderSummary = () => {
             }
         }
         getLoad();
-    },[])
+    },[]);
+
+    const handleOrder = async ()=>{};
 
   return (
     <>
@@ -43,9 +45,9 @@ const OrderSummary = () => {
                 
                 <h4 id="h4-header">Your order summary</h4>
 
-                <p>Total Amount: {total}</p>
+                <p>Total Amount: ₦ {total.toLocaleString()}</p>
 
-                <button id="add-to-cart">
+                <button id="add-to-cart" onClick={handleOrder}>
                     Confirm order
                 </button>
 
@@ -64,7 +66,7 @@ const OrderSummary = () => {
                             <div className="med-card-list-info">
                                 <p>Name: {order.medication.name}</p>
                                 <p>Quantity: {order.quantity}</p>
-                                <p>Total: { order.quantity * order.medication.price}</p>
+                                <p>Total: ₦ { (order.quantity * order.medication.price).toLocaleString()}</p>
                             </div>
 
                         </div>

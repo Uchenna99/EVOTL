@@ -331,7 +331,7 @@ color: white;
 }
 
 @keyframes modal {
-    from {transform: scale(0.8);}
+    from {transform: scale(0.75);}
     to {transform: scale(1);}
 }
 
@@ -340,14 +340,13 @@ color: white;
     height: 450px;
     background-color: white;
     border-radius: 5px;
-    /* border: 2px solid black; */
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 15px 25px;
     position: relative;
     z-index: 5;
-    scale: 0.8;
+    scale: 0.75;
     animation: modal 100ms 1 forwards linear;
 }
 
@@ -358,6 +357,21 @@ color: white;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+#modal-close-icon{
+    font-size: 30px;
+    position: absolute;
+    border-radius: 5px;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+#modal-close-icon:hover{
+    background-color: red;
+    color: white;
 }
 
 

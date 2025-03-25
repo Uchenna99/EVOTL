@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Medication, Order } from "./interface";
 import {TailSpin } from "react-loader-spinner";
 import { toast } from "sonner";
+import { IoIosClose } from "react-icons/io";
 
 interface Props{
     next: ()=>void;
@@ -134,7 +135,7 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
 
                                     <div className="med-card-list-info">
                                         <p>Name: {meds.name}</p>
-                                        <p>Price: ₦ {meds.price}</p>
+                                        <p>Price: ₦ {meds.price.toLocaleString()}</p>
                                         <p>Weight: {meds.weight}</p>
                                         
                                     </div>
@@ -152,9 +153,10 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
                                 <div className="select-modal-cover" onClick={()=>setModal(false)}></div>
 
                                 <div className="select-modal">
+                                    <IoIosClose id="modal-close-icon" onClick={()=> setModal(false)} />
                                     <div className="select-modal-image" style={{backgroundImage:`url(${selectedMed?.image})`}}></div>
                                     <p>{selectedMed?.name}</p>
-                                    <p>₦ {selectedMed?.price}</p>
+                                    <p>₦ {selectedMed?.price.toLocaleString()}</p>
                                     <div className="quantity">
                                         <label htmlFor="qty">Quantity</label>
                                         <input id="qty" type="number" value={quantity}
