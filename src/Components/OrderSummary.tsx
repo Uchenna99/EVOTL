@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Order } from "./interface";
+import { JwtCode } from "../State";
 
 
 
@@ -37,9 +38,12 @@ const OrderSummary = () => {
     const handleOrder = async ()=>{
         const user = localStorage.getItem('evtolUser');
         if(user){
-            const evtolUser = JSON.parse(user);
+            const evtolUser: JwtCode = JSON.parse(user);
+            await axios.post(`http://localhost:4000/api/v1/users/create-order`, evtolUser.id)
+            .then((response)=>{
+                localStorage.setItem('newOrder', response.data);
+            })
         }
-        await axios.post(`http://localhost:4000/api/v1/users/create-order`)
     };
 
   return (

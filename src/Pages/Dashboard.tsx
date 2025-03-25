@@ -21,7 +21,7 @@ const Dashboard = () => {
   const [newOrder, setNewOrder] = useState('meds-list');
   const [itemCount, setItemCount] = useState(0);
   const [cartUpdate, setCartUpdate] = useState(false);
-  const [showCart, setShowCart] = useState(true);
+  const [showCart, setShowCart] = useState(false);
 
   useEffect(()=>{
     const getUser = async()=>{
@@ -128,7 +128,10 @@ const Dashboard = () => {
                   }
                 </div>
 
-                <CartItems />
+                {
+                  showCart &&
+                  <CartItems close={()=>setShowCart(false)} />
+                }
               </div>
             </div>
         </>

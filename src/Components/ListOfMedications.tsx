@@ -159,7 +159,7 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
                                     <p>₦ {selectedMed?.price.toLocaleString()}</p>
                                     <div className="quantity">
                                         <label htmlFor="qty">Quantity</label>
-                                        <input id="qty" type="number" value={quantity}
+                                        <input id="qty" type="number" min={0} value={quantity}
                                             onChange={(e)=>{setQuantity(parseInt(e.target.value))}}
                                         />
                                     </div>

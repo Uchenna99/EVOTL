@@ -4,7 +4,7 @@ import { EvtolUser } from "./Components/interface";
 
 export interface JwtCode {
     iat: number;
-    id: number;
+    id: string;
     name: string;
     role: "USER" | "ADMIN";
   }
