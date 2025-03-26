@@ -3,7 +3,6 @@
   margin: 0;
   box-sizing: border-box;
   font-family: roboto-reg;
-  color: var(--text);
 }
 
 @font-face {

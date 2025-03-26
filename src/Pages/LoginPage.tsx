@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import drone from "../assets/Images/Pelican-2.0-Home.png"
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -7,6 +7,7 @@ import { JwtResponse } from "../Components/interface";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import useGlobalState, { JwtCode } from "../State";
+import { toast } from "sonner";
 
 
 const LoginPage = () => {
@@ -18,17 +19,17 @@ const LoginPage = () => {
     const [eye, setEye] = useState(false);
 
     const loginData = {
-        email: email,
-        password: password
+      email: email,
+      password: password
     }
 
     const handleLogin = async ()=>{
       if(!email || !password){
-        alert('All input fields are required')
-      }
-      try {
-          await axios.post('http://localhost:4000/api/v1/auth/login', loginData)
-          .then((response)=>{
+        toast.warning('Email and password are required', {position:'top-right'});
+      }else{
+        try {
+            await axios.post('http://localhost:4000/api/v1/auth/login', loginData)
+            .then((response)=>{
               const responseData = response.data as JwtResponse;
               localStorage.setItem('token', responseData.accessToken);
               localStorage.setItem('isLoggedIn', 'true');
@@ -37,10 +38,10 @@ const LoginPage = () => {
               setJwtDecoded(decode as JwtCode);
               setLoggedIn(true);
               navigate('/dashboard');
-          })
-      } catch (error) {
-          console.log(error);
-          alert(error);
+            })
+        } catch (error: any) {
+          toast.error(error.message, {position:'top-right'});
+        }
       }
     }
 
@@ -67,7 +68,7 @@ const LoginPage = () => {
               <label htmlFor="pass">Password</label>
               <div className="inner-input-wrap">
                 <input id="pass" type={eye? 'text' : 'password'} 
-                  value={password} onChange={(e)=> setPassword(e.target.value)}
+                  value={password} onChange={(e)=> setPassword(e.target.value)} minLength={8}
                 />
                 { 
                   eye? <FaRegEye id="pass-eye" onClick={()=> setEye(false)}/> 
@@ -77,7 +78,10 @@ const LoginPage = () => {
               </div>
             </div>
 
-            <button className="register" onClick={handleLogin}>Login</button>
+            <button className="register" 
+              onClick={handleLogin}>
+              Login
+            </button>
 
             <p>Don't have an account? <Link id="form-login" to={'/signup'}>Sign Up</Link></p>
 

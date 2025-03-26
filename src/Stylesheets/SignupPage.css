@@ -188,6 +188,18 @@ button.register:hover{
     color: white;
 }
 
+.loader-button{
+    width: 100px;
+    height: 45px;
+    border-radius: 3px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: not-allowed;
+    margin-top: 20px;
+}
+
 
 
 

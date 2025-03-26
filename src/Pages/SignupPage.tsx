@@ -8,7 +8,8 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { EvtolUser } from "../Components/interface";
-import { TailSpin } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
+import { toast } from "sonner";
 
 
 
@@ -46,16 +47,14 @@ const SignupPage = () => {
     try {
       await axios.post('http://localhost:4000/api/v1/users/create-user', submitData)
       .then((response)=>{
-        alert("Successfull");
+        toast.success("Account created successfully", {position:'top-right'});
         const responseData = response.data as EvtolUser;
         localStorage.setItem('userEmail', responseData.email);
         navigate('/email-verification');
       })
-      .catch(err=> console.log(err))
       
-    } catch (error) {
-      console.log('Failed to register new user');
-      alert(error);
+    } catch (error: any) {
+      toast.error(error.message, {position:'top-right'});
       setLoading(false);
     }
   }
@@ -147,21 +146,20 @@ const SignupPage = () => {
               </div>
             </div>
 
-            <button className="register" onClick={handleRegister}>
-              {
-                loading?
-                <TailSpin
-                  height="24"
-                  width="24"
-                  color="black"
-                  ariaLabel="loading"
-                  wrapperStyle={{}}
-                  wrapperClass=""
+            {
+              loading?
+              <div className="loader-button">
+                <ThreeDots
+                  color="white"
+                  width={30}
+                  height={30}
                 />
-                :
+              </div>
+              :
+              <button className="register" onClick={handleRegister}>
                 <p>Register</p>
-              }
-            </button>
+              </button>
+            }
 
             <p>Already have an account? <Link id="form-login" to={'/login'}>Login</Link></p>
 

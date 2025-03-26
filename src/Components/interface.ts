@@ -89,3 +89,9 @@ export interface DB_Load {
     orderId: string;
     evtolId: number;
 }
+
+export interface CreateLoadDTO {
+    medicationsId: number;
+    quantity: number;
+    orderId: string;
+}

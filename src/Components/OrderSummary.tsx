@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Order } from "./interface";
+import { CreateLoadDTO, DB_Order, Order } from "./interface";
 import { JwtCode } from "../State";
 import { TiArrowBack } from "react-icons/ti";
 
@@ -46,8 +46,33 @@ const OrderSummary = ({next}: Props) => {
             await axios.post(`http://localhost:4000/api/v1/users/create-order`, evtolUser.id)
             .then((response)=>{
                 localStorage.setItem('newOrder', response.data);
+                console.log("Order created");
+                createLoad();
             })
         }
+    };
+
+    const createLoad = async ()=>{
+        const order = localStorage.getItem('order');
+        const newOrder = localStorage.getItem('newOrder');
+
+        if(order && newOrder){
+            const orderArray: Order[] = JSON.parse(order);
+            const currOrder: DB_Order = JSON.parse(newOrder);
+            const newArray = orderArray.map((orderObj)=> ({...orderObj, orderId: currOrder.id}));
+            let loadArray: CreateLoadDTO[] = []
+            newArray.map((orderObj)=> loadArray.push({
+                medicationsId: orderObj.medication.id,
+                quantity: orderObj.quantity,
+                orderId: currOrder.id
+            }));
+
+            console.log(loadArray);
+
+
+            // await axios.post(`http://localhost:4000/api/v1/evtol/create-load`, )
+        }
+
     };
 
   return (
