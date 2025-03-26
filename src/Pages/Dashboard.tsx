@@ -80,7 +80,7 @@ const Dashboard = () => {
                     setHistory(false);
                   }}
                     style={{animationName:delivery? 'select':''}}>
-                    <p>New delivery order</p>
+                    <p style={{color: delivery? 'white':''}}>New delivery order</p>
                   </div>
 
                   <div className="dash-option-select" onClick={()=> {
@@ -123,7 +123,7 @@ const Dashboard = () => {
                       // newOrder === 'drone-list'?
                       // <ListOfDrones next={()=>setNewOrder('summary')} /> :
                       newOrder === 'summary'?
-                      <OrderSummary /> : ''
+                      <OrderSummary next={()=> setNewOrder('meds-list')} /> : ''
                     )
                   }
                 </div>

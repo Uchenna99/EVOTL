@@ -2,10 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Order } from "./interface";
 import { JwtCode } from "../State";
+import { TiArrowBack } from "react-icons/ti";
+
+interface Props {
+    next: ()=>void;
+}
 
 
-
-const OrderSummary = () => {
+const OrderSummary = ({next}: Props) => {
     const [orderInfo, setOrderInfo] = useState<Order[]>([]);
     const [total, setTotal] = useState(0);
 
@@ -54,11 +58,18 @@ const OrderSummary = () => {
                 
                 <h4 id="h4-header">Your order summary</h4>
 
-                <p>Total Amount: ₦ {total.toLocaleString()}</p>
+                <p style={{fontWeight:600}}>Total Amount: ₦ {total.toLocaleString()}</p>
 
-                <button id="add-to-cart" onClick={handleOrder}>
-                    Confirm order
-                </button>
+                <div className="right-side-butn">
+
+                    <TiArrowBack id="back-arrow" onClick={next}/>
+
+                    <button id="add-to-cart" onClick={handleOrder}>
+                        Confirm order
+                    </button>
+
+                </div>
+
 
             </div>
 

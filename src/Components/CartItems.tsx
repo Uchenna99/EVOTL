@@ -23,7 +23,7 @@ const CartItems = ({close}: Props) => {
 
   return (
     <>
-        <div className="select-modal-back">
+        <div className="select-modal-back" onClick={close}>
             <div className="cart-items-div">
                 <IoIosClose id="modal-close-icon" onClick={close} />
                 <p>Your selected items</p>
