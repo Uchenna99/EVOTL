@@ -33,18 +33,18 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
                 setIsLoading(false);
             }
         };
-        const order = localStorage.getItem('order');
+        const order = localStorage.getItem('evtolOrder');
         if(order){null}else{
             const orderList = [] as Order[];
             const saveOrder = JSON.stringify(orderList)
-            localStorage.setItem('order', saveOrder);
+            localStorage.setItem('evtolOrder', saveOrder);
         };
         getMeds();
     },[])
 
 
     const addOrder = (order: Order)=>{
-        const getOrder = localStorage.getItem('order');
+        const getOrder = localStorage.getItem('evtolOrder');
         if(getOrder){
             let orderList: Order[] = JSON.parse(getOrder);
             const orderExists = orderList.some((medOrder)=> medOrder.medication.id === order.medication.id);
@@ -58,14 +58,14 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
             }else{ orderList.push(order); }
 
             const saveOrder = JSON.stringify(orderList);
-            localStorage.setItem('order', saveOrder);
+            localStorage.setItem('evtolOrder', saveOrder);
             cartUpdate();
         }
     }
 
 
     const confirmOrder = ()=>{
-        const getOrder = localStorage.getItem('order');
+        const getOrder = localStorage.getItem('evtolOrder');
         if(!getOrder){
             toast.warning("Order not found", {position: "top-right"})
         }else{
@@ -100,16 +100,16 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
                     
                 <h4 id="h4-header">Select Medications</h4>
 
-                {
-                    medsList && (
-                    medsList.length === 0?
-                    '' :
-                    <button id="add-to-cart" style={{}}
-                        onClick={confirmOrder}>
-                        Next
-                    </button>
-                    )
-                }
+                    {
+                        medsList && (
+                        medsList.length === 0?
+                        '' :
+                        <button id="add-to-cart" style={{}}
+                            onClick={confirmOrder}>
+                            Next
+                        </button>
+                        )
+                    }
 
                 </div>
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import drone from "../assets/Images/Pelican-2.0-Home.png"
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -26,12 +26,15 @@ const LoginPage = () => {
     const handleLogin = async ()=>{
       if(!email || !password){
         toast.warning('Email and password are required', {position:'top-right'});
-      }else{
+      }else if(password.length < 8){
+        toast.warning('Password length must be at least 8 characters long', {position:'top-right'});
+      }
+      else{
         try {
             await axios.post('http://localhost:4000/api/v1/auth/login', loginData)
             .then((response)=>{
               const responseData = response.data as JwtResponse;
-              localStorage.setItem('token', responseData.accessToken);
+              localStorage.setItem('evtolToken', responseData.accessToken);
               localStorage.setItem('isLoggedIn', 'true');
               const decode = jwtDecode(responseData.accessToken);
               localStorage.setItem('evtolUser', JSON.stringify(decode));

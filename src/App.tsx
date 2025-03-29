@@ -14,7 +14,7 @@ function App() {
 
   useEffect(()=>{
     const getUser = ()=>{
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('evtolToken');
       if(token){
         setLoggedIn(true);
       }

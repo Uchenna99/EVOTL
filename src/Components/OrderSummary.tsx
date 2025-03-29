@@ -43,10 +43,9 @@ const OrderSummary = ({next}: Props) => {
         const user = localStorage.getItem('evtolUser');
         if(user){
             const evtolUser: JwtCode = JSON.parse(user);
-            await axios.post(`http://localhost:4000/api/v1/users/create-order`, evtolUser.id)
+            await axios.post(`http://localhost:4000/api/v1/users/create-order`, {userId: evtolUser.id})
             .then((response)=>{
-                localStorage.setItem('newOrder', response.data);
-                console.log("Order created");
+                localStorage.setItem('newOrder', JSON.stringify(response.data));
                 createLoad();
             })
         }
@@ -59,18 +58,18 @@ const OrderSummary = ({next}: Props) => {
         if(order && newOrder){
             const orderArray: Order[] = JSON.parse(order);
             const currOrder: DB_Order = JSON.parse(newOrder);
-            const newArray = orderArray.map((orderObj)=> ({...orderObj, orderId: currOrder.id}));
             let loadArray: CreateLoadDTO[] = []
-            newArray.map((orderObj)=> loadArray.push({
+            orderArray.map((orderObj)=> loadArray.push({
                 medicationsId: orderObj.medication.id,
                 quantity: orderObj.quantity,
                 orderId: currOrder.id
             }));
 
-            console.log(loadArray);
-
-
-            // await axios.post(`http://localhost:4000/api/v1/evtol/create-load`, )
+            await axios.post(`http://localhost:4000/api/v1/evtol/create-load`, loadArray)
+            .then((response)=>{
+                console.log(response.data);
+                
+            })
         }
 
     };

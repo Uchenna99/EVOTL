@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../Stylesheets/SignupPage.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const VerificationPage = () => {
     const navigate = useNavigate();
@@ -11,7 +12,7 @@ const VerificationPage = () => {
 
     useEffect(()=>{
         const getEmail = ()=>{
-            const user = localStorage.getItem('userEmail');
+            const user = localStorage.getItem('evtolUserEmail');
             if(user){
                 setEmail(user);
             }
@@ -30,13 +31,13 @@ const VerificationPage = () => {
         try {
             await axios.post('http://localhost:4000/api/v1/auth/verify-email', verify)
             .then(()=>{
-                navigate('/login')
-                alert("Verification successful");
+                localStorage.removeItem('evtolUserEmail')
+                navigate('/login');
+                toast.success('Verification successful', {position:'top-right'});
             })
-            .catch(err=>alert(err))
             
         } catch (error) {
-            console.error('Verification failed');
+            toast.error('Verification failed', {position:'top-right'});
         }
     }
 
