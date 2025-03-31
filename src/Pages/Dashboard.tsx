@@ -155,6 +155,7 @@ const Dashboard = () => {
                       <OrderSummary 
                         next={()=> setNewOrder('meds-list')} 
                         user={user}
+                        cartUpdate={()=>setCartUpdate(!cartUpdate)}
                       /> 
                       : ''
                     )

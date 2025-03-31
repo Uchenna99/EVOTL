@@ -9,10 +9,11 @@ import { TailSpin } from "react-loader-spinner";
 interface Props {
     next: ()=>void;
     user: DB_GetUser | null;
+    cartUpdate: ()=>void;
 }
 
 
-const OrderSummary = ({next, user}: Props) => {
+const OrderSummary = ({next, user, cartUpdate}: Props) => {
     const [orderInfo, setOrderInfo] = useState<Order[]>([]);
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -79,7 +80,13 @@ const OrderSummary = ({next, user}: Props) => {
                 await axios.post(`http://localhost:4000/api/v1/evtol/create-load`, loadArray)
                 .then((response)=>{
                     toast.success(response.data.message, {position:'top-right'});
+
+                    userOrdersList.map((userOrder)=> userOrder.userId === user?.id? userOrder.order = [] : userOrder);
+                    const saveOrder = JSON.stringify(userOrdersList);
+                    localStorage.setItem('evtolOrder', saveOrder);
+
                     setLoading(false);
+                    cartUpdate();
                     next();
                     
                 })
