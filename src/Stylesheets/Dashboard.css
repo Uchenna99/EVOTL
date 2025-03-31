@@ -325,6 +325,22 @@ background-color: var(--secondary);
 color: white;
 }
 
+button#remove-item{
+    width: 100%;
+    padding: 6px 0;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: var(--accent);
+    margin-top: 5px;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+button#remove-item:hover{
+    background-color: red;
+}
+
 
 
 
@@ -419,7 +435,7 @@ color: white;
 }
 
 .med-list-main-card{
-    height: 260px;
+    height: 270px;
     /* border: 1px solid; */
     background-color: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -552,7 +568,7 @@ color: white;
 
 .cart-items-div{
     width: 400px;
-    height: 400px;
+    height: 420px;
     background-color: white;
     border-radius: 15px;
     display: flex;
@@ -589,7 +605,7 @@ color: white;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     row-gap: 20px;
-    padding: 10px 15px;
+    padding: 15px;
 }
 
 

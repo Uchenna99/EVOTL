@@ -166,6 +166,7 @@ const Dashboard = () => {
                   <CartItems 
                     close={()=>setShowCart(false)} 
                     user={user}
+                    cartUpdate={()=> setCartUpdate(!cartUpdate)}
                   />
                 }
               </div>
