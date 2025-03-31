@@ -32,6 +32,7 @@ const Dashboard = () => {
         .then((response)=>{
           setUser(response.data as DB_GetUser);
           localStorage.setItem('evtolGetUser', JSON.stringify(response.data));
+          setCartUpdate(!cartUpdate);
         })
       }else{
         toast.warning('Could not get user');
@@ -43,22 +44,33 @@ const Dashboard = () => {
   useEffect(()=>{
     const order = localStorage.getItem('evtolOrder');
     const user = localStorage.getItem('evtolGetUser');
+    
     if(order && user){
       const orderList: UserOrders[] = JSON.parse(order);
       const userInfo: DB_GetUser = JSON.parse(user);
-      const usersOrder = orderList.filter((userOrder)=> userOrder.userId === userInfo.id);
-      if(usersOrder.length === 0){
-        setItemCount(0);
+      let usersOrder = orderList.find((userOrder)=> userOrder.userId === userInfo.id);
+      
+      if(usersOrder){
+        setItemCount(usersOrder.order.length);
       }else{
-        setItemCount(usersOrder[0].order.length);
-      }
-    }else{
-      if(!order){
-        const orderList = [] as UserOrders[];
-        const saveOrder = JSON.stringify(orderList)
+        usersOrder = {userId: userInfo.id, order: []};
+        orderList.push(usersOrder);
+        setItemCount(usersOrder.order.length);
+        const saveOrder = JSON.stringify(orderList);
         localStorage.setItem('evtolOrder', saveOrder);
-      };
+      }
+
+    }else if(!order && user){
+      const userInfo: DB_GetUser = JSON.parse(user);
+      const orderList = [{userId: userInfo.id , order: []}] as UserOrders[];
+      const saveOrder = JSON.stringify(orderList)
+      localStorage.setItem('evtolOrder', saveOrder);
+      
+    }else{
+      toast.error("An unexpected error ocurred, please refresh the page", {position:'top-right'});
     }
+
+    
   },[cartUpdate]);
 
   const handleLogout = ()=>{

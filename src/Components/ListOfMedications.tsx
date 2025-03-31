@@ -45,6 +45,7 @@ const ListOfMedications = ({next, cartUpdate, user}: Props) => {
 
     const addOrder = (order: Order)=>{
         const getOrder = localStorage.getItem('evtolOrder');
+
         if(getOrder){
             const userOrdersList: UserOrders[] = JSON.parse(getOrder);
             let orderList = userOrdersList.find((userOrder)=> userOrder.userId === user?.id);
@@ -60,11 +61,14 @@ const ListOfMedications = ({next, cartUpdate, user}: Props) => {
                     
                 }else{ orderList.order.push(order); }
 
+            }else{
+                toast.error("An unexpected error ocurred, please refresh the page", {position:'top-right'});
             }
 
             userOrdersList.map((userOrder)=> userOrder.userId === orderList?.userId? userOrder = orderList : userOrder);
             const saveOrder = JSON.stringify(userOrdersList);
             localStorage.setItem('evtolOrder', saveOrder);
+            toast.success('Item added to cart.', {position: 'top-right'});
             cartUpdate();
         }
     }
@@ -179,7 +183,6 @@ const ListOfMedications = ({next, cartUpdate, user}: Props) => {
                                                 orderId: ''
                                             });
                                             setModal(false);
-                                            toast.success('Item added to cart.', {position: 'top-right'})
                                         }}>
                                             Add to order
                                     </button>
