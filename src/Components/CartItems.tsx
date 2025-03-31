@@ -66,7 +66,9 @@ const CartItems = ({close, user, cartUpdate}: Props) => {
                                     <div className="med-card-list-info">
 
                                         <p>Name: {order.medication.name}</p>
+
                                         <p>Quantity: {order.quantity}</p>
+
                                         <p>Total: ₦ { (order.quantity * order.medication.price).toLocaleString()}</p>
 
                                         <button id="remove-item" onClick={()=>handleRemove(order.medication.id)}>
@@ -76,6 +78,12 @@ const CartItems = ({close, user, cartUpdate}: Props) => {
         
                                 </div>
                             ))
+                        }
+                        {
+                            orderArray?.length === 0 &&
+                            <p style={{justifySelf:'center', marginTop:100, fontWeight:600, color:'#F56565'}}>
+                                No items selected
+                            </p>
                         }
                     </div>
                 </div>

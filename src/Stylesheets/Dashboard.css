@@ -472,6 +472,9 @@ button#remove-item:hover{
     font-size: 14px;
 }
 
+
+
+
 .right-side-butn{
     width: fit-content;
     height: 100%;
@@ -605,7 +608,7 @@ button#remove-item:hover{
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     row-gap: 20px;
-    padding: 15px;
+    padding: 15px 20px;
 }
 
 
