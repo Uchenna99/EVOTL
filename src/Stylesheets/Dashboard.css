@@ -329,7 +329,7 @@ button#remove-item{
     width: 100%;
     padding: 6px 0;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     color: white;
     background-color: var(--accent);
     margin-top: 5px;
@@ -501,6 +501,25 @@ button#remove-item:hover{
     fill: var(--secondary);
     border: 1px solid var(--secondary);
     animation: back 200ms 1 forwards linear;
+}
+
+.button-wrapper{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    position: relative;
+}
+
+.loading-button{
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: not-allowed;
+    position: absolute;
 }
 
 

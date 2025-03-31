@@ -4,6 +4,7 @@ import { CreateLoadDTO, DB_GetUser, DB_Order, Order, UserOrders } from "./interf
 import { JwtCode } from "../State";
 import { TiArrowBack } from "react-icons/ti";
 import { toast } from "sonner";
+import { TailSpin } from "react-loader-spinner";
 
 interface Props {
     next: ()=>void;
@@ -106,9 +107,21 @@ const OrderSummary = ({next, user}: Props) => {
 
                     <TiArrowBack id="back-arrow" onClick={next}/>
 
-                    <button id="add-to-cart" onClick={handleOrder}>
-                        Confirm order
-                    </button>
+                    <div className="button-wrapper">
+                        <button id="add-to-cart" onClick={handleOrder}>
+                            Confirm order
+                        </button>
+                        {
+                            loading &&
+                            <div className="loading-button">
+                                <TailSpin
+                                    color="white"
+                                    width={20}
+                                    height={20}
+                                />
+                            </div>
+                        }
+                    </div>
 
                 </div>
 
