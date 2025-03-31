@@ -29,10 +29,10 @@ function App() {
       <Toaster/>
       <Routes>
         <Route path='/' element={<LandingPage/>} />
-        <Route path='/signup' element={ loggedIn? <Dashboard/> : <SignupPage/> } />
+        <Route path='/signup' element={ <SignupPage/> } />
         <Route path='/email-verification' element={ loggedIn? <Dashboard/> : <VerificationPage/> } />
-        <Route path='/login' element={ loggedIn? <Dashboard/> : <LoginPage/> } />
-        <Route path='/dashboard' element={ loggedIn? <Dashboard/> : <LoginPage/>} />
+        <Route path='/login' element={ <LoginPage/> } />
+        <Route path='/dashboard' element={ <Dashboard/> } />
       </Routes>
     </>
   )

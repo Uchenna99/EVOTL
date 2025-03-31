@@ -72,7 +72,8 @@ export interface DB_Order {
 }
 
 export interface UserOrders {
-    userId: Order[];
+    userId: string;
+    order: Order[];
 }
 
 

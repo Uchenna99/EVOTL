@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import drone from "../assets/Images/Pelican-2.0-Home.png"
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -22,6 +22,17 @@ const LoginPage = () => {
       email: email,
       password: password
     }
+
+    useEffect(()=>{
+      const loginCheck = ()=>{
+        const isLoggedIn = localStorage.getItem('evtolLogin');
+        const token = localStorage.getItem('evtolToken');
+        if(isLoggedIn === 'true' && token){
+          navigate('/');
+        }
+      }
+      loginCheck();
+    },[])
 
     const handleLogin = async ()=>{
       if(!email || !password){

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Medication, Order, UserOrders } from "./interface";
+import { DB_GetUser, Medication, Order, UserOrders } from "./interface";
 import {TailSpin } from "react-loader-spinner";
 import { toast } from "sonner";
 import { IoIosClose } from "react-icons/io";
@@ -8,30 +8,30 @@ import { IoIosClose } from "react-icons/io";
 interface Props{
     next: ()=>void;
     cartUpdate: ()=>void;
-  }
+    user: DB_GetUser|null;
+}
 
-const ListOfMedications = ({next, cartUpdate}: Props) => {
+const ListOfMedications = ({next, cartUpdate, user}: Props) => {
+
     const [isLoading, setIsLoading] = useState(false);
     const [medsList, setMedsList] = useState<Medication[] | null>(null);
     const [quantity, setQuantity] = useState(1);
     const [modal, setModal] = useState(false);
     const [selectedMed, setSelectedMed] = useState<Medication | null>(null);
-    // const [orderArray, setOrderArray] = useState<Order[]>([]);
 
 
     useEffect(()=>{
         const getMeds = ()=>{
             setIsLoading(true);
-            try {
-                axios.get('http://localhost:4000/api/v1/users/fetch-meds')
-                .then((response)=>{
-                    setMedsList(response.data as Medication[]);
-                    setIsLoading(false);
-                })
-            } catch (error) {
-                console.log(error);
+            axios.get('http://localhost:4000/api/v1/users/fetch-meds')
+            .then((response)=>{
+                setMedsList(response.data as Medication[]);
                 setIsLoading(false);
-            }
+            })
+            .catch(()=>{
+                toast.error("Error getting medications, check your network connection and refresh the page", {position:'top-right'});
+                setIsLoading(false);
+            })
         };
         const order = localStorage.getItem('evtolOrder');
         if(!order){
@@ -46,18 +46,24 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
     const addOrder = (order: Order)=>{
         const getOrder = localStorage.getItem('evtolOrder');
         if(getOrder){
-            let orderList: Order[] = JSON.parse(getOrder);
-            const orderExists = orderList.some((medOrder)=> medOrder.medication.id === order.medication.id);
+            const userOrdersList: UserOrders[] = JSON.parse(getOrder);
+            let orderList = userOrdersList.find((userOrder)=> userOrder.userId === user?.id);
 
-            if(orderExists){
-                const update = orderList.map((medOrder)=> medOrder.medication.id === order.medication.id?
-                    {...medOrder, quantity: medOrder.quantity + order.quantity} : medOrder
-                )
-                orderList = update
-                
-            }else{ orderList.push(order); }
+            if(orderList){
+                const orderExists = orderList.order.some((medOrder)=> medOrder.medication.id === order.medication.id);
 
-            const saveOrder = JSON.stringify(orderList);
+                if(orderExists){
+                    const update = orderList.order.map((medOrder)=> medOrder.medication.id === order.medication.id?
+                        {...medOrder, quantity: medOrder.quantity + order.quantity} : medOrder
+                    )
+                    orderList.order = update
+                    
+                }else{ orderList.order.push(order); }
+
+            }
+
+            userOrdersList.map((userOrder)=> userOrder.userId === orderList?.userId? userOrder = orderList : userOrder);
+            const saveOrder = JSON.stringify(userOrdersList);
             localStorage.setItem('evtolOrder', saveOrder);
             cartUpdate();
         }
@@ -88,7 +94,7 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
                 <TailSpin
                     height="80"
                     width="80"
-                    color="black"
+                    color="#5A67D8"
                     ariaLabel="loading"
                     wrapperStyle={{}}
                     wrapperClass=""

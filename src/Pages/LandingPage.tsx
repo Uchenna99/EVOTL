@@ -1,18 +1,17 @@
 import { Link } from "react-router-dom"
 import Navbar from "../Components/Navbar"
 import { useEffect, useState } from "react"
-import useGlobalState, { JwtCode } from "../State"
+import { JwtCode } from "../State"
 import { jwtDecode } from "jwt-decode"
 
 
 const LandingPage = () => {
-  const {  } = useGlobalState();
   const [user, setUser] = useState<JwtCode | null>(null);
 
   useEffect(()=>{
     const loginCheck = ()=>{
       const isLoggedIn = localStorage.getItem('evtolLogin');
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('evtolToken');
       if(isLoggedIn === 'true' && token){
         const decoded: JwtCode = jwtDecode(token);
         setUser(decoded);

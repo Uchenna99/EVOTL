@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { CreateLoadDTO, DB_Order, Order } from "./interface";
 import { JwtCode } from "../State";
 import { TiArrowBack } from "react-icons/ti";
+import { toast } from "sonner";
 
 interface Props {
     next: ()=>void;
@@ -15,7 +16,7 @@ const OrderSummary = ({next}: Props) => {
 
     useEffect(()=>{
         const getLoad = async ()=>{
-            const savedOrder = localStorage.getItem('order');
+            const savedOrder = localStorage.getItem('evtolOrder');
             if(!savedOrder){
                 alert('Could not fetch orders');
             }else{
@@ -26,14 +27,6 @@ const OrderSummary = ({next}: Props) => {
                 orders.map((order)=> incr = incr + (order.medication.price * order.quantity));
                 setTotal(incr);
 
-                // const getOrder = {
-                //     evtolId: orders[0].evtolId,
-                //     orderId: orders[0].orderId
-                // }
-                // await axios.post('http://localhost:4000/api/v1/evtol/evtol-load', getOrder)
-                // .then((response)=>{
-                //     setSummary(response.data as DB_Load[]);
-                // })
             }
         }
         getLoad();
@@ -52,7 +45,7 @@ const OrderSummary = ({next}: Props) => {
     };
 
     const createLoad = async ()=>{
-        const order = localStorage.getItem('order');
+        const order = localStorage.getItem('evtolOrder');
         const newOrder = localStorage.getItem('evtolnewOrder');
 
         if(order && newOrder){
@@ -67,7 +60,7 @@ const OrderSummary = ({next}: Props) => {
 
             await axios.post(`http://localhost:4000/api/v1/evtol/create-load`, loadArray)
             .then((response)=>{
-                console.log(response.data);
+                toast.success(response.data.message, {position:'top-right'});
                 
             })
         }

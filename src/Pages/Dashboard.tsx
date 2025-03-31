@@ -7,7 +7,7 @@ import { GoSearch } from "react-icons/go";
 import ListOfMedications from "../Components/ListOfMedications";
 import OrderSummary from "../Components/OrderSummary";
 import { GiDeliveryDrone } from "react-icons/gi";
-import { DB_GetUser, Order } from "../Components/interface";
+import { DB_GetUser, UserOrders } from "../Components/interface";
 import { toast } from "sonner";
 import axios from "axios";
 import CartItems from "../Components/CartItems";
@@ -42,9 +42,22 @@ const Dashboard = () => {
 
   useEffect(()=>{
     const order = localStorage.getItem('evtolOrder');
-    if(order){
-      const orderList: Order[] = JSON.parse(order);
-      setItemCount(orderList.length);
+    const user = localStorage.getItem('evtolGetUser');
+    if(order && user){
+      const orderList: UserOrders[] = JSON.parse(order);
+      const userInfo: DB_GetUser = JSON.parse(user);
+      const usersOrder = orderList.filter((userOrder)=> userOrder.userId === userInfo.id);
+      if(usersOrder.length === 0){
+        setItemCount(0);
+      }else{
+        setItemCount(usersOrder[0].order.length);
+      }
+    }else{
+      if(!order){
+        const orderList = [] as UserOrders[];
+        const saveOrder = JSON.stringify(orderList)
+        localStorage.setItem('evtolOrder', saveOrder);
+      };
     }
   },[cartUpdate]);
 
@@ -119,7 +132,7 @@ const Dashboard = () => {
                     dashboard === 'delivery' &&
                     (
                       newOrder === 'meds-list'?
-                      <ListOfMedications next={()=>setNewOrder('summary')} cartUpdate={()=>setCartUpdate(!cartUpdate)} /> :
+                      <ListOfMedications next={()=>setNewOrder('summary')} cartUpdate={()=>setCartUpdate(!cartUpdate)} user={user} /> :
                       // newOrder === 'drone-list'?
                       // <ListOfDrones next={()=>setNewOrder('summary')} /> :
                       newOrder === 'summary'?

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../Stylesheets/SignupPage.css"
 import drone from "../assets/Images/Pelican-2.0-Home.png"
 import { GoChevronDown } from "react-icons/go";
@@ -30,6 +30,20 @@ const SignupPage = () => {
 
   const [region, setRegion] = useState('Select a region');
   const selectRegion = ['Rumuola','Rumuigbo','Rumuokwuta','Rumuokoro','Rumudara','Rumubiakani','Rumuodumaya','Rumuogba'];
+
+
+  useEffect(()=>{
+    const loginCheck = ()=>{
+      const isLoggedIn = localStorage.getItem('evtolLogin');
+      const token = localStorage.getItem('evtolToken');
+      if(isLoggedIn === 'true' && token){
+        navigate('/');
+      }
+    }
+    loginCheck();
+  },[])
+  
+
 
   const submitData = {
     firstName: firstName,

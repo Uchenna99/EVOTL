@@ -11,8 +11,11 @@ const Navbar = ({user}: NavProps) => {
   
 
   const handleLogout = ()=>{
-    localStorage.removeItem('token');
-    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('evtolToken');
+    localStorage.removeItem('evtolOrder');
+    localStorage.setItem('evtolLogin', 'false');
+    localStorage.removeItem('evtolUser');
+    localStorage.removeItem('evtolGetUser');
     setLoggedIn(false);
     navigate('/login');
   };
