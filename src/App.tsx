@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <Toaster/>
+      <Toaster richColors/>
       <Routes>
         <Route path='/' element={<LandingPage/>} />
         <Route path='/signup' element={ <SignupPage/> } />

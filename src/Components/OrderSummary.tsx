@@ -14,6 +14,7 @@ interface Props {
 const OrderSummary = ({next, user}: Props) => {
     const [orderInfo, setOrderInfo] = useState<Order[]>([]);
     const [total, setTotal] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         const getLoad = async ()=>{
@@ -31,7 +32,7 @@ const OrderSummary = ({next, user}: Props) => {
 
                 }else{
                     toast.error("An unexpected error ocurred", {position:'top-right'});
-                    next
+                    next();
                 }
             }
 
@@ -39,7 +40,9 @@ const OrderSummary = ({next, user}: Props) => {
         getLoad();
     },[]);
 
+
     const handleOrder = async ()=>{
+        setLoading(true);
         const user = localStorage.getItem('evtolUser');
         if(user){
             const evtolUser: JwtCode = JSON.parse(user);
@@ -48,28 +51,43 @@ const OrderSummary = ({next, user}: Props) => {
                 localStorage.setItem('evtolnewOrder', JSON.stringify(response.data));
                 createLoad();
             })
+            .catch(()=> {
+                setLoading(false);
+                toast.error("Error creating order, please check your network connection and try again", {position:'top-right'});
+            })
         }
     };
 
     const createLoad = async ()=>{
-        const order = localStorage.getItem('evtolOrder');
+        const getOrder = localStorage.getItem('evtolOrder');
         const newOrder = localStorage.getItem('evtolnewOrder');
 
-        if(order && newOrder){
-            const orderArray: Order[] = JSON.parse(order);
+        if(getOrder && newOrder){
+            const userOrdersList: UserOrders[] = JSON.parse(getOrder);
             const currOrder: DB_Order = JSON.parse(newOrder);
-            let loadArray: CreateLoadDTO[] = []
-            orderArray.map((orderObj)=> loadArray.push({
-                medicationsId: orderObj.medication.id,
-                quantity: orderObj.quantity,
-                orderId: currOrder.id
-            }));
+            let loadArray: CreateLoadDTO[] = [];
+            const orderList = userOrdersList.find((userOrder)=> userOrder.userId === user?.id);
 
-            await axios.post(`http://localhost:4000/api/v1/evtol/create-load`, loadArray)
-            .then((response)=>{
-                toast.success(response.data.message, {position:'top-right'});
-                
-            })
+            if(orderList) {
+                orderList.order.map((orderObj)=> loadArray.push({
+                    medicationsId: orderObj.medication.id,
+                    quantity: orderObj.quantity,
+                    orderId: currOrder.id
+                }));
+    
+                await axios.post(`http://localhost:4000/api/v1/evtol/create-load`, loadArray)
+                .then((response)=>{
+                    toast.success(response.data.message, {position:'top-right'});
+                    setLoading(false);
+                    next();
+                    
+                })
+                .catch(()=>{
+                    setLoading(false);
+                    toast.error("Error creating order, please check your network connection and try again", {position:'top-right'});
+                })
+
+            }
         }
 
     };

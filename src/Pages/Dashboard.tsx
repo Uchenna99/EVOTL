@@ -152,8 +152,8 @@ const Dashboard = () => {
                       /> 
                       :
                       newOrder === 'summary'?
-                      <OrderSummary next={()=> 
-                        setNewOrder('meds-list')} 
+                      <OrderSummary 
+                        next={()=> setNewOrder('meds-list')} 
                         user={user}
                       /> 
                       : ''
