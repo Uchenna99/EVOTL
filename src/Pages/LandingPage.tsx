@@ -11,7 +11,7 @@ const LandingPage = () => {
 
   useEffect(()=>{
     const loginCheck = ()=>{
-      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      const isLoggedIn = localStorage.getItem('evtolLogin');
       const token = localStorage.getItem('token');
       if(isLoggedIn === 'true' && token){
         const decoded: JwtCode = jwtDecode(token);

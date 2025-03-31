@@ -35,7 +35,7 @@ const LoginPage = () => {
             .then((response)=>{
               const responseData = response.data as JwtResponse;
               localStorage.setItem('evtolToken', responseData.accessToken);
-              localStorage.setItem('isLoggedIn', 'true');
+              localStorage.setItem('evtolLogin', 'true');
               const decode = jwtDecode(responseData.accessToken);
               localStorage.setItem('evtolUser', JSON.stringify(decode));
               setJwtDecoded(decode as JwtCode);

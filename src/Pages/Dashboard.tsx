@@ -31,7 +31,7 @@ const Dashboard = () => {
         await axios.get(`http://localhost:4000/api/v1/users/get-user/${decoded.id}`)
         .then((response)=>{
           setUser(response.data as DB_GetUser);
-          localStorage.setItem('GetUser', JSON.stringify(response.data));
+          localStorage.setItem('evtolGetUser', JSON.stringify(response.data));
         })
       }else{
         toast.warning('Could not get user');
@@ -51,9 +51,9 @@ const Dashboard = () => {
   const handleLogout = ()=>{
     localStorage.removeItem('evtolToken');
     localStorage.removeItem('evtolOrder');
-    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.setItem('evtolLogin', 'false');
     localStorage.removeItem('evtolUser');
-    localStorage.removeItem('GetUser');
+    localStorage.removeItem('evtolGetUser');
     setLoggedIn(false);
     navigate('/login');
   };

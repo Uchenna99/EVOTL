@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Medication, Order } from "./interface";
+import { Medication, Order, UserOrders } from "./interface";
 import {TailSpin } from "react-loader-spinner";
 import { toast } from "sonner";
 import { IoIosClose } from "react-icons/io";
@@ -34,8 +34,8 @@ const ListOfMedications = ({next, cartUpdate}: Props) => {
             }
         };
         const order = localStorage.getItem('evtolOrder');
-        if(order){null}else{
-            const orderList = [] as Order[];
+        if(!order){
+            const orderList = [] as UserOrders[];
             const saveOrder = JSON.stringify(orderList)
             localStorage.setItem('evtolOrder', saveOrder);
         };

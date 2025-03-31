@@ -71,6 +71,10 @@ export interface DB_Order {
     userId: string;
 }
 
+export interface UserOrders {
+    userId: Order[];
+}
+
 
 export interface DB_Evtol {
     id: number;

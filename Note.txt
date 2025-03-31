@@ -1,0 +1,8 @@
+
+localstorage items
+'evtolOrder' - for storing orders to load the drones
+'evtolnewOrder' - for storing a newly confirmed order
+'evtolToken' - for storing access tokens to be decoded
+'evtolUser' - for storing decoded access token
+'evtolGetUser' - for storing full user details
+'evtolLogin' - for saving login status

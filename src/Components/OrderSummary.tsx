@@ -45,7 +45,7 @@ const OrderSummary = ({next}: Props) => {
             const evtolUser: JwtCode = JSON.parse(user);
             await axios.post(`http://localhost:4000/api/v1/users/create-order`, {userId: evtolUser.id})
             .then((response)=>{
-                localStorage.setItem('newOrder', JSON.stringify(response.data));
+                localStorage.setItem('evtolnewOrder', JSON.stringify(response.data));
                 createLoad();
             })
         }
@@ -53,7 +53,7 @@ const OrderSummary = ({next}: Props) => {
 
     const createLoad = async ()=>{
         const order = localStorage.getItem('order');
-        const newOrder = localStorage.getItem('newOrder');
+        const newOrder = localStorage.getItem('evtolnewOrder');
 
         if(order && newOrder){
             const orderArray: Order[] = JSON.parse(order);
