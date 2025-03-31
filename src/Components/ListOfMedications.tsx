@@ -9,9 +9,10 @@ interface Props{
     next: ()=>void;
     cartUpdate: ()=>void;
     user: DB_GetUser|null;
+    cartCount: number;
 }
 
-const ListOfMedications = ({next, cartUpdate, user}: Props) => {
+const ListOfMedications = ({next, cartUpdate, user, cartCount}: Props) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [medsList, setMedsList] = useState<Medication[] | null>(null);
@@ -48,7 +49,7 @@ const ListOfMedications = ({next, cartUpdate, user}: Props) => {
 
         if(getOrder){
             const userOrdersList: UserOrders[] = JSON.parse(getOrder);
-            let orderList = userOrdersList.find((userOrder)=> userOrder.userId === user?.id);
+            const orderList = userOrdersList.find((userOrder)=> userOrder.userId === user?.id);
 
             if(orderList){
                 const orderExists = orderList.order.some((medOrder)=> medOrder.medication.id === order.medication.id);
@@ -75,16 +76,11 @@ const ListOfMedications = ({next, cartUpdate, user}: Props) => {
 
 
     const confirmOrder = ()=>{
-        const getOrder = localStorage.getItem('evtolOrder');
-        if(!getOrder){
-            toast.warning("Order not found", {position: "top-right"})
+
+        if(cartCount > 0 ) {
+            next();
         }else{
-            const orderList: Order[] = JSON.parse(getOrder);
-            if(!orderList[0]){
-                toast.warning('You have not selected any items yet', {position: "top-right"});
-            }else{
-                next();
-            }
+            toast.warning('You have not selected any items yet', {position: "top-right"});
         }
 
     }

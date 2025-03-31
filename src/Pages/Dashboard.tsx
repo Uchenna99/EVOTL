@@ -49,7 +49,7 @@ const Dashboard = () => {
       const orderList: UserOrders[] = JSON.parse(order);
       const userInfo: DB_GetUser = JSON.parse(user);
       let usersOrder = orderList.find((userOrder)=> userOrder.userId === userInfo.id);
-      
+
       if(usersOrder){
         setItemCount(usersOrder.order.length);
       }else{
@@ -144,18 +144,29 @@ const Dashboard = () => {
                     dashboard === 'delivery' &&
                     (
                       newOrder === 'meds-list'?
-                      <ListOfMedications next={()=>setNewOrder('summary')} cartUpdate={()=>setCartUpdate(!cartUpdate)} user={user} /> :
-                      // newOrder === 'drone-list'?
-                      // <ListOfDrones next={()=>setNewOrder('summary')} /> :
+                      <ListOfMedications 
+                        next={()=>setNewOrder('summary')} 
+                        cartUpdate={()=>setCartUpdate(!cartUpdate)} 
+                        user={user} 
+                        cartCount={itemCount}
+                      /> 
+                      :
                       newOrder === 'summary'?
-                      <OrderSummary next={()=> setNewOrder('meds-list')} /> : ''
+                      <OrderSummary next={()=> 
+                        setNewOrder('meds-list')} 
+                        user={user}
+                      /> 
+                      : ''
                     )
                   }
                 </div>
 
                 {
                   showCart &&
-                  <CartItems close={()=>setShowCart(false)} />
+                  <CartItems 
+                    close={()=>setShowCart(false)} 
+                    user={user}
+                  />
                 }
               </div>
             </div>

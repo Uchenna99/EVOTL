@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
-import { Order } from "./interface";
+import { DB_GetUser, Order, UserOrders } from "./interface";
 
 interface Props {
     close: ()=>void;
+    user: DB_GetUser | null;
 }
 
-const CartItems = ({close}: Props) => {
+const CartItems = ({close, user}: Props) => {
     const [oderArray, setOrderArray] = useState<Order[]|null>(null);
 
     useEffect(()=>{
+
         const getCartItems = ()=>{
-            const getOrder = localStorage.getItem('order');
+            const getOrder = localStorage.getItem('evtolOrder');
+
             if(getOrder){
-                const orderList: Order[] = JSON.parse(getOrder);
-                setOrderArray(orderList);
+                const orderList: UserOrders[] = JSON.parse(getOrder);
+                const cartList = orderList.find((cartOrder)=> cartOrder.userId === user?.id);
+
+                if(cartList) {
+                    setOrderArray(cartList.order);
+                }
             }
         }
 

@@ -1,33 +1,40 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { CreateLoadDTO, DB_Order, Order } from "./interface";
+import { CreateLoadDTO, DB_GetUser, DB_Order, Order, UserOrders } from "./interface";
 import { JwtCode } from "../State";
 import { TiArrowBack } from "react-icons/ti";
 import { toast } from "sonner";
 
 interface Props {
     next: ()=>void;
+    user: DB_GetUser | null;
 }
 
 
-const OrderSummary = ({next}: Props) => {
+const OrderSummary = ({next, user}: Props) => {
     const [orderInfo, setOrderInfo] = useState<Order[]>([]);
     const [total, setTotal] = useState(0);
 
     useEffect(()=>{
         const getLoad = async ()=>{
-            const savedOrder = localStorage.getItem('evtolOrder');
-            if(!savedOrder){
-                alert('Could not fetch orders');
-            }else{
-                const orders: Order[] = JSON.parse(savedOrder);
-                setOrderInfo(orders);
-                
-                let incr: number = 0
-                orders.map((order)=> incr = incr + (order.medication.price * order.quantity));
-                setTotal(incr);
+            const getOrder = localStorage.getItem('evtolOrder');
 
+            if(getOrder) {
+                const orderList: UserOrders[] = JSON.parse(getOrder);
+                const cartList = orderList.find((cartOrder)=> cartOrder.userId === user?.id);
+                if(cartList) {
+                    setOrderInfo(cartList.order);
+
+                    let incr: number = 0
+                    cartList.order.map((order)=> incr = incr + (order.medication.price * order.quantity));
+                    setTotal(incr);
+
+                }else{
+                    toast.error("An unexpected error ocurred", {position:'top-right'});
+                    next
+                }
             }
+
         }
         getLoad();
     },[]);
