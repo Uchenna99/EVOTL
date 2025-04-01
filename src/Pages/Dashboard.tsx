@@ -12,6 +12,8 @@ import { DB_GetUser, UserOrders } from "../Components/interface";
 import { toast } from "sonner";
 import axios from "axios";
 import CartItems from "../Components/CartItems";
+import ProfilePage from "../Components/ProfilePage";
+import History from "../Components/History";
 
 
 const Dashboard = () => {
@@ -181,6 +183,14 @@ const Dashboard = () => {
                       /> 
                       : ''
                     )
+                  }
+                  {
+                    dashboard === 'history' &&
+                    <History />
+                  }
+                  {
+                    dashboard === 'profile' &&
+                    <ProfilePage />
                   }
                 </div>
 
