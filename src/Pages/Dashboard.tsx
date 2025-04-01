@@ -66,8 +66,6 @@ const Dashboard = () => {
       const saveOrder = JSON.stringify(orderList)
       localStorage.setItem('evtolOrder', saveOrder);
       
-    }else{
-      toast.error("An unexpected error ocurred, please refresh the page", {position:'top-right'});
     }
 
     
@@ -75,7 +73,7 @@ const Dashboard = () => {
 
   const handleLogout = ()=>{
     localStorage.removeItem('evtolToken');
-    localStorage.removeItem('evtolOrder');
+    // localStorage.removeItem('evtolOrder');
     localStorage.setItem('evtolLogin', 'false');
     localStorage.removeItem('evtolUser');
     localStorage.removeItem('evtolGetUser');
@@ -103,17 +101,17 @@ const Dashboard = () => {
 
                   <div className="dash-option-select" onClick={()=> setDashboard('delivery')}
                     style={{animationName:dashboard==='delivery'? 'select':''}}>
-                    <p style={{color: dashboard==='delivery'? 'white':''}}>New delivery</p>
+                    <p style={{color: dashboard==='delivery'? '#1A202C':''}}>New delivery</p>
                   </div>
 
                   <div className="dash-option-select" onClick={()=> setDashboard('tracking')}
                     style={{animationName:dashboard==='tracking'? 'select':''}}>
-                    <p style={{color: dashboard==='tracking'? 'white':''}}>Order Tracking</p>
+                    <p style={{color: dashboard==='tracking'? '#1A202C':''}}>Order Tracking</p>
                   </div>
 
                   <div className="dash-option-select" onClick={()=> setDashboard('history')}
                     style={{animationName: dashboard==='history'? 'select':''}}>
-                    <p style={{color: dashboard==='history'? 'white':''}}>History</p>
+                    <p style={{color: dashboard==='history'? '#1A202C':''}}>History</p>
                   </div>
 
                   <div className="dash-option-select" onClick={handleLogout}>
