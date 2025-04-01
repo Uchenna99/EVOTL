@@ -7,6 +7,7 @@ import { GoSearch } from "react-icons/go";
 import ListOfMedications from "../Components/ListOfMedications";
 import OrderSummary from "../Components/OrderSummary";
 import { GiDeliveryDrone } from "react-icons/gi";
+import { IoMdNotificationsOutline } from "react-icons/io";
 import { DB_GetUser, UserOrders } from "../Components/interface";
 import { toast } from "sonner";
 import axios from "axios";
@@ -90,28 +91,44 @@ const Dashboard = () => {
               <div className="dash-left">
 
                 <div className="dash-user">
-                  <div className="dash-user-image" style={{backgroundImage: `url(${user?.image})`}}></div>
+                  <h1 style={{color:'#EDF2F7'}}>
+                    EVTOL
+                  </h1>
+                  {/* <div className="dash-user-image" style={{backgroundImage: `url(${user?.image})`}}></div>
                   <div className="dash-user-name">
                     <p>Hello</p>
                     <p>{`${user?.firstName} ${user?.lastName}`}</p>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="dash-left-options">
 
                   <div className="dash-option-select" onClick={()=> setDashboard('delivery')}
                     style={{animationName:dashboard==='delivery'? 'select':''}}>
-                    <p style={{color: dashboard==='delivery'? '#1A202C':''}}>New delivery</p>
+                    <p style={{color: dashboard==='delivery'? '#5A67D8':'', fontWeight: dashboard === 'delivery'? "bold" : '', fontSize:dashboard === 'delivery'? 19 : ''}}>
+                      New delivery
+                    </p>
                   </div>
 
                   <div className="dash-option-select" onClick={()=> setDashboard('tracking')}
                     style={{animationName:dashboard==='tracking'? 'select':''}}>
-                    <p style={{color: dashboard==='tracking'? '#1A202C':''}}>Order Tracking</p>
+                    <p style={{color: dashboard==='tracking'? '#5A67D8':'', fontWeight: dashboard === 'tracking'? "bold" : '', fontSize:dashboard === 'tracking'? 19 : ''}}>
+                      Order Tracking
+                    </p>
                   </div>
 
                   <div className="dash-option-select" onClick={()=> setDashboard('history')}
                     style={{animationName: dashboard==='history'? 'select':''}}>
-                    <p style={{color: dashboard==='history'? '#1A202C':''}}>History</p>
+                    <p style={{color: dashboard==='history'? '#5A67D8':'', fontWeight: dashboard === 'history'? "bold" : '', fontSize:dashboard === 'history'? 20 : ''}}>
+                      History
+                    </p>
+                  </div>
+
+                  <div className="dash-option-select" onClick={()=> setDashboard('profile')}
+                    style={{animationName:dashboard==='profile'? 'select':''}}>
+                    <p style={{color: dashboard==='profile'? '#5A67D8':'', fontWeight: dashboard === 'profile'? "bold" : '', fontSize:dashboard === 'profile'? 19 : ''}}>
+                      Profile
+                    </p>
                   </div>
 
                   <div className="dash-option-select" onClick={handleLogout}>
@@ -131,9 +148,16 @@ const Dashboard = () => {
                     </div>
                   </div>
 
-                  <div className="drone-cart" onClick={()=> setShowCart(true)}>
-                    <GiDeliveryDrone id="cart-icon"/>
-                    <div className="cart-item-count"> {itemCount} </div>
+                  <div className="notification-section">
+                    <div className="drone-cart" onClick={()=> setShowCart(true)}>
+                      <GiDeliveryDrone id="cart-icon"/>
+                      <div className="cart-item-count"> {itemCount} </div>
+                    </div>
+
+                    <div className="drone-cart">
+                      <IoMdNotificationsOutline id="cart-icon"/>
+                      <div className="notification-count" style={{display:'none'}}> {itemCount} </div>
+                    </div>
                   </div>
                 </div>
 
