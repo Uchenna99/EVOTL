@@ -8,6 +8,7 @@ import Dashboard from './Pages/Dashboard'
 import useGlobalState from './State'
 import { useEffect } from 'react'
 import { Toaster } from 'sonner'
+import AdminDashboard from './Pages/AdminDashboard'
 
 function App() {
   const { loggedIn, setLoggedIn } = useGlobalState();
@@ -33,6 +34,7 @@ function App() {
         <Route path='/email-verification' element={ loggedIn? <Dashboard/> : <VerificationPage/> } />
         <Route path='/login' element={ <LoginPage/> } />
         <Route path='/dashboard' element={ <Dashboard/> } />
+        <Route path='/admin' element={ <AdminDashboard/> } />
       </Routes>
     </>
   )
