@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { DB_Order } from "./interface";
+import { DB_Order, Medication } from "./interface";
 
 
 
 const History = () => {
     const [section, setSection] = useState('all');
     const [orders, setOrders] = useState<DB_Order[]|null>(null);
+    const [medsNames, setMedsNames] = useState<Medication[]|null>(null);
+
+
 
     useEffect(()=>{
         axios.get(`http://localhost:4000/api/v1/users/get-orders`)
@@ -14,6 +17,17 @@ const History = () => {
             setOrders(response.data);
         })
     },[]);
+
+    useEffect(()=>{
+        axios.get(`http://localhost:4000/api/v1/users/fetch-meds`)
+        .then((response)=>{
+            setMedsNames(response.data);
+        })
+    },[]);
+
+    const shortenText = (text: string, maxLength: number) => {
+        return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+    };
 
   return (
     <>
@@ -48,13 +62,12 @@ const History = () => {
                 </div>
             </div>
 
-            <div className="history-grid-wrap">
                 <div className="history-grid-header">
                     <div className="history-grid-header-label">
                         Id
                     </div>
                     <div className="history-grid-header-label">
-                        Items
+                        Items (quantity)
                     </div>
                     <div className="history-grid-header-label">
                         Evtol
@@ -63,22 +76,32 @@ const History = () => {
                         Date
                     </div>
                 </div>
+            <div className="history-grid-wrap">
 
                 {
                     orders &&
                     orders.map((order, index)=> (
                     <div className="history-item" key={index}>
                         <div className="history-item-section">
-                            <p>#{order.id}</p>
+                            <p>#{shortenText(order.id, 10)}</p>
                         </div>
                         <div className="history-item-section">
-                            <p>Paracetamol</p>
+                            {
+                                order.loads.map((load, index)=> (
+                                    <p key={index}>
+                                        {medsNames?.map((med)=> med.id === load.medicationsId? med.name :'')}{' '}
+                                        ({load.quantity})
+                                        {index === order.loads.length-1 ? '':','}
+                                        {' '}
+                                    </p>
+                                ))
+                            }
                         </div>
                         <div className="history-item-section">
                             <p>{order.evtolId}</p>
                         </div>
                         <div className="history-item-section">
-                            <p>{order.createdAt}</p>
+                            <p>{new Date(order.createdAt).toLocaleString()}</p>
                         </div>
                     </div>
 
