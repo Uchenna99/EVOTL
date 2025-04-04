@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import useGlobalState from "../State";
 import { useState } from "react";
-import ListOfMedications from "../Components/ListOfMedications";
-import OrderSummary from "../Components/OrderSummary";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { DB_GetUser } from "../Components/interface";
 import { GoSearch } from "react-icons/go";
 import History from "../Components/History";
 import ProfilePage from "../Components/ProfilePage";
+import OrderPage from "../Components/OrderPage.admin";
 
 
 
@@ -15,10 +14,8 @@ const AdminDashboard = () => {
     const { setLoggedIn } = useGlobalState();
     const navigate = useNavigate();
     const [user, setUser] = useState<DB_GetUser|null>(null);
-    const [dashboard, setDashboard] = useState('delivery');
-    const [newOrder, setNewOrder] = useState('meds-list');
+    const [dashboard, setDashboard] = useState('orders');
     const [itemCount, setItemCount] = useState(0);
-    const [cartUpdate, setCartUpdate] = useState(false);
 
     const handleLogout = ()=>{
         localStorage.removeItem('evtolToken');
@@ -50,10 +47,10 @@ const AdminDashboard = () => {
 
             <div className="dash-left-options">
 
-                <div className="dash-option-select" onClick={()=> setDashboard('delivery')}
-                style={{animationName:dashboard==='delivery'? 'select':''}}>
-                <p style={{color: dashboard==='delivery'? '#5A67D8':'', fontWeight: dashboard === 'delivery'? "bold" : '', fontSize:dashboard === 'delivery'? 19 : ''}}>
-                    New delivery
+                <div className="dash-option-select" onClick={()=> setDashboard('orders')}
+                style={{animationName:dashboard==='orders'? 'select':''}}>
+                <p style={{color: dashboard==='orders'? '#5A67D8':'', fontWeight: dashboard === 'orders'? "bold" : '', fontSize:dashboard === 'orders'? 19 : ''}}>
+                    Orders
                 </p>
                 </div>
 
@@ -105,24 +102,10 @@ const AdminDashboard = () => {
 
             <div className="dash-display-board">
                 {
-                    dashboard === 'delivery' &&
+                    dashboard === 'orders' &&
                     (
-                        newOrder === 'meds-list'?
-                        <ListOfMedications 
-                        next={()=>setNewOrder('summary')} 
-                        cartUpdate={()=>setCartUpdate(!cartUpdate)} 
-                        user={user} 
-                        cartCount={itemCount}
-                        /> 
-                        :
-                        newOrder === 'summary'?
-                        <OrderSummary 
-                        next={()=> setNewOrder('meds-list')} 
-                        user={user}
-                        cartUpdate={()=>setCartUpdate(!cartUpdate)}
-                        /> 
-                        : ''
-                )
+                        <OrderPage />
+                    )
                 }
                 {
                     dashboard === 'history' &&
