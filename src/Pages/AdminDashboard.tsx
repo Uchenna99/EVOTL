@@ -6,6 +6,8 @@ import OrderSummary from "../Components/OrderSummary";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { DB_GetUser } from "../Components/interface";
 import { GoSearch } from "react-icons/go";
+import History from "../Components/History";
+import ProfilePage from "../Components/ProfilePage";
 
 
 
@@ -17,6 +19,17 @@ const AdminDashboard = () => {
     const [newOrder, setNewOrder] = useState('meds-list');
     const [itemCount, setItemCount] = useState(0);
     const [cartUpdate, setCartUpdate] = useState(false);
+
+    const handleLogout = ()=>{
+        localStorage.removeItem('evtolToken');
+        // localStorage.removeItem('evtolOrder');
+        localStorage.setItem('evtolLogin', 'false');
+        localStorage.removeItem('evtolUser');
+        localStorage.removeItem('evtolGetUser');
+        setLoggedIn(false);
+        navigate('/login');
+    };
+    
   
   return (
     <>
