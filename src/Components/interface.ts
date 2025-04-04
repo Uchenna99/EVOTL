@@ -69,7 +69,10 @@ export interface DB_Order {
     updatedAt: string;
     evtolId: number | null;
     userId: string;
+    loads: DB_Load[]
 }
+
+
 
 export interface UserOrders {
     userId: string;
@@ -92,8 +95,8 @@ export interface DB_Load {
     medicationsId: number;
     quantity: number;
     orderId: string;
-    evtolId: number;
 }
+
 
 export interface CreateLoadDTO {
     medicationsId: number;

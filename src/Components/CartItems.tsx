@@ -80,7 +80,7 @@ const CartItems = ({close, user, cartUpdate}: Props) => {
                             ))
                         }
                         {
-                            orderArray?.length === 0 &&
+                            orderArray?.length === 0 || !orderArray &&
                             <p style={{justifySelf:'center', marginTop:100, fontWeight:600, color:'#F56565'}}>
                                 No items selected
                             </p>
