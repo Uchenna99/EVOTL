@@ -12,7 +12,7 @@ const OrderPage = () => {
 
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/api/v1/users/get-orders`)
+        axios.get(`http://localhost:4000/api/v1/admin/get-orders`)
         .then((response)=>{
             setOrders(response.data);
         })
@@ -73,6 +73,9 @@ const OrderPage = () => {
                         Evtol
                     </div>
                     <div className="history-grid-header-label">
+                        Status
+                    </div>
+                    <div className="history-grid-header-label">
                         Date
                     </div>
                 </div>
@@ -88,7 +91,7 @@ const OrderPage = () => {
                         <div className="history-item-section">
                             {
                                 order.loads.map((load, index)=> (
-                                    <p key={index}>
+                                    <p key={index} style={{marginRight:5}}>
                                         {medsNames?.map((med)=> med.id === load.medicationsId? med.name :'')}{' '}
                                         ({load.quantity})
                                         {index === order.loads.length-1 ? '':','}
@@ -99,6 +102,9 @@ const OrderPage = () => {
                         </div>
                         <div className="history-item-section">
                             <p>{order.evtolId}</p>
+                        </div>
+                        <div className="history-item-section">
+                            <p>{order.status}</p>
                         </div>
                         <div className="history-item-section">
                             <p>{new Date(order.createdAt).toLocaleString()}</p>

@@ -728,7 +728,7 @@ button#remove-item:hover{
     /* border: 1px solid gray; */
     /* box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); */
     display: grid;
-    grid-template-columns: 150px 1fr 200px 150px;
+    grid-template-columns: 150px 1fr 200px 200px 150px;
     grid-template-rows: auto;
     padding: 0 15px;
 }
@@ -748,7 +748,7 @@ button#remove-item:hover{
     /* border: 1px solid gray; */
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
     display: grid;
-    grid-template-columns: 150px 1fr 1fr 150px;
+    grid-template-columns: 150px 1fr 200px 200px 150px;
     padding: 0 15px;
     margin-bottom: 15px;
 }

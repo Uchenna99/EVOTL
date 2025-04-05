@@ -70,6 +70,7 @@ export interface DB_Order {
     evtolId: number | null;
     userId: string;
     loads: DB_Load[]
+    status: string;
 }
 
 
