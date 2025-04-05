@@ -104,7 +104,11 @@ const OrderPage = () => {
                             <p>{order.evtolId}</p>
                         </div>
                         <div className="history-item-section">
-                            <p>{order.status}</p>
+                            <p style={{color: order.status === 'COMPLETED'? 'green':
+                                order.status === 'CANCELLED'? 'red':''
+                            }}>
+                                {order.status}
+                            </p>
                         </div>
                         <div className="history-item-section">
                             <p>{new Date(order.createdAt).toLocaleString()}</p>
