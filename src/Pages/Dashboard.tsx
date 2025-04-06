@@ -16,6 +16,7 @@ import ProfilePage from "../Components/ProfilePage";
 import History from "../Components/History";
 import { ImProfile } from "react-icons/im";
 import { FaHistory } from "react-icons/fa";
+import { TbPackageExport } from "react-icons/tb";
 
 
 const Dashboard = () => {
@@ -109,8 +110,8 @@ const Dashboard = () => {
 
                   <div className="dash-option-select" onClick={()=> setDashboard('delivery')}
                     style={{animationName:dashboard==='delivery'? 'select':''}}>
-                    <GiDeliveryDrone id="dash-option-icon" 
-                      style={{color: dashboard === 'delivery'? '#5A67D8':''}}
+                    <TbPackageExport id="dash-option-icon" 
+                      style={{color: dashboard === 'delivery'? '#5A67D8':'', fontSize:24}}
                     />
                     <p style={{color: dashboard==='delivery'? '#5A67D8':'', fontWeight: dashboard === 'delivery'? "bold" : '', fontSize:dashboard === 'delivery'? 19 : ''}}>
                       New delivery
