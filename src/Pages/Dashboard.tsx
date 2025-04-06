@@ -14,6 +14,8 @@ import axios from "axios";
 import CartItems from "../Components/CartItems";
 import ProfilePage from "../Components/ProfilePage";
 import History from "../Components/History";
+import { ImProfile } from "react-icons/im";
+import { FaHistory } from "react-icons/fa";
 
 
 const Dashboard = () => {
@@ -107,6 +109,9 @@ const Dashboard = () => {
 
                   <div className="dash-option-select" onClick={()=> setDashboard('delivery')}
                     style={{animationName:dashboard==='delivery'? 'select':''}}>
+                    <GiDeliveryDrone id="dash-option-icon" 
+                      style={{color: dashboard === 'delivery'? '#5A67D8':''}}
+                    />
                     <p style={{color: dashboard==='delivery'? '#5A67D8':'', fontWeight: dashboard === 'delivery'? "bold" : '', fontSize:dashboard === 'delivery'? 19 : ''}}>
                       New delivery
                     </p>
@@ -121,6 +126,9 @@ const Dashboard = () => {
 
                   <div className="dash-option-select" onClick={()=> setDashboard('history')}
                     style={{animationName: dashboard==='history'? 'select':''}}>
+                    <FaHistory id="dash-option-icon"
+                      style={{color: dashboard === 'history'? '#5A67D8':''}}
+                    />
                     <p style={{color: dashboard==='history'? '#5A67D8':'', fontWeight: dashboard === 'history'? "bold" : '', fontSize:dashboard === 'history'? 20 : ''}}>
                       History
                     </p>
@@ -128,6 +136,9 @@ const Dashboard = () => {
 
                   <div className="dash-option-select" onClick={()=> setDashboard('profile')}
                     style={{animationName:dashboard==='profile'? 'select':''}}>
+                    <ImProfile id="dash-option-icon"
+                      style={{color: dashboard === 'profile'? '#5A67D8':''}}
+                    />
                     <p style={{color: dashboard==='profile'? '#5A67D8':'', fontWeight: dashboard === 'profile'? "bold" : '', fontSize:dashboard === 'profile'? 19 : ''}}>
                       Profile
                     </p>

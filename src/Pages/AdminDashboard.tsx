@@ -7,8 +7,8 @@ import { GoSearch } from "react-icons/go";
 import { LuHistory } from "react-icons/lu";
 import { FaHistory } from "react-icons/fa";
 import History from "../Components/History";
-import ProfilePage from "../Components/ProfilePage";
 import OrderPage from "../Components/OrderPage.admin";
+import EvtolsPage from "../Components/EvtolsPage";
 
 
 
@@ -51,9 +51,9 @@ const AdminDashboard = () => {
                     </p>
                 </div>
 
-                <div className="dash-option-select" onClick={()=> setDashboard('profile')}
-                    style={{animationName:dashboard==='profile'? 'select':''}}>
-                    <p style={{color: dashboard==='profile'? '#5A67D8':'', fontWeight: dashboard === 'profile'? "bold" : '', fontSize:dashboard === 'profile'? 19 : ''}}>
+                <div className="dash-option-select" onClick={()=> setDashboard('evtols')}
+                    style={{animationName:dashboard==='evtols'? 'select':''}}>
+                    <p style={{color: dashboard==='evtols'? '#5A67D8':'', fontWeight: dashboard === 'evtols'? "bold" : '', fontSize:dashboard === 'evtols'? 19 : ''}}>
                         Evtols
                     </p>
                 </div>
@@ -101,12 +101,12 @@ const AdminDashboard = () => {
                     )
                 }
                 {
-                    dashboard === 'history' &&
-                    <History />
+                    dashboard === 'evtols' &&
+                    <EvtolsPage />
                 }
                 {
-                    dashboard === 'profile' &&
-                    <ProfilePage />
+                    dashboard === 'history' &&
+                    <History />
                 }
             </div>
             </div>
