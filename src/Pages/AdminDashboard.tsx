@@ -51,6 +51,13 @@ const AdminDashboard = () => {
                     </p>
                 </div>
 
+                <div className="dash-option-select" onClick={()=> setDashboard('profile')}
+                    style={{animationName:dashboard==='profile'? 'select':''}}>
+                    <p style={{color: dashboard==='profile'? '#5A67D8':'', fontWeight: dashboard === 'profile'? "bold" : '', fontSize:dashboard === 'profile'? 19 : ''}}>
+                        Evtols
+                    </p>
+                </div>
+
                 <div className="dash-option-select" onClick={()=> setDashboard('history')}
                     style={{animationName: dashboard==='history'? 'select':''}}>
                     <FaHistory id="dash-option-icon"
@@ -58,13 +65,6 @@ const AdminDashboard = () => {
                     />
                     <p style={{color: dashboard==='history'? '#5A67D8':'', fontWeight: dashboard === 'history'? "bold" : '', fontSize:dashboard === 'history'? 20 : ''}}>
                         History
-                    </p>
-                </div>
-
-                <div className="dash-option-select" onClick={()=> setDashboard('profile')}
-                    style={{animationName:dashboard==='profile'? 'select':''}}>
-                    <p style={{color: dashboard==='profile'? '#5A67D8':'', fontWeight: dashboard === 'profile'? "bold" : '', fontSize:dashboard === 'profile'? 19 : ''}}>
-                        Profile
                     </p>
                 </div>
 
