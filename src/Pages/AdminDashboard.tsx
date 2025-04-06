@@ -10,6 +10,7 @@ import History from "../Components/History";
 import OrderPage from "../Components/OrderPage.admin";
 import EvtolsPage from "../Components/EvtolsPage";
 import { TbClipboardList } from "react-icons/tb";
+import { ClipboardList } from "lucide-react"
 
 
 
@@ -47,8 +48,10 @@ const AdminDashboard = () => {
 
                 <div className="dash-option-select" onClick={()=> setDashboard('orders')}
                     style={{animationName:dashboard==='orders'? 'select':''}}>
-                    <TbClipboardList id="dash-option-icon"
-                      style={{color: dashboard === 'orders'? '#5A67D8':'', fontSize:24}}
+                    <ClipboardList 
+                        size={22}
+                        strokeWidth={2.5}
+                        color={dashboard === 'orders'? '#5A67D8':''}
                     />
                     <p style={{color: dashboard==='orders'? '#5A67D8':'', fontWeight: dashboard === 'orders'? "bold" : '', fontSize:dashboard === 'orders'? 19 : ''}}>
                         Orders
