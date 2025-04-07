@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import useGlobalState, { JwtCode } from "../State"
+import { Menu, Pointer } from "lucide-react"
 
 interface NavProps {
   user: JwtCode | null;
@@ -29,10 +30,19 @@ const Navbar = ({user}: NavProps) => {
                 <h2>EVTOL</h2>
             </div>
 
-            <div className="nav-mid"></div>
+            {/* <div className="nav-mid"></div> */}
 
             <div className="nav-right">
-              {
+              <Menu
+              cursor={'Pointer'}
+                size={35}
+                strokeWidth={2.5}
+              />
+
+              <div className="menu-dropdown"></div>
+
+              
+              {/* {
                 user?
                 <div className="nav_user-info">
                   <h4>
@@ -52,7 +62,7 @@ const Navbar = ({user}: NavProps) => {
                     <p>Get Started</p>
                   </Link>
                 </div>
-              }
+              } */}
             </div>
           </div>
         </div>

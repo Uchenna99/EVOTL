@@ -37,8 +37,8 @@ const LandingPage = () => {
             <div className="info-section">
               <h1>MEDICAL SUPPLIES, <br/> DRONE DELIVERED <span id="underlined-text">ON TIME <img id="underline-img" src={underline} /> </span>.</h1>
 
-              <Link id="get-started" to={'/signup'} style={{fontSize:'20px'}}>
-                <p>Get Started</p>
+              <Link id="get-started" to={'/signup'}>
+                <p>GET STARTED</p>
               </Link>
             </div>
 
