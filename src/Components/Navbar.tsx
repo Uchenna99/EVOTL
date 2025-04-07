@@ -49,7 +49,7 @@ const Navbar = ({user}: NavProps) => {
                 onClick={()=> setDropdown(!dropdown)}
               />
 
-              <div className="menu-dropdown" style={{scale: dropdown? 1:0, opacity: dropdown? 1:0, pointerEvents: dropdown? 'auto':'none'}}>
+              <div className={`menu-dropdown ${dropdown? 'open':''}`}>
                 <div className="menu-dropdown-option">
                   <p>Medicines</p>
                 </div>
