@@ -54,6 +54,9 @@ const Navbar = ({user}: NavProps) => {
                   <p>Medicines</p>
                 </div>
                 <div className="menu-dropdown-option">
+                  <p>Contact Us</p>
+                </div>
+                <div className="menu-dropdown-option">
                   <p>Logout</p>
                 </div>
               </div>
