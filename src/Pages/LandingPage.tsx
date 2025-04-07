@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar"
 import { useEffect, useState } from "react"
 import { JwtCode } from "../State"
 import { jwtDecode } from "jwt-decode"
+import underline from "../assets/Images/Underline.png"
 
 
 const LandingPage = () => {
@@ -34,7 +35,7 @@ const LandingPage = () => {
 
           <div className="page-wrap2">
             <div className="info-section">
-              <h2>MEDICAL SUPPLIES, <br/> DRONE DELIVERED ON TIME.</h2>
+              <h1>MEDICAL SUPPLIES, <br/> DRONE DELIVERED <span id="underlined-text">ON TIME <img id="underline-img" src={underline} /> </span>.</h1>
 
               <Link id="get-started" to={'/signup'} style={{fontSize:'20px'}}>
                 <p>Get Started</p>

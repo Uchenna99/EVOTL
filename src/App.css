@@ -29,7 +29,7 @@
 .navbar-container{
   width: 100%;
   height: 70px;
-  background-color: white;
+  /* background-color: white; */
   display: flex;
   justify-content: center;
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
@@ -37,6 +37,15 @@
   top: 0;
   left: 0;
   z-index: 15;
+  animation: navbar 1 both linear;
+  animation-timeline: scroll();
+}
+
+@keyframes navbar {
+  0% {background-color: transparent;}
+  20% {background-color: transparent;}
+  70% {background-color: var(--background);}
+  100% {background-color: var(--background);}
 }
 
 
@@ -57,7 +66,14 @@
 }
 
 .nav-left > h2{
+  cursor: pointer;
+  transition: 300ms;
   font-size: 30px;
+  text-shadow: 0 1px 6px rgba(255, 255, 255, 0.7);
+}
+
+.nav-left > h2:hover{
+  text-shadow: 0 1px 5px white;
 }
 
 
@@ -80,14 +96,15 @@
 #get-started{
   width: fit-content;
   height: fit-content;
-  border: 3px solid black;
+  /* border: 3px solid var(--primary); */
+  background-color: var(--primary);
   border-radius: 5px;
   padding: 10px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: black;
+  color: var(--text);
   font-size: 18px;
   font-weight: 600;
   transition: 300ms;
@@ -95,8 +112,9 @@
 }
 
 #get-started:hover{
-  background-color: black;
-  color: white;
+  background-color: var(--primary);
+  color: var(--background);
+  font-weight: 500;
 }
 
 
@@ -142,7 +160,7 @@
 .page-wrap{
   width: 100%;
   height: fit-content;
-  background-color: white;
+  background-color: var(--background);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -182,20 +200,20 @@
 
 .transparent-cover{
   width: 100%;
-  height: 660px;
-  background-color: transparent;
+  height: 85vh;
+  background-color: yellow;
 }
 
 @keyframes wide {
   0%{ width: 1000px; }
-  5%{ width: 100%; }
+  20%{ width: 100%; }
   100%{ width: 100%; }
 }
 
 .page-wrap2{
   width: 100%;
   height: fit-content;
-  background-color: white;
+  background-color: var(--background);
   position: relative;
   z-index: 10;
   animation: wide 1 both linear;
@@ -204,8 +222,8 @@
 
 .info-section{
   width: 100%;
-  height: 100px;
-  background-color: white;
+  height: 15vh;
+  background-color: var(--background);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -215,6 +233,19 @@
 
 .info-section > h2{
   font-size: 28px;
+  color: var(--text);
+  font-weight: 900;
+}
+
+span#underlined-text{
+  position: relative;
+}
+
+img#underline-img{
+  position: absolute;
+  left: 0;
+  top: -45px;
+  width: 150px;
 }
 
 

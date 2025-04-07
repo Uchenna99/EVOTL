@@ -49,9 +49,9 @@ const AdminDashboard = () => {
                 <div className="dash-option-select" onClick={()=> setDashboard('orders')}
                     style={{animationName:dashboard==='orders'? 'select':''}}>
                     <ClipboardList 
-                        size={22}
+                        size={21}
                         strokeWidth={2.5}
-                        color={dashboard === 'orders'? '#5A67D8':''}
+                        color={dashboard === 'orders'? '#5A67D8':'#EDF2F7'}
                     />
                     <p style={{color: dashboard==='orders'? '#5A67D8':'', fontWeight: dashboard === 'orders'? "bold" : '', fontSize:dashboard === 'orders'? 19 : ''}}>
                         Orders
