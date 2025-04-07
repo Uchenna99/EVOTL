@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import useGlobalState, { JwtCode } from "../State"
-import { Menu, Pointer } from "lucide-react"
+import { Menu } from "lucide-react"
+import { useState } from "react";
 
 interface NavProps {
   user: JwtCode | null;
@@ -9,7 +10,15 @@ interface NavProps {
 const Navbar = ({user}: NavProps) => {
   const { setLoggedIn } = useGlobalState();
   const navigate = useNavigate();
+  const [dropdown, setDropdown] = useState(false);
   
+  // const handleDropdown = ()=>{
+  //   if(dropdown === 'show') {
+  //     setDropdown('hide');
+  //   }else{
+  //     setDropdown('show');
+  //   }
+  // };
 
   const handleLogout = ()=>{
     localStorage.removeItem('evtolToken');
@@ -34,14 +43,22 @@ const Navbar = ({user}: NavProps) => {
 
             <div className="nav-right">
               <Menu
-              cursor={'Pointer'}
+                cursor={'Pointer'}
                 size={35}
                 strokeWidth={2.5}
+                onClick={()=> setDropdown(!dropdown)}
               />
 
-              <div className="menu-dropdown"></div>
+              <div className="menu-dropdown" style={{scale: dropdown? 1:0, opacity: dropdown? 1:0, pointerEvents: dropdown? 'auto':'none'}}>
+                <div className="menu-dropdown-option">
+                  <p>Medicines</p>
+                </div>
+                <div className="menu-dropdown-option">
+                  <p>Logout</p>
+                </div>
+              </div>
 
-              
+
               {/* {
                 user?
                 <div className="nav_user-info">
