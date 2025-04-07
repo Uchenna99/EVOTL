@@ -158,12 +158,11 @@
   height: fit-content;
   padding: 10px 5px;
   background-color: var(--background);
-  border: 1px solid lightgray;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   position: absolute;
   right: 0;
-  top: 70px;
+  top: 50px;
   transform: scale(0.8);
   opacity: 0;
   pointer-events: none;
@@ -192,18 +191,11 @@
 .menu-dropdown.open {
   opacity: 1;
   transform: scale(1);
+  top: 70px;
   pointer-events: auto;
 }
 
-@keyframes drop {
-  from {top: 50px; opacity: 0; scale: 0.8;}
-  to {top: 70px; opacity: 1; scale: 1;}
-}
 
-@keyframes reverse {
-  from {top: 70px; opacity: 1; scale: 1;}
-  to {top: 50px; opacity: 0; scale: 0.8;}
-}
 
 
 
