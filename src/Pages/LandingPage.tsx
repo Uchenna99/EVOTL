@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { JwtCode } from "../State"
 import { jwtDecode } from "jwt-decode"
 import underline from "../assets/Images/Underline.png"
+import { BriefcaseMedical } from "lucide-react"
 
 
 const LandingPage = () => {
@@ -53,14 +54,65 @@ const LandingPage = () => {
             </div>
 
             <div className="info-card-grid">
+
               <div className="home-info-card">
-                <div className="info-card-img"></div>
+                <div className="info-card-img">
+                  <BriefcaseMedical
+                    color="#5A67D8"
+                    size={40}
+                    strokeWidth={1.5}
+                  />
+                </div>
                 <h4>Medical delivery</h4>
                 <p>Bypass traffic and challenging terrain to deliver medications rapidly.</p>
               </div>
+
+              <div className="home-info-card">
+                <div className="info-card-img">
+                  <BriefcaseMedical
+                    color="#5A67D8"
+                    size={40}
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <h4>Medical delivery</h4>
+                <p>Bypass traffic and challenging terrain to deliver medications rapidly.</p>
+              </div>
+
+              <div className="home-info-card">
+                <div className="info-card-img">
+                  <BriefcaseMedical
+                    color="#5A67D8"
+                    size={40}
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <h4>Medical delivery</h4>
+                <p>Bypass traffic and challenging terrain to deliver medications rapidly.</p>
+              </div>
+
+              <div className="home-info-card">
+                <div className="info-card-img">
+                  <BriefcaseMedical
+                    color="#5A67D8"
+                    size={40}
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <h4>Medical delivery</h4>
+                <p>Bypass traffic and challenging terrain to deliver medications rapidly.</p>
+              </div>
+
             </div>
 
-            <div className="supplies"></div>
+            <div className="about-us">
+              <div className="about-us-header">
+                <h1>MORE ABOUT US</h1>
+              </div>
+              <div className="about-us-cards-div">
+                <div className="about-us-cards-wrap"></div>
+              </div>
+            </div>
           </div>
         </div>
     </>
