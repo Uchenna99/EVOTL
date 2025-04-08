@@ -5,17 +5,19 @@ import { useEffect, useState } from "react";
 
 interface NavProps {
   user: JwtCode | null;
-  dropdownStatus: ()=>void;
+  dropdownShow: ()=>void;
+  dropdownHide: ()=>void;
+  dropdownStatus: boolean;
 }
 
-const Navbar = ({user, dropdownStatus}: NavProps) => {
+const Navbar = ({user, dropdownStatus, dropdownShow, dropdownHide}: NavProps) => {
   const { setLoggedIn } = useGlobalState();
   const navigate = useNavigate();
-  const [dropdown, setDropdown] = useState(false);
+  // const [dropdown, setDropdown] = useState(false);
   
-  useEffect(()=>{
-    dropdownStatus();
-  },[dropdown]);
+  // useEffect(()=>{
+  //   dropdownStatus(dropdown);
+  // },[dropdown, dropdownChange]);
 
   const handleLogout = ()=>{
     localStorage.removeItem('evtolToken');
@@ -30,7 +32,7 @@ const Navbar = ({user, dropdownStatus}: NavProps) => {
 
   return (
     <>
-        <div className="navbar-container" onClick={()=> {if(dropdown){setDropdown(false)}}}>
+        <div className="navbar-container" onClick={dropdownHide}>
           <div className="laptop-navbar">
             <div className="nav-left">
                 <h2>EVTOL</h2>
@@ -43,10 +45,10 @@ const Navbar = ({user, dropdownStatus}: NavProps) => {
                 cursor={'Pointer'}
                 size={35}
                 strokeWidth={2.5}
-                onClick={()=> setDropdown(!dropdown)}
+                onClick={dropdownShow}
               />
 
-              <div className={`menu-dropdown ${dropdown? 'open':''}`}>
+              <div className={`menu-dropdown ${dropdownStatus? 'open':''}`}>
                 <div className="menu-dropdown-option">
                   <p>Sign In</p>
                 </div>
@@ -59,7 +61,7 @@ const Navbar = ({user, dropdownStatus}: NavProps) => {
                 <div className="menu-dropdown-option">
                   <p>Contact Us</p>
                 </div>
-                <div className="menu-dropdown-option">
+                <div className="menu-dropdown-option" onClick={handleLogout}>
                   <p>Logout</p>
                 </div>
               </div>

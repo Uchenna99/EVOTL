@@ -23,12 +23,20 @@ const LandingPage = () => {
     loginCheck();
   },[])
 
+  const handleDropdownShow = ()=>{
+    setDropdown(true);
+  };
+
+  const handleDropdownHide = ()=>{
+    if(dropdown){ setDropdown(false); }
+  };
+
 
   return (
     <>
-        <Navbar user={user} dropdownStatus={()=>{if(dropdown){setDropdown(false)}}} />
+        <Navbar user={user} dropdownShow={handleDropdownShow} dropdownHide={handleDropdownHide} dropdownStatus={dropdown} />
 
-        <div className="page-wrap" onClick={()=> {if(dropdown){setDropdown(false)}}}>
+        <div className="page-wrap" onClick={handleDropdownHide}>
           <div className="hero-section">
             <div className="hero-image"></div>
           </div>
