@@ -8,6 +8,8 @@ import underline from "../assets/Images/Underline.png"
 
 const LandingPage = () => {
   const [user, setUser] = useState<JwtCode | null>(null);
+  const [dropdown, setDropdown] = useState(false);
+
 
   useEffect(()=>{
     const loginCheck = ()=>{
@@ -24,9 +26,9 @@ const LandingPage = () => {
 
   return (
     <>
-        <Navbar user={user} />
+        <Navbar user={user} dropdownStatus={()=>{if(dropdown){setDropdown(false)}}} />
 
-        <div className="page-wrap">
+        <div className="page-wrap" onClick={()=> {if(dropdown){setDropdown(false)}}}>
           <div className="hero-section">
             <div className="hero-image"></div>
           </div>

@@ -1,24 +1,21 @@
 import { Link, useNavigate } from "react-router-dom"
 import useGlobalState, { JwtCode } from "../State"
 import { Menu } from "lucide-react"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface NavProps {
   user: JwtCode | null;
+  dropdownStatus: ()=>void;
 }
 
-const Navbar = ({user}: NavProps) => {
+const Navbar = ({user, dropdownStatus}: NavProps) => {
   const { setLoggedIn } = useGlobalState();
   const navigate = useNavigate();
   const [dropdown, setDropdown] = useState(false);
   
-  // const handleDropdown = ()=>{
-  //   if(dropdown === 'show') {
-  //     setDropdown('hide');
-  //   }else{
-  //     setDropdown('show');
-  //   }
-  // };
+  useEffect(()=>{
+    dropdownStatus();
+  },[dropdown]);
 
   const handleLogout = ()=>{
     localStorage.removeItem('evtolToken');
@@ -33,7 +30,7 @@ const Navbar = ({user}: NavProps) => {
 
   return (
     <>
-        <div className="navbar-container">
+        <div className="navbar-container" onClick={()=> {if(dropdown){setDropdown(false)}}}>
           <div className="laptop-navbar">
             <div className="nav-left">
                 <h2>EVTOL</h2>
@@ -50,6 +47,12 @@ const Navbar = ({user}: NavProps) => {
               />
 
               <div className={`menu-dropdown ${dropdown? 'open':''}`}>
+                <div className="menu-dropdown-option">
+                  <p>Sign In</p>
+                </div>
+                <div className="menu-dropdown-option">
+                  <p>Sign Up</p>
+                </div>
                 <div className="menu-dropdown-option">
                   <p>Medicines</p>
                 </div>
