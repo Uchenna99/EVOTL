@@ -320,8 +320,8 @@ img#underline-img{
 }
 
 .home-info-card{
-  max-width: 300px;
-  height: fit-content;
+  width: 300px;
+  height: 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -361,7 +361,7 @@ img#underline-img{
 .about-us{
   width: 100%;
   height: fit-content;
-  background-color: var(--primary);
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -386,12 +386,55 @@ img#underline-img{
   width: 1000px;
   height: fit-content;
   padding: 20px 0;
+  overflow-x: auto;
 }
 
 .about-us-cards-wrap{
-  width: 1000px;
-  height: 300px;
-  background-color: #1A202C;
+  min-width: 1000px;
+  height: fit-content;
+  /* background-color: #1A202C; */
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.about-card{
+  width: 300px;
+  height: 240px;
+  background-color: var(--background);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.about-img{
+  width: 100%;
+  height: 150px;
+  background-color: var(--secondary);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.about-text{
+  width: 100%;
+  height: fit-content;
+  padding: 10px 15px;
+}
+
+.about-text > p{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+
+
+
+
+.footer{
+  width: 100%;
+  height: 100px;
+  background-color: var(--primary);
 }
 
 
@@ -414,6 +457,12 @@ img#underline-img{
 
 @media screen and (max-width: 1000px) {
   .info-card-grid{
+    width: 100%;
+  }
+  .about-us-cards-div{
+    width: 100%;
+  }
+  .about-us-header{
     width: 100%;
   }
 }

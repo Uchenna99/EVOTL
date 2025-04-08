@@ -5,6 +5,8 @@ import { JwtCode } from "../State"
 import { jwtDecode } from "jwt-decode"
 import underline from "../assets/Images/Underline.png"
 import { BriefcaseMedical } from "lucide-react"
+import photo from "../assets/Images/Pelican-2.0-Home.png"
+
 
 
 const LandingPage = () => {
@@ -110,9 +112,37 @@ const LandingPage = () => {
                 <h1>MORE ABOUT US</h1>
               </div>
               <div className="about-us-cards-div">
-                <div className="about-us-cards-wrap"></div>
+                <div className="about-us-cards-wrap">
+
+                  <div className="about-card">
+                    <div className="about-img" style={{backgroundImage:`url(${photo})`}}>
+                    </div>
+                    <div className="about-text">
+                      <p>Preventing avoidable deaths through faster emergency drugs delivery</p>
+                    </div>
+                  </div>
+
+                  <div className="about-card">
+                    <div className="about-img" style={{backgroundImage:`url(${photo})`}}>
+                    </div>
+                    <div className="about-text">
+                      <p>Preventing avoidable deaths through faster emergency drugs delivery</p>
+                    </div>
+                  </div>
+
+                  <div className="about-card">
+                    <div className="about-img" style={{backgroundImage:`url(${photo})`}}>
+                    </div>
+                    <div className="about-text">
+                      <p>Preventing avoidable deaths through faster emergency drugs delivery</p>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
+
+            <div className="footer"></div>
           </div>
         </div>
     </>
