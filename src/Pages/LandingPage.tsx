@@ -47,9 +47,17 @@ const LandingPage = () => {
             <div className="info-section">
               <h1>MEDICAL SUPPLIES, <br/> DRONE DELIVERED <span id="underlined-text">ON TIME <img id="underline-img" src={underline} /> </span>.</h1>
 
-              <Link id="get-started" to={'/signup'}>
+              <Link id="get-started" to={user? '':'/signup'}>
                 <p>GET STARTED</p>
               </Link>
+            </div>
+
+            <div className="info-card-grid">
+              <div className="home-info-card">
+                <div className="info-card-img"></div>
+                <h4>Medical delivery</h4>
+                <p>Bypass traffic and challenging terrain to deliver medications rapidly.</p>
+              </div>
             </div>
 
             <div className="supplies"></div>

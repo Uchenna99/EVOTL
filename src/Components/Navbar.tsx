@@ -61,9 +61,12 @@ const Navbar = ({user, dropdownStatus, dropdownShow, dropdownHide}: NavProps) =>
                 <div className="menu-dropdown-option">
                   <p>Contact Us</p>
                 </div>
-                <div className="menu-dropdown-option" onClick={handleLogout}>
-                  <p>Logout</p>
-                </div>
+                {
+                  user &&
+                  <div className="menu-dropdown-option" onClick={handleLogout}>
+                    <p>Logout</p>
+                  </div>
+                }
               </div>
 
 
