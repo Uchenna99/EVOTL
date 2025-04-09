@@ -1,7 +1,6 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import useGlobalState, { JwtCode } from "../State"
 import { Menu } from "lucide-react"
-import { useEffect, useState } from "react";
 
 interface NavProps {
   user: JwtCode | null;
