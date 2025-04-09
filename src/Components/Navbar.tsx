@@ -60,7 +60,7 @@ const Navbar = ({user, dropdownStatus, dropdownShow, dropdownHide}: NavProps) =>
                 {
                   user &&
                   <div className="menu-dropdown-option" onClick={handleLogout}>
-                    <p>Logout</p>
+                    <p style={{color:'#F56565'}}>Logout</p>
                   </div>
                 }
               </div>
