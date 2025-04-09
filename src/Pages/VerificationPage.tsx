@@ -3,11 +3,13 @@ import "../Stylesheets/SignupPage.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { ThreeDots } from "react-loader-spinner";
 
 const VerificationPage = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [otp, setOtp] = useState('');
+    const [verifying, setVerifying] = useState(false);
 
 
     useEffect(()=>{
@@ -27,7 +29,8 @@ const VerificationPage = () => {
         otp: otp
     }
 
-    const handleVerify = async ()=>{        
+    const handleVerify = async ()=>{
+        setVerifying(true);
         try {
             await axios.post('http://localhost:4000/api/v1/auth/verify-email', verify)
             .then(()=>{
@@ -38,6 +41,7 @@ const VerificationPage = () => {
             
         } catch (error) {
             toast.error('Verification failed', {position:'top-right'});
+            setVerifying(false);
         }
     }
 
@@ -51,14 +55,25 @@ const VerificationPage = () => {
 
                 <div className="input-wrap" style={{width:'150px', alignItems:'center'}}>
                     <label htmlFor="otp">OTP</label>
-                    <input id="otp" type="text" value={otp} style={{width:'150px'}}
+                    <input id="otp" type="text" value={otp} maxLength={6} style={{width:'150px', textAlign:'center'}}
                         onChange={((e)=>setOtp(e.target.value))}
                     />
                 </div>
 
-                <button className="register" onClick={handleVerify}>Verify</button>
+                {
+                    verifying?
+                    <div className="loader-button" style={{width:100}}>
+                        <ThreeDots
+                            color="white"
+                            width={30}
+                            height={30}
+                        />
+                    </div>
+                    :
+                    <button className="register" onClick={handleVerify}>Verify</button>
+                }
 
-                <p style={{fontSize:'13px', color:'red', marginTop:'20px'}}>
+                <p style={{fontSize:'13px', color:'#F56565', marginTop:'20px'}}>
                     otp will expire after 10 minutes
                 </p>
             </div>

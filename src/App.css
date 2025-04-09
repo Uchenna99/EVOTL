@@ -195,6 +195,7 @@ img#drone-png{
   padding: 0 20px;
   border-radius: 2px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .menu-dropdown-option > p{

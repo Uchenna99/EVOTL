@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import useGlobalState, { JwtCode } from "../State"
 import { Menu } from "lucide-react"
 import logo from "../assets/Images/drone_logo.png"
@@ -47,16 +47,16 @@ const Navbar = ({user, dropdownStatus, dropdownShow, dropdownHide}: NavProps) =>
               <div className={`menu-dropdown ${dropdownStatus? 'open':''}`}>
                 {
                   !user &&
-                  <div className="menu-dropdown-option">
+                  <Link className="menu-dropdown-option" to={'/signup'}>
                     <p>Sign Up / Sign In</p>
-                  </div>
+                  </Link>
                 }
-                <div className="menu-dropdown-option">
+                <Link className="menu-dropdown-option" to={''}>
                   <p>Medicines</p>
-                </div>
-                <div className="menu-dropdown-option">
+                </Link>
+                <Link className="menu-dropdown-option" to={''}>
                   <p>Contact Us</p>
-                </div>
+                </Link>
                 {
                   user &&
                   <div className="menu-dropdown-option" onClick={handleLogout}>

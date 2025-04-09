@@ -75,7 +75,7 @@ const SignupPage = () => {
 
   return (
     <>
-      <div className="signup-wrap">
+      <div className="signup-wrap" onClick={()=>{if(regionSelect){setRegionSelect(false)}}}>
         <div className="signup-left">
           <h2>Your first drone delivery awaits</h2>
           <img src={drone} alt="" />
@@ -113,15 +113,15 @@ const SignupPage = () => {
 
             <div className="input-wrap">
               <label htmlFor="reg">Region</label>
-              <div className="inner-input-wrap">
+              <div className="inner-input-wrap" onClick={()=> setRegionSelect(!regionSelect)}>
                 <input id="reg" type="text" value={region} readOnly
                   style={{color:region === 'Select a region'? 'gray':'black'}}
                 />
 
                 {
-                  regionSelect? <GoChevronUp id="pass-eye" onClick={()=> setRegionSelect(false)}/>
+                  regionSelect? <GoChevronUp id="pass-eye"/>
                   :
-                  <GoChevronDown id="pass-eye" onClick={()=> setRegionSelect(true)}/>
+                  <GoChevronDown id="pass-eye"/>
                 }
 
                 <div className="region-dropdown" style={{display: regionSelect? 'flex':'none'}}>
@@ -129,7 +129,6 @@ const SignupPage = () => {
                     selectRegion.map((reg)=>(
                       <div key={reg} className="region-unit" 
                         onClick={()=>{
-                          setRegionSelect(false);
                           setRegion(reg);
                         }}>
                         <p> {reg} </p>
