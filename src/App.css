@@ -43,8 +43,8 @@
 
 @keyframes navbar {
   0% {background-color: transparent;}
-  20% {background-color: transparent;}
-  40% {background-color: var(--background);}
+  15% {background-color: transparent;}
+  25% {background-color: var(--background);}
   100% {background-color: var(--background);}
 }
 
@@ -509,6 +509,12 @@ img#underline-img{
 
 
 @media screen and (max-width: 540px) {
+  .navbar-container{
+    height: 50px;
+  }
+  .nav-left > h2{
+    font-size: 24px;
+  }
   .transparent-cover{
     height: 67vh;
   }
