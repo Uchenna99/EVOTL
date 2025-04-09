@@ -2,14 +2,11 @@ import { useNavigate } from "react-router-dom";
 import useGlobalState from "../State";
 import { useState } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { DB_GetUser } from "../Components/interface";
 import { GoSearch } from "react-icons/go";
-import { LuHistory } from "react-icons/lu";
 import { FaHistory } from "react-icons/fa";
 import History from "../Components/History";
 import OrderPage from "../Components/OrderPage.admin";
 import EvtolsPage from "../Components/EvtolsPage";
-import { TbClipboardList } from "react-icons/tb";
 import { ClipboardList } from "lucide-react"
 
 
@@ -17,9 +14,9 @@ import { ClipboardList } from "lucide-react"
 const AdminDashboard = () => {
     const { setLoggedIn } = useGlobalState();
     const navigate = useNavigate();
-    const [user, setUser] = useState<DB_GetUser|null>(null);
+    // const [user, setUser] = useState<DB_GetUser|null>(null);
     const [dashboard, setDashboard] = useState('orders');
-    const [itemCount, setItemCount] = useState(0);
+    // const [itemCount, setItemCount] = useState(0);
 
     const handleLogout = ()=>{
         localStorage.removeItem('evtolToken');
@@ -95,7 +92,7 @@ const AdminDashboard = () => {
                 <div className="notification-section">
                     <div className="drone-cart">
                         <IoMdNotificationsOutline id="cart-icon"/>
-                        <div className="notification-count" style={{display:'none'}}> {itemCount} </div>
+                        <div className="notification-count" style={{display:'none'}}>  </div>
                     </div>
                 </div>
             </div>
