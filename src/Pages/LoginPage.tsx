@@ -61,7 +61,7 @@ const LoginPage = () => {
 
   return (
     <>
-        <div className="signup-wrap">
+      <div className="signup-wrap">
         <div className="signup-left">
           <h2>Welcome back! </h2>
           <img src={drone} alt="" />
