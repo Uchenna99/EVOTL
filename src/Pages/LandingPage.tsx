@@ -52,6 +52,7 @@ const LandingPage = () => {
           <div className="transparent-cover"></div>
 
           <div className="page-wrap2">
+            
             <div className="info-section">
               <h1>MEDICAL SUPPLIES, <br/> DRONE DELIVERED <span id="underlined-text">ON TIME <img id="underline-img" src={underline} /> </span>.</h1>
 

@@ -50,10 +50,7 @@ const Navbar = ({user, dropdownStatus, dropdownShow, dropdownHide}: NavProps) =>
 
               <div className={`menu-dropdown ${dropdownStatus? 'open':''}`}>
                 <div className="menu-dropdown-option">
-                  <p>Sign In</p>
-                </div>
-                <div className="menu-dropdown-option">
-                  <p>Sign Up</p>
+                  <p>Sign Up / Sign In</p>
                 </div>
                 <div className="menu-dropdown-option">
                   <p>Medicines</p>
