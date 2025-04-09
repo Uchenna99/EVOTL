@@ -6,10 +6,15 @@ import { jwtDecode } from "jwt-decode"
 import underline from "../assets/Images/Underline.png"
 import { BriefcaseMedical } from "lucide-react"
 import photo from "../assets/Images/Pelican-2.0-Home.png"
+import { useInView } from "react-intersection-observer"
 
 
 
 const LandingPage = () => {
+  const { ref: cardRef1, inView: cardView1 } = useInView({threshold: 0.6});
+  const { ref: cardRef2, inView: cardView2 } = useInView({threshold: 0.6});
+  const { ref: cardRef3, inView: cardView3 } = useInView({threshold: 0.6});
+  const { ref: cardRef4, inView: cardView4 } = useInView({threshold: 0.6});
   const [user, setUser] = useState<JwtCode | null>(null);
   const [dropdown, setDropdown] = useState(false);
 
@@ -57,7 +62,7 @@ const LandingPage = () => {
 
             <div className="info-card-grid">
 
-              <div className="home-info-card">
+              <div className={`home-info-card ${cardView1? 'inView':''}`} ref={cardRef1} >
                 <div className="info-card-img">
                   <BriefcaseMedical
                     color="#5A67D8"
@@ -69,7 +74,7 @@ const LandingPage = () => {
                 <p>Bypass traffic and challenging terrain to deliver medications rapidly.</p>
               </div>
 
-              <div className="home-info-card">
+              <div className={`home-info-card ${cardView2? 'inView':''}`} ref={cardRef2}>
                 <div className="info-card-img">
                   <BriefcaseMedical
                     color="#5A67D8"
@@ -81,7 +86,7 @@ const LandingPage = () => {
                 <p>Bypass traffic and challenging terrain to deliver medications rapidly.</p>
               </div>
 
-              <div className="home-info-card">
+              <div className={`home-info-card ${cardView3? 'inView':''}`} ref={cardRef3}>
                 <div className="info-card-img">
                   <BriefcaseMedical
                     color="#5A67D8"
@@ -93,7 +98,7 @@ const LandingPage = () => {
                 <p>Bypass traffic and challenging terrain to deliver medications rapidly.</p>
               </div>
 
-              <div className="home-info-card">
+              <div className={`home-info-card ${cardView4? 'inView':''}`} ref={cardRef4}>
                 <div className="info-card-img">
                   <BriefcaseMedical
                     color="#5A67D8"
