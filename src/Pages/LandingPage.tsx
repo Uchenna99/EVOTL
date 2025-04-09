@@ -124,7 +124,7 @@ const LandingPage = () => {
                     <div className="about-img" style={{backgroundImage:`url(${photo})`}}>
                     </div>
                     <div className="about-text">
-                      <p>Preventing avoidable deaths through faster emergency drugs delivery</p>
+                      <p>Preventing avoidable casualties through faster emergency drugs delivery</p>
                     </div>
                   </div>
 
@@ -132,7 +132,7 @@ const LandingPage = () => {
                     <div className="about-img" style={{backgroundImage:`url(${photo})`}}>
                     </div>
                     <div className="about-text">
-                      <p>Preventing avoidable deaths through faster emergency drugs delivery</p>
+                      <p>Preventing avoidable casualties through faster emergency drugs delivery</p>
                     </div>
                   </div>
 
@@ -140,7 +140,7 @@ const LandingPage = () => {
                     <div className="about-img" style={{backgroundImage:`url(${photo})`}}>
                     </div>
                     <div className="about-text">
-                      <p>Preventing avoidable deaths through faster emergency drugs delivery</p>
+                      <p>Preventing avoidable casualties through faster emergency drugs delivery</p>
                     </div>
                   </div>
 

@@ -43,14 +43,14 @@
 
 @keyframes navbar {
   0% {background-color: transparent;}
-  15% {background-color: transparent;}
-  25% {background-color: var(--background);}
+  10% {background-color: transparent;}
+  20% {background-color: var(--background);}
   100% {background-color: var(--background);}
 }
 
 
 .laptop-navbar{
-  width: 1300px;
+  width: 1000px;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -59,22 +59,30 @@
 }
 
 .nav-left{
-  width: 200px;
+  width: 160px;
   height: 100%;
   /* background-color: pink; */
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .nav-left > h2{
   cursor: pointer;
   transition: 300ms;
-  font-size: 30px;
-  text-shadow: 0 1px 6px rgba(255, 255, 255, 0.7);
+  font-size: 22px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
 .nav-left > h2:hover{
   text-shadow: 0 1px 5px white;
+}
+
+img#drone-png{
+  width: 90px;
+  margin-left: -15px;
+  /* background-color: yellow; */
 }
 
 
@@ -163,10 +171,13 @@
 .menu-dropdown{
   width: 400px;
   height: fit-content;
-  padding: 10px 5px;
+  padding: 15px 5px;
   background-color: var(--background);
   border-radius: 5px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   position: absolute;
   right: 0;
   top: 50px;
@@ -187,7 +198,7 @@
 }
 
 .menu-dropdown-option > p{
-  font-size: 18px;
+  font-size: 20px;
   color: var(--text);
 }
 
@@ -240,8 +251,8 @@
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: rgba(0, 0, 0, 0.558);
-  background-image: url(./assets/Images/Pelican-2.0-Front.png);
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: url(./assets/Images/Pelican-2.0-Home.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -290,6 +301,7 @@
   align-items: center;
   gap: 150px;
   padding: 20px;
+  overflow: hidden;
 }
 
 .info-section > h1{
@@ -472,6 +484,9 @@ img#underline-img{
 /* RESPONSIVENESS */
 
 @media screen and (max-width: 1000px) {
+  .laptop-navbar{
+    width: 100%;
+  }
   .page-wrap2{
     animation: none;
   }
@@ -499,7 +514,7 @@ img#underline-img{
     font-size: 16px;
   }
   img#underline-img{
-    width: 110px;
+    width: 115px;
     top: -37px;
   }
   .about-us-header > h1{
@@ -511,9 +526,6 @@ img#underline-img{
 @media screen and (max-width: 540px) {
   .navbar-container{
     height: 50px;
-  }
-  .nav-left > h2{
-    font-size: 24px;
   }
   .transparent-cover{
     height: 67vh;
@@ -530,6 +542,10 @@ img#underline-img{
   .menu-dropdown{
     width: 90vw;
     position: fixed;
+    top: 30px;
     right: auto;
+  }
+  .menu-dropdown.open{
+    top: 50px;
   }
 }

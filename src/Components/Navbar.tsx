@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import useGlobalState, { JwtCode } from "../State"
 import { Menu } from "lucide-react"
+import logo from "../assets/Images/drone_logo.png"
 
 interface NavProps {
   user: JwtCode | null;
@@ -12,11 +13,6 @@ interface NavProps {
 const Navbar = ({user, dropdownStatus, dropdownShow, dropdownHide}: NavProps) => {
   const { setLoggedIn } = useGlobalState();
   const navigate = useNavigate();
-  // const [dropdown, setDropdown] = useState(false);
-  
-  // useEffect(()=>{
-  //   dropdownStatus(dropdown);
-  // },[dropdown, dropdownChange]);
 
   const handleLogout = ()=>{
     localStorage.removeItem('evtolToken');
@@ -34,7 +30,8 @@ const Navbar = ({user, dropdownStatus, dropdownShow, dropdownHide}: NavProps) =>
         <div className="navbar-container" onClick={dropdownHide}>
           <div className="laptop-navbar">
             <div className="nav-left">
-                <h2>EVTOL</h2>
+              <img id="drone-png" src={logo} alt="" />
+              <h2>EVTOL</h2>
             </div>
 
             {/* <div className="nav-mid"></div> */}
@@ -48,9 +45,12 @@ const Navbar = ({user, dropdownStatus, dropdownShow, dropdownHide}: NavProps) =>
               />
 
               <div className={`menu-dropdown ${dropdownStatus? 'open':''}`}>
-                <div className="menu-dropdown-option">
-                  <p>Sign Up / Sign In</p>
-                </div>
+                {
+                  !user &&
+                  <div className="menu-dropdown-option">
+                    <p>Sign Up / Sign In</p>
+                  </div>
+                }
                 <div className="menu-dropdown-option">
                   <p>Medicines</p>
                 </div>
