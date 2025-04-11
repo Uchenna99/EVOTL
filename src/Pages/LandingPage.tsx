@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { JwtCode } from "../State"
 import { jwtDecode } from "jwt-decode"
 import underline from "../assets/Images/Underline.png"
-import { BriefcaseMedical } from "lucide-react"
+import { BriefcaseMedical, Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
 import logistics from "../assets/Images/logistics.jpeg"
 import treatment from "../assets/Images/various-medical-treatment-types.jpg"
 import transport from "../assets/Images/What-are-Logistics-in-Healthcare.jpg"
@@ -166,9 +166,46 @@ const LandingPage = () => {
                   <Link to={''} className="footer-link">BLOG</Link>
                 </div>
               </div>
+              
+              <div className="footer-line-div">
+                <div className="footer-line"></div>
+              </div>
 
               <div className="copyright">
                 <p>Copyright © EVTOL INC. All rights reserved.</p>
+
+                <div className="social-logos">
+
+                  <div className="social-icon">
+                    <Facebook
+                      id="socials"
+                      size={20}
+                    />
+                  </div>
+
+                  <div className="social-icon">
+                    <Instagram
+                      id="socials-2"
+                      size={20}
+                    />
+                  </div>
+
+                  <div className="social-icon">
+                    <Youtube
+                      id="socials-2"
+                      size={20}
+                    />
+                  </div>
+
+                  <div className="social-icon">
+                    <Linkedin
+                      id="socials"
+                      size={20}
+                      fill="#EDF2F7"
+                    />
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
