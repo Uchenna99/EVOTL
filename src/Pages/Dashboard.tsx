@@ -17,6 +17,7 @@ import History from "../Components/History";
 import { ImProfile } from "react-icons/im";
 import { FaHistory } from "react-icons/fa";
 import { TbPackageExport } from "react-icons/tb";
+import logo from "../assets/Images/drone_logo.png"
 
 
 const Dashboard = () => {
@@ -96,14 +97,10 @@ const Dashboard = () => {
               <div className="dash-left">
 
                 <div className="dash-user">
-                  <h1 style={{color:'#EDF2F7'}}>
-                    EVTOL
-                  </h1>
-                  {/* <div className="dash-user-image" style={{backgroundImage: `url(${user?.image})`}}></div>
-                  <div className="dash-user-name">
-                    <p>Hello</p>
-                    <p>{`${user?.firstName} ${user?.lastName}`}</p>
-                  </div> */}
+                  <div className="nav-left">
+                    <img id="drone-png" src={logo} alt="" />
+                    <h2>EVTOL</h2>
+                  </div>
                 </div>
 
                 <div className="dash-left-options">

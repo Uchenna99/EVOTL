@@ -98,7 +98,7 @@ const LoginPage = () => {
 
             {
               loading?
-              <div className="loader-button" style={{width:100}}>
+              <div className="loader-button" style={{width:98}}>
                 <ThreeDots
                   color="white"
                   width={30}
