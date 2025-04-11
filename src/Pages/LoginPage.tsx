@@ -8,11 +8,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import useGlobalState, { JwtCode } from "../State";
 import { toast } from "sonner";
+import { ThreeDots } from "react-loader-spinner";
 
 
 const LoginPage = () => {
   const {setJwtDecoded, setLoggedIn} = useGlobalState();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -41,6 +43,7 @@ const LoginPage = () => {
         toast.warning('Password length must be at least 8 characters long', {position:'top-right'});
       }
       else{
+        setLoading(true);
         try {
             await axios.post('http://localhost:4000/api/v1/auth/login', loginData)
             .then((response)=>{
@@ -55,6 +58,7 @@ const LoginPage = () => {
             })
         } catch (error: any) {
           toast.error(error.message, {position:'top-right'});
+          setLoading(false);
         }
       }
     }
@@ -92,10 +96,21 @@ const LoginPage = () => {
               </div>
             </div>
 
-            <button className="register" 
-              onClick={handleLogin}>
-              Login
-            </button>
+            {
+              loading?
+              <div className="loader-button" style={{width:100}}>
+                <ThreeDots
+                  color="white"
+                  width={30}
+                  height={30}
+                />
+              </div>
+              :
+              <button className="register" 
+                onClick={handleLogin}>
+                Login
+              </button>
+            }
 
             <p>Don't have an account? <Link id="form-login" to={'/signup'}>Sign Up</Link></p>
 
