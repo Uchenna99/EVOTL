@@ -453,6 +453,7 @@ img#underline-img{
 .about-text > p{
   font-size: 14px;
   font-weight: 600;
+  line-height: 1.4;
 }
 
 
@@ -462,8 +463,64 @@ img#underline-img{
 
 .footer{
   width: 100%;
-  height: 100px;
+  height: fit-content;
   background-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px 40px;
+}
+
+.footer-content{
+  width: 1000px;
+  height: 100%;
+  /* background-color: #1A202C; */
+  border-bottom: 1px solid var(--background);
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.footer-content-left{
+  width: 150px;
+  height: fit-content;
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-content-left > p{
+  color: var(--background);
+  font-size: 14px;
+}
+
+.foot-icon-left{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  /* background-color: #1A202C; */
+}
+
+.footer-content-right{
+  width: 250px;
+  height: fit-content;
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 10px;
+}
+
+.footer-link{
+  color: var(--background);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.footer-link:hover{
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 

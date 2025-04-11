@@ -40,7 +40,7 @@ const Navbar = ({user, dropdownStatus, dropdownShow, dropdownHide}: NavProps) =>
               <Menu
                 cursor={'Pointer'}
                 size={35}
-                strokeWidth={2.5}
+                strokeWidth={2}
                 onClick={dropdownShow}
               />
 

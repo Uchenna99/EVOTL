@@ -5,7 +5,10 @@ import { JwtCode } from "../State"
 import { jwtDecode } from "jwt-decode"
 import underline from "../assets/Images/Underline.png"
 import { BriefcaseMedical } from "lucide-react"
-import photo from "../assets/Images/Pelican-2.0-Home.png"
+import logistics from "../assets/Images/logistics.jpeg"
+import treatment from "../assets/Images/various-medical-treatment-types.jpg"
+import transport from "../assets/Images/What-are-Logistics-in-Healthcare.jpg"
+import logo from "../assets/Images/drone_logo.png"
 import { useInView } from "react-intersection-observer"
 
 
@@ -121,7 +124,7 @@ const LandingPage = () => {
                 <div className="about-us-cards-wrap">
 
                   <div className="about-card">
-                    <div className="about-img" style={{backgroundImage:`url(${photo})`}}>
+                    <div className="about-img" style={{backgroundImage:`url(${treatment})`}}>
                     </div>
                     <div className="about-text">
                       <p>Preventing avoidable casualties through faster emergency drugs delivery</p>
@@ -129,18 +132,18 @@ const LandingPage = () => {
                   </div>
 
                   <div className="about-card">
-                    <div className="about-img" style={{backgroundImage:`url(${photo})`}}>
+                    <div className="about-img" style={{backgroundImage:`url(${logistics})`}}>
                     </div>
                     <div className="about-text">
-                      <p>Preventing avoidable casualties through faster emergency drugs delivery</p>
+                      <p>We're on a mission to revolutionize medical logistics, speeding up critical drug deliveries to save more lives every day.</p>
                     </div>
                   </div>
 
                   <div className="about-card">
-                    <div className="about-img" style={{backgroundImage:`url(${photo})`}}>
+                    <div className="about-img" style={{backgroundImage:`url(${transport})`}}>
                     </div>
                     <div className="about-text">
-                      <p>Preventing avoidable casualties through faster emergency drugs delivery</p>
+                      <p>Our drone network ensures swift and safe transportation of emergency drugs, reducing response times dramatically.</p>
                     </div>
                   </div>
 
@@ -148,7 +151,26 @@ const LandingPage = () => {
               </div>
             </div>
 
-            <div className="footer"></div>
+            <div className="footer">
+              <div className="footer-content">
+                <div className="footer-content-left">
+                  <div className="foot-icon-left">
+                    <img src={logo} style={{width:70, marginLeft:-15}} alt="" />
+                    <h2 style={{fontSize:16, color:'#EDF2F7'}}>EVTOL</h2>
+                  </div>
+                  <p>Aptech, Nigeria</p>
+                </div>
+                <div className="footer-content-right">
+                  <Link to={''} className="footer-link">CONTACT US</Link>
+                  <Link to={''} className="footer-link">MEDICINES</Link>
+                  <Link to={''} className="footer-link">BLOG</Link>
+                </div>
+              </div>
+
+              <div className="copyright">
+                <p>Copyright © EVTOL INC. All rights reserved.</p>
+              </div>
+            </div>
           </div>
         </div>
     </>
