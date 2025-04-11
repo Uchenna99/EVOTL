@@ -86,7 +86,7 @@ const LandingPage = () => {
                     strokeWidth={1.5}
                   />
                 </div>
-                <h4>Medical delivery</h4>
+                <h4>Inter-hospital transport</h4>
                 <p>Bypass traffic and challenging terrain to deliver medications rapidly.</p>
               </div>
 
@@ -98,7 +98,7 @@ const LandingPage = () => {
                     strokeWidth={1.5}
                   />
                 </div>
-                <h4>Medical delivery</h4>
+                <h4>Smart logistics</h4>
                 <p>Bypass traffic and challenging terrain to deliver medications rapidly.</p>
               </div>
 

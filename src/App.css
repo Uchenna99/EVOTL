@@ -473,7 +473,6 @@ img#underline-img{
 
 .footer-content{
   width: 1000px;
-  height: 100%;
   /* background-color: #1A202C; */
   display: flex;
   justify-content: space-between;
@@ -688,5 +687,19 @@ img#underline-img{
   }
   .menu-dropdown.open{
     top: 50px;
+  }
+  .footer-content{
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footer-content-right{
+    width: 100%;
+  }
+  .footer-content-left{
+    width: 100%;
+  }
+  .copyright{
+    flex-direction: column-reverse;
+    gap: 20px;
   }
 }
