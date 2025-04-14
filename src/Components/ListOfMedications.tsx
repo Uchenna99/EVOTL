@@ -69,7 +69,7 @@ const ListOfMedications = ({next, cartUpdate, user, cartCount}: Props) => {
             userOrdersList.map((userOrder)=> userOrder.userId === orderList?.userId? userOrder = orderList : userOrder);
             const saveOrder = JSON.stringify(userOrdersList);
             localStorage.setItem('evtolOrder', saveOrder);
-            toast.success('Item added to cart.', {position: 'top-right'});
+            toast.success('Item added to cart.', {position: 'top-center'});
             cartUpdate();
         }
     }

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { CreateLoadDTO, DB_GetUser, DB_Order, Order, UserOrders } from "./interface";
+import { CreateLoadDTO, DB_GetUser, DB_Order, Order, PaystackInitResponse, UserOrders } from "./interface";
 import { JwtCode } from "../State";
 import { TiArrowBack } from "react-icons/ti";
 import { toast } from "sonner";
@@ -100,6 +100,23 @@ const OrderSummary = ({next, user, cartUpdate}: Props) => {
 
     };
 
+    const InitPaystackPayment = async () => {
+        try {
+            await axios.post('http://localhost:4000/api/v1/payment/initialize-paystack', {
+            email: user?.email,
+            amount: total,
+          })
+          .then((response)=>{
+            const res = response.data as PaystackInitResponse;
+            window.location.href = res.data.authorization_url;
+            
+          })
+      
+        } catch (err) {
+          console.error('Payment error:', err);
+        }
+      };
+
   return (
     <>
         <div className="summary-wrap">
@@ -115,7 +132,7 @@ const OrderSummary = ({next, user, cartUpdate}: Props) => {
                     <TiArrowBack id="back-arrow" onClick={next}/>
 
                     <div className="button-wrapper">
-                        <button id="add-to-cart" onClick={handleOrder}>
+                        <button id="add-to-cart" onClick={InitPaystackPayment}>
                             Confirm order
                         </button>
                         {
