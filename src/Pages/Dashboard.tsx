@@ -18,6 +18,7 @@ import { ImProfile } from "react-icons/im";
 import { FaHistory } from "react-icons/fa";
 import { TbPackageExport } from "react-icons/tb";
 import logo from "../assets/Images/drone_logo.png"
+import { LogOut } from "lucide-react"
 
 
 const Dashboard = () => {
@@ -143,6 +144,11 @@ const Dashboard = () => {
                   </div>
 
                   <div className="dash-option-select" onClick={handleLogout}>
+                    <LogOut
+                      size={24}
+                      color="#EDF2F7"
+                      strokeWidth={2.5}
+                    />
                     <p>Logout</p>
                   </div>
                 </div>

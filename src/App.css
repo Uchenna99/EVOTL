@@ -89,7 +89,7 @@ img#drone-png{
 .nav-mid{
   width: 200px;
   height: 100%;
-  /* background-color: lightgreen; */
+  background-color: lightgreen;
 }
 
 
@@ -205,6 +205,10 @@ img#drone-png{
 
 .menu-dropdown-option:hover{
   background-color: var(--primary);
+}
+
+.menu-dropdown-option:hover p{
+  color: var(--background);
 }
 
 .menu-dropdown-option:active{

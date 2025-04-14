@@ -77,6 +77,7 @@
     gap: 10px;
     padding: 0 20px;
     animation: 200ms 1 forwards linear;
+    transition: all 200ms linear;
     cursor: pointer;
 }
 

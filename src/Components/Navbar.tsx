@@ -3,6 +3,7 @@ import useGlobalState, { JwtCode } from "../State"
 import { Menu } from "lucide-react"
 import logo from "../assets/Images/drone_logo.png"
 
+
 interface NavProps {
   user: JwtCode | null;
   dropdownShow: ()=>void;
@@ -46,7 +47,11 @@ const Navbar = ({user, dropdownStatus, dropdownShow, dropdownHide}: NavProps) =>
 
               <div className={`menu-dropdown ${dropdownStatus? 'open':''}`}>
                 {
-                  !user &&
+                  user?
+                  <Link className="menu-dropdown-option" to={'/dashboard'}>
+                    <p>Dashboard</p>
+                  </Link>
+                  :
                   <Link className="menu-dropdown-option" to={'/signup'}>
                     <p>Sign Up / Sign In</p>
                   </Link>
