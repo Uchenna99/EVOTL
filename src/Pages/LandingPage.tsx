@@ -10,6 +10,7 @@ import treatment from "../assets/Images/various-medical-treatment-types.jpg"
 import transport from "../assets/Images/What-are-Logistics-in-Healthcare.jpg"
 import logo from "../assets/Images/drone_logo.png"
 import { useInView } from "react-intersection-observer"
+import { toast } from "sonner"
 
 
 
@@ -59,7 +60,7 @@ const LandingPage = () => {
             <div className="info-section">
               <h1>MEDICAL SUPPLIES, <br/> DRONE DELIVERED <span id="underlined-text">ON TIME <img id="underline-img" src={underline} /> </span>.</h1>
 
-              <Link id="get-started" to={user? '':'/signup'}>
+              <Link id="get-started" to={user? '/dashboard' :'/signup'}>
                 <p>GET STARTED</p>
               </Link>
             </div>
