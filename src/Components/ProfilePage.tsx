@@ -4,10 +4,22 @@ import photo from "../assets/Images/drone_logo.png"
 const ProfilePage = () => {
   return (
     <>
+      <div className="profile-page">
+
+      <h4 id="h4-header">My Profile</h4>
+
         <div className="profile-info-div">
           <div className="profile-img-section">
             <div className="profile-img-div" style={{backgroundImage:`url(${photo})`}}></div>
+
+            <div className="profile-img-details">
+              <h4 id="h4-16px">Uchenna Agbu</h4>
+              <p id="p-14px">Rumuigbo, Port Harcourt</p>
+            </div>
           </div>
+        </div>
+
+        <div className="profile-info-div">
           <div className="profile-info-section">
             <p>Name: </p>
             <input type="text" value={"Uchenna"} />
@@ -29,6 +41,7 @@ const ProfilePage = () => {
             <input type="text" value={"Rumuigo"} />
           </div>
         </div>
+      </div>
     </>
   )
 }

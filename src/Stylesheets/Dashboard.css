@@ -617,6 +617,7 @@ button#remove-item:hover{
 
 #h4-header{
     font-size: 18px;
+    color: var(--text);
 }
 
 
@@ -816,12 +817,27 @@ button#remove-item:hover{
 
 
 
+.profile-page{
+    width: 100%;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-page > h1{
+    font-size: 20px;
+}
+
 .profile-info-div{
     width: 100%;
     height: fit-content;
-    border: 1px solid var(--secondary);
+    /* border: 1px solid var(--secondary); */
     border-radius: 5px;
-    padding: 20px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 30px 50px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -853,17 +869,39 @@ button#remove-item:hover{
 .profile-img-section{
     width: 100%;
     height: fit-content;
-
+    /* background-color: purple; */
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .profile-img-div{
-    width: 250px;
-    height: 250px;
-    border: 1px solid var(--secondary);
+    width: 150px;
+    height: 150px;
+    /* border: 1px solid var(--secondary); */
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.profile-img-details{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+#p-14px{
+    font-size: 14px;
+    color: var(--text);
+}
+
+#h4-16px{
+    font-size: 16px;
+    color: var(--text);
 }
 
 
