@@ -816,6 +816,63 @@ button#remove-item:hover{
 
 
 
+.profile-info-div{
+    width: 100%;
+    height: fit-content;
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-info-section{
+    width: 100%;
+    height: 35px;
+    /* background-color: pink; */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-info-section > p{
+    width: 120px;
+    color: var(--text);
+}
+
+.profile-info-section > input{
+    width: 300px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    color: var(--text);
+}
+
+.profile-img-section{
+    width: 100%;
+    height: fit-content;
+
+}
+
+.profile-img-div{
+    width: 250px;
+    height: 250px;
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
 
 
 
