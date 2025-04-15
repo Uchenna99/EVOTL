@@ -85,9 +85,10 @@ const OrderSummary = ({next, user, cartUpdate}: Props) => {
                     const saveOrder = JSON.stringify(userOrdersList);
                     localStorage.setItem('evtolOrder', saveOrder);
 
-                    setLoading(false);
                     cartUpdate();
-                    next();
+                    InitPaystackPayment();
+                    // setLoading(false);
+                    // next();
                     
                 })
                 .catch(()=>{
@@ -102,18 +103,22 @@ const OrderSummary = ({next, user, cartUpdate}: Props) => {
 
     const InitPaystackPayment = async () => {
         try {
+            toast("Redirecting to Paystack checkout", {position:'top-right'});
             await axios.post('http://localhost:4000/api/v1/payment/initialize-paystack', {
             email: user?.email,
             amount: total,
           })
           .then((response)=>{
+            setLoading(false);
+            next();
             const res = response.data as PaystackInitResponse;
             window.location.href = res.data.authorization_url;
             
           })
       
         } catch (err) {
-          console.error('Payment error:', err);
+            setLoading(false);
+            toast.error(`Payment error`, {position:'top-right'});
         }
       };
 
@@ -132,7 +137,7 @@ const OrderSummary = ({next, user, cartUpdate}: Props) => {
                     <TiArrowBack id="back-arrow" onClick={next}/>
 
                     <div className="button-wrapper">
-                        <button id="add-to-cart" onClick={InitPaystackPayment}>
+                        <button id="add-to-cart" onClick={handleOrder}>
                             Confirm order
                         </button>
                         {
