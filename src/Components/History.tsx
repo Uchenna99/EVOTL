@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { DB_Order, Medication } from "./interface";
+import { HOST_URL } from "../Route";
 
 
 
@@ -12,14 +13,14 @@ const History = () => {
 
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/api/v1/users/get-orders`)
+        axios.get(`${HOST_URL}/api/v1/users/get-orders`)
         .then((response)=>{
             setOrders(response.data);
         })
     },[]);
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/api/v1/users/fetch-meds`)
+        axios.get(`${HOST_URL}/api/v1/users/fetch-meds`)
         .then((response)=>{
             setMedsNames(response.data);
         })
@@ -37,28 +38,28 @@ const History = () => {
                     <p onClick={()=> setSection('all')} style={{fontWeight:section === 'all'? 600:''}}>
                         All orders
                     </p>
-                    <div className="underline-div" style={{display: section === 'all'? 'block':'none'}}></div>
+                    <div className="underline-div" style={{animationName: section === 'all'? 'underline':''}}></div>
                 </div>
 
                 <div className="order-group-header">
                     <p onClick={()=> setSection('completed')} style={{fontWeight:section === 'completed'? 600:''}}>
                         Completed
                     </p>
-                    <div className="underline-div" style={{display: section === 'completed'? 'block':'none'}}></div>
+                    <div className="underline-div" style={{animationName: section === 'completed'? 'underline':''}}></div>
                 </div>
 
                 <div className="order-group-header">
                     <p onClick={()=> setSection('pending')} style={{fontWeight:section === 'pending'? 600:''}}>
                         Pending
                     </p>
-                    <div className="underline-div" style={{display: section === 'pending'? 'block':'none'}}></div>
+                    <div className="underline-div" style={{animationName: section === 'pending'? 'underline':''}}></div>
                 </div>
 
                 <div className="order-group-header">
                     <p onClick={()=> setSection('cancelled')} style={{fontWeight:section === 'cancelled'? 600:''}}>
                         Cancelled
                     </p>
-                    <div className="underline-div" style={{display: section === 'cancelled'? 'block':'none'}}></div>
+                    <div className="underline-div" style={{animationName: section === 'cancelled'? 'underline':''}}></div>
                 </div>
             </div>
 

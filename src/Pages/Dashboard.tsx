@@ -19,6 +19,7 @@ import { FaHistory } from "react-icons/fa";
 import { TbPackageExport } from "react-icons/tb";
 import logo from "../assets/Images/drone_logo.png"
 import { LogOut } from "lucide-react"
+import { HOST_URL } from "../Route";
 
 
 const Dashboard = () => {
@@ -36,7 +37,7 @@ const Dashboard = () => {
       const user = localStorage.getItem('evtolToken');
       if(user){
         const decoded: JwtCode = jwtDecode(user);
-        await axios.get(`http://localhost:4000/api/v1/users/get-user/${decoded.id}`)
+        await axios.get(`${HOST_URL}/api/v1/users/get-user/${decoded.id}`)
         .then((response)=>{
           setUser(response.data as DB_GetUser);
           localStorage.setItem('evtolGetUser', JSON.stringify(response.data));

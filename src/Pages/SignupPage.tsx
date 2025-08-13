@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { EvtolUser } from "../Components/interface";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "sonner";
+import { HOST_URL } from "../Route";
 
 
 
@@ -59,7 +60,7 @@ const SignupPage = () => {
   const handleRegister = async ()=>{
     setLoading(true);
     try {
-      await axios.post('http://localhost:4000/api/v1/users/create-user', submitData)
+      await axios.post(`${HOST_URL}/api/v1/users/create-user`, submitData)
       .then((response)=>{
         toast.success("Account created successfully", {position:'top-right'});
         const responseData = response.data as EvtolUser;

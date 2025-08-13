@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { DB_Evtol, DB_Order, Order } from "./interface";
 import axios from "axios";
 import { TailSpin } from "react-loader-spinner";
+import { HOST_URL } from "../Route";
 
 
 interface Props{
@@ -16,7 +17,7 @@ const ListOfDrones = ({next}: Props) => {
     const getEvtols = async ()=>{
       setIsLoading(true);
       try {
-        await axios.get('http://localhost:4000/api/v1/evtol/fetch-all-evtols')
+        await axios.get(`${HOST_URL}/api/v1/evtol/fetch-all-evtols`)
         .then((response)=>{
           const data = response.data as DB_Evtol[];
           setEvtols(data);
@@ -63,12 +64,12 @@ const ListOfDrones = ({next}: Props) => {
                       alert('Orders not found');
                     }else{
                       const createOrder = {evtolId: evtol.id};
-                      await axios.post('http://localhost:4000/api/v1/users/create-order', createOrder)
+                      await axios.post(`${HOST_URL}/api/v1/users/create-order`, createOrder)
                       .then(async(response)=>{
                         const resp = response.data as DB_Order;
                         const orders: Order[] = JSON.parse(savedOrders);
                         const mapped = orders.map((order)=>({...order, evtolId: evtol.id, orderId: resp.id}));
-                        await axios.post('http://localhost:4000/api/v1/evtol/create-load/', mapped)
+                        await axios.post(`${HOST_URL}/api/v1/evtol/create-load/`, mapped)
                         .then((response)=>{
                           const stringOrders = JSON.stringify(mapped);
                           localStorage.setItem('order', stringOrders);

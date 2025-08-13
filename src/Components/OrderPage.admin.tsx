@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { DB_Order, Medication } from "./interface";
+import { HOST_URL } from "../Route";
 
 
 
@@ -12,14 +13,14 @@ const OrderPage = () => {
 
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/api/v1/admin/get-orders`)
+        axios.get(`${HOST_URL}/api/v1/admin/get-orders`)
         .then((response)=>{
             setOrders(response.data);
         })
     },[]);
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/api/v1/users/fetch-meds`)
+        axios.get(`${HOST_URL}/api/v1/users/fetch-meds`)
         .then((response)=>{
             setMedsNames(response.data);
         })

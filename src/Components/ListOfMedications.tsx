@@ -4,6 +4,7 @@ import { DB_GetUser, Medication, Order, UserOrders } from "./interface";
 import {TailSpin } from "react-loader-spinner";
 import { toast } from "sonner";
 import { IoIosClose } from "react-icons/io";
+import { HOST_URL } from "../Route";
 
 interface Props{
     next: ()=>void;
@@ -24,7 +25,7 @@ const ListOfMedications = ({next, cartUpdate, user, cartCount}: Props) => {
     useEffect(()=>{
         const getMeds = ()=>{
             setIsLoading(true);
-            axios.get('http://localhost:4000/api/v1/users/fetch-meds')
+            axios.get(`${HOST_URL}/api/v1/users/fetch-meds`)
             .then((response)=>{
                 setMedsList(response.data as Medication[]);
                 setIsLoading(false);

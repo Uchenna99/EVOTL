@@ -70,8 +70,8 @@
     width: 100%;
     height: 40px;
     /* background-color: pink; */
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    /* border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px; */
     display: flex;
     align-items: center;
     gap: 10px;
@@ -713,15 +713,15 @@ button#remove-item:hover{
 
 .underline-div{
     width: 100%;
-    height: 3px;
-    background-color: var(--primary);
+    height: 2.5px;
+    background-color: transparent;
     border-radius: 20px;
-    animation: underline 200ms 1 forwards linear;
+    animation: 200ms 1 forwards linear;
 }
 
 @keyframes underline {
     from { width: 0; }
-    to { width: 100%; }
+    to { width: 100%; background-color: var(--primary); }
 }
 
 
@@ -775,29 +775,21 @@ button#remove-item:hover{
     width: 100%;
     height: 40px;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(211, 211, 211, 0.5);
     /* border: 1px solid gray; */
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
     display: grid;
     grid-template-columns: 150px 1fr 200px 200px 150px;
     padding: 0 15px;
-    margin-bottom: 15px;
+    margin-bottom: 6px;
     gap: 5px;
 }
 
-.history-item-2{
-    width: 100%;
-    height: 40px;
-    background-color: white;
-    border-radius: 10px;
-    /* border: 1px solid gray; */
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-    display: grid;
-    grid-template-columns: 150px 150px 1fr 200px 200px 150px;
-    gap: 5px;
-    padding: 0 15px;
-    margin-bottom: 15px;
+.history-item:hover{
+    transition: all 100ms linear;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 
 .history-item-section{
     /* border-right: 1px solid; */

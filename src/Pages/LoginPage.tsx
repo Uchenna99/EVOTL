@@ -9,6 +9,7 @@ import { jwtDecode } from "jwt-decode";
 import useGlobalState, { JwtCode } from "../State";
 import { toast } from "sonner";
 import { ThreeDots } from "react-loader-spinner";
+import { HOST_URL } from "../Route";
 
 
 const LoginPage = () => {
@@ -45,7 +46,7 @@ const LoginPage = () => {
       else{
         setLoading(true);
         try {
-            await axios.post('http://localhost:4000/api/v1/auth/login', loginData)
+            await axios.post(`${HOST_URL}/api/v1/auth/login`, loginData)
             .then((response)=>{
               const responseData = response.data as JwtResponse;
               localStorage.setItem('evtolToken', responseData.accessToken);

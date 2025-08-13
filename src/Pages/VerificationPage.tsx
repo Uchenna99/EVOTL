@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { ThreeDots } from "react-loader-spinner";
+import { HOST_URL } from "../Route";
 
 const VerificationPage = () => {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ const VerificationPage = () => {
     const handleVerify = async ()=>{
         setVerifying(true);
         try {
-            await axios.post('http://localhost:4000/api/v1/auth/verify-email', verify)
+            await axios.post(`${HOST_URL}/api/v1/auth/verify-email`, verify)
             .then(()=>{
                 localStorage.removeItem('evtolUserEmail')
                 navigate('/login');

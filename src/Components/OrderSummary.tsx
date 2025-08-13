@@ -5,6 +5,7 @@ import { JwtCode } from "../State";
 import { TiArrowBack } from "react-icons/ti";
 import { toast } from "sonner";
 import { TailSpin } from "react-loader-spinner";
+import { HOST_URL } from "../Route";
 
 interface Props {
     next: ()=>void;
@@ -48,7 +49,7 @@ const OrderSummary = ({next, user, cartUpdate}: Props) => {
         const user = localStorage.getItem('evtolUser');
         if(user){
             const evtolUser: JwtCode = JSON.parse(user);
-            await axios.post(`http://localhost:4000/api/v1/users/create-order`, {userId: evtolUser.id})
+            await axios.post(`${HOST_URL}/api/v1/users/create-order`, {userId: evtolUser.id})
             .then((response)=>{
                 localStorage.setItem('evtolnewOrder', JSON.stringify(response.data));
                 createLoad();
@@ -77,7 +78,7 @@ const OrderSummary = ({next, user, cartUpdate}: Props) => {
                     orderId: currOrder.id
                 }));
     
-                await axios.post(`http://localhost:4000/api/v1/evtol/create-load`, loadArray)
+                await axios.post(`${HOST_URL}/api/v1/evtol/create-load`, loadArray)
                 .then((response)=>{
                     toast.success(response.data.message, {position:'top-right'});
 
@@ -104,13 +105,13 @@ const OrderSummary = ({next, user, cartUpdate}: Props) => {
     const InitPaystackPayment = async () => {
         try {
             toast("Redirecting to Paystack checkout", {position:'top-right'});
-            await axios.post('http://localhost:4000/api/v1/payment/initialize-paystack', {
+            await axios.post(`${HOST_URL}/api/v1/payment/initialize-paystack`, {
             email: user?.email,
             amount: total,
           })
           .then((response)=>{
             setLoading(false);
-            next();
+            // next();
             const res = response.data as PaystackInitResponse;
             window.location.href = res.data.authorization_url;
             
