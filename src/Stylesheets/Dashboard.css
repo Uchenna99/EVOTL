@@ -57,7 +57,7 @@
     height: fit-content;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
 }
 
 
@@ -87,7 +87,7 @@
     transition: 200ms;
 }
 
-.dash-option-select:hover p{
+.dash-option-select:hover{
     font-size: 19px;
 }
 

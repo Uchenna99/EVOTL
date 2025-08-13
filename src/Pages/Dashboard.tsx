@@ -20,6 +20,7 @@ import { TbPackageExport } from "react-icons/tb";
 import logo from "../assets/Images/drone_logo.png"
 import { LogOut, Route } from "lucide-react"
 import { HOST_URL } from "../Route";
+import { motion } from "framer-motion"
 
 
 const Dashboard = () => {
@@ -108,20 +109,22 @@ const Dashboard = () => {
 
                 <div className="dash-left-options">
 
-                  <div className="dash-option-select" onClick={()=> setDashboard('delivery')}
-                    style={{animationName:dashboard==='delivery'? 'select':''}}>
+                  <motion.div className="dash-option-select" onClick={()=> setDashboard('delivery')}
+                    initial={{backgroundColor:'#5A67D8'}} 
+                    animate={dashboard === 'delivery'? {backgroundColor:'#EDF2F7'}:{}} transition={{duration:0.1}}
+                    >
                     <TbPackageExport id="dash-option-icon" 
                       style={{color: dashboard === 'delivery'? '#5A67D8':'', fontSize:24}}
                     />
-                    <p style={{color: dashboard==='delivery'? '#5A67D8':'', fontWeight: dashboard === 'delivery'? "bold" : '', fontSize:dashboard === 'delivery'? 19 : ''}}>
+                    <p style={{color: dashboard==='delivery'? '#5A67D8':''}}>
                       New delivery
                     </p>
-                  </div>
+                  </motion.div>
 
                   <div className="dash-option-select" onClick={()=> setDashboard('tracking')}
                     style={{animationName:dashboard==='tracking'? 'select':''}}>
                     <Route
-                      color={dashboard === 'tracking'? "#5A67D8" : '#ffff'}
+                      color={dashboard === 'tracking'? "#5A67D8" : '#EDF2F7'}
                     />
                     <p style={{color: dashboard==='tracking'? '#5A67D8':'', fontWeight: dashboard === 'tracking'? "bold" : '', fontSize:dashboard === 'tracking'? 19 : ''}}>
                       Order Tracking
