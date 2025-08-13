@@ -18,7 +18,7 @@ import { ImProfile } from "react-icons/im";
 import { FaHistory } from "react-icons/fa";
 import { TbPackageExport } from "react-icons/tb";
 import logo from "../assets/Images/drone_logo.png"
-import { LogOut } from "lucide-react"
+import { LogOut, Route } from "lucide-react"
 import { HOST_URL } from "../Route";
 
 
@@ -120,7 +120,9 @@ const Dashboard = () => {
 
                   <div className="dash-option-select" onClick={()=> setDashboard('tracking')}
                     style={{animationName:dashboard==='tracking'? 'select':''}}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={dashboard === 'tracking'? "#5A67D8" : '#ffff'} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+                    <Route
+                      color={dashboard === 'tracking'? "#5A67D8" : '#ffff'}
+                    />
                     <p style={{color: dashboard==='tracking'? '#5A67D8':'', fontWeight: dashboard === 'tracking'? "bold" : '', fontSize:dashboard === 'tracking'? 19 : ''}}>
                       Order Tracking
                     </p>
