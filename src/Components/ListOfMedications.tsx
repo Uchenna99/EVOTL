@@ -27,10 +27,12 @@ const ListOfMedications = ({next, cartUpdate, user, cartCount}: Props) => {
             setIsLoading(true);
             axios.get(`${HOST_URL}/api/v1/users/fetch-meds`)
             .then((response)=>{
+                console.log(response);
                 setMedsList(response.data as Medication[]);
                 setIsLoading(false);
             })
-            .catch(()=>{
+            .catch((error)=>{
+                console.log(error);
                 toast.error("Error getting medications, check your network connection and refresh the page", {position:'top-right'});
                 setIsLoading(false);
             })
@@ -105,7 +107,7 @@ const ListOfMedications = ({next, cartUpdate, user, cartCount}: Props) => {
             <div className="meds-display">
                 <div className="summary-header">
                     
-                <h4 id="h4-header">Select Medications</h4>
+                    <h4 id="h4-header">Select Medications</h4>
 
                     {
                         medsList && (
@@ -123,9 +125,11 @@ const ListOfMedications = ({next, cartUpdate, user, cartCount}: Props) => {
 
                 {
                     medsList?.length === 0?
-                    <p style={{marginTop:'50px'}}>
-                        Something went wrong! Could not fetch list of medications
-                    </p>
+                    <div className="not-found-wrap">
+                        <p style={{marginTop:'150px'}}>
+                            No medications found
+                        </p>
+                    </div>
                     :
                     <div className="med-list-card-grid">
 

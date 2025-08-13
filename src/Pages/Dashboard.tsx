@@ -37,12 +37,13 @@ const Dashboard = () => {
       const user = localStorage.getItem('evtolToken');
       if(user){
         const decoded: JwtCode = jwtDecode(user);
-        await axios.get(`${HOST_URL}/api/v1/users/get-user/${decoded.id}`)
+        axios.get(`${HOST_URL}/api/v1/users/get-user/${decoded.id}`)
         .then((response)=>{
           setUser(response.data as DB_GetUser);
           localStorage.setItem('evtolGetUser', JSON.stringify(response.data));
           setCartUpdate(!cartUpdate);
         })
+        .catch((error)=> console.log(error))
       }else{
         toast.warning('Could not get user');
       }
@@ -119,6 +120,7 @@ const Dashboard = () => {
 
                   <div className="dash-option-select" onClick={()=> setDashboard('tracking')}
                     style={{animationName:dashboard==='tracking'? 'select':''}}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={dashboard === 'tracking'? "#5A67D8" : '#ffff'} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
                     <p style={{color: dashboard==='tracking'? '#5A67D8':'', fontWeight: dashboard === 'tracking'? "bold" : '', fontSize:dashboard === 'tracking'? 19 : ''}}>
                       Order Tracking
                     </p>
