@@ -116,40 +116,43 @@ const Dashboard = () => {
                     <TbPackageExport id="dash-option-icon" 
                       style={{color: dashboard === 'delivery'? '#5A67D8':'', fontSize:24}}
                     />
-                    <p style={{color: dashboard==='delivery'? '#5A67D8':''}}>
+                    <p style={{color: dashboard==='delivery'? '#5A67D8':'', fontWeight: dashboard === 'delivery'? "bold" : ''}}>
                       New delivery
                     </p>
                   </motion.div>
 
-                  <div className="dash-option-select" onClick={()=> setDashboard('tracking')}
-                    style={{animationName:dashboard==='tracking'? 'select':''}}>
+                  <motion.div className="dash-option-select" onClick={()=> setDashboard('tracking')}
+                    initial={{backgroundColor:'#5A67D8'}} 
+                    animate={dashboard === 'tracking'? {backgroundColor:'#EDF2F7'}:{}} transition={{duration:0.1}}>
                     <Route
                       color={dashboard === 'tracking'? "#5A67D8" : '#EDF2F7'}
                     />
-                    <p style={{color: dashboard==='tracking'? '#5A67D8':'', fontWeight: dashboard === 'tracking'? "bold" : '', fontSize:dashboard === 'tracking'? 19 : ''}}>
+                    <p style={{color: dashboard==='tracking'? '#5A67D8':'', fontWeight: dashboard === 'tracking'? "bold" : ''}}>
                       Order Tracking
                     </p>
-                  </div>
+                  </motion.div>
 
-                  <div className="dash-option-select" onClick={()=> setDashboard('history')}
-                    style={{animationName: dashboard==='history'? 'select':''}}>
+                  <motion.div className="dash-option-select" onClick={()=> setDashboard('history')}
+                    initial={{backgroundColor:'#5A67D8'}} 
+                    animate={dashboard === 'history'? {backgroundColor:'#EDF2F7'}:{}} transition={{duration:0.1}}>
                     <FaHistory id="dash-option-icon"
                       style={{color: dashboard === 'history'? '#5A67D8':''}}
                     />
-                    <p style={{color: dashboard==='history'? '#5A67D8':'', fontWeight: dashboard === 'history'? "bold" : '', fontSize:dashboard === 'history'? 20 : ''}}>
+                    <p style={{color: dashboard==='history'? '#5A67D8':'', fontWeight: dashboard === 'history'? "bold" : ''}}>
                       History
                     </p>
-                  </div>
+                  </motion.div>
 
-                  <div className="dash-option-select" onClick={()=> setDashboard('profile')}
-                    style={{animationName:dashboard==='profile'? 'select':''}}>
+                  <motion.div className="dash-option-select" onClick={()=> setDashboard('profile')}
+                    initial={{backgroundColor:'#5A67D8'}} 
+                    animate={dashboard === 'profile'? {backgroundColor:'#EDF2F7'}:{}} transition={{duration:0.1}}>
                     <ImProfile id="dash-option-icon"
                       style={{color: dashboard === 'profile'? '#5A67D8':''}}
                     />
-                    <p style={{color: dashboard==='profile'? '#5A67D8':'', fontWeight: dashboard === 'profile'? "bold" : '', fontSize:dashboard === 'profile'? 19 : ''}}>
+                    <p style={{color: dashboard==='profile'? '#5A67D8':'', fontWeight: dashboard === 'profile'? "bold" : ''}}>
                       Profile
                     </p>
-                  </div>
+                  </motion.div>
 
                   <div className="dash-option-select" onClick={handleLogout}>
                     <LogOut
