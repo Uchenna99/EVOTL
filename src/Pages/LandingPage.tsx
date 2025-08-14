@@ -10,7 +10,7 @@ import treatment from "../assets/Images/various-medical-treatment-types.jpg"
 import transport from "../assets/Images/What-are-Logistics-in-Healthcare.jpg"
 import logo from "../assets/Images/drone_logo.png"
 import { useInView } from "react-intersection-observer"
-import { toast } from "sonner"
+// import { toast } from "sonner"
 
 
 
