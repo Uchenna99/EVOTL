@@ -31,19 +31,25 @@ const VerificationPage = () => {
     }
 
     const handleVerify = async ()=>{
-        setVerifying(true);
-
-        await axios.post(`${HOST_URL}/api/v1/auth/verify-email`, verify)
-        .then(()=>{
-            localStorage.removeItem('evtolUserEmail')
-            navigate('/login');
-            toast.success('Verification successful', {position:'top-right'});
-        })
-        .catch((error)=>{
-            console.log(error);
-            toast.error('Verification failed', {position:'top-right'});
-            setVerifying(false);
-        })
+        const email = localStorage.getItem('userEmail');
+        if(email) {
+            setVerifying(true);
+    
+            await axios.post(`${HOST_URL}/api/v1/auth/verify-email`, verify)
+            .then(()=>{
+                localStorage.removeItem('evtolUserEmail')
+                navigate('/login');
+                toast.success('Verification successful', {position:'top-right'});
+            })
+            .catch((error)=>{
+                console.log(error);
+                toast.error('Verification failed', {position:'top-right'});
+                setVerifying(false);
+            })
+            .finally(()=> setVerifying(false));
+        }else {
+            toast.error('User not found', {position:'top-right'});
+        }
     }
 
   return (
