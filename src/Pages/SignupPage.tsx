@@ -7,7 +7,6 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { EvtolUser } from "../Components/interface";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "sonner";
 import { HOST_URL } from "../Route";
@@ -63,8 +62,8 @@ const SignupPage = () => {
       await axios.post(`${HOST_URL}/api/v1/users/create-user`, submitData)
       .then((response)=>{
         toast.success("Account created successfully", {position:'top-right'});
-        const responseData = response.data as EvtolUser;
-        localStorage.setItem('userEmail', responseData.email);
+        console.log(response.data);
+        localStorage.setItem('userEmail', email);
         navigate('/email-verification');
       })
       

@@ -236,13 +236,14 @@ button.register:hover{
 .verify-box{
     width: 50%;
     height: fit-content;
-    border: 2px solid var(--primary);
+    /* border: 2px solid var(--primary); */
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.1);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    padding: 20px;
+    padding: 50px 20px;
 }
 
 .verify-box > h3{

@@ -15,7 +15,7 @@ const VerificationPage = () => {
 
     useEffect(()=>{
         const getEmail = ()=>{
-            const user = localStorage.getItem('evtolUserEmail');
+            const user = localStorage.getItem('userEmail');
             if(user){
                 setEmail(user);
             }
@@ -32,18 +32,18 @@ const VerificationPage = () => {
 
     const handleVerify = async ()=>{
         setVerifying(true);
-        try {
-            await axios.post(`${HOST_URL}/api/v1/auth/verify-email`, verify)
-            .then(()=>{
-                localStorage.removeItem('evtolUserEmail')
-                navigate('/login');
-                toast.success('Verification successful', {position:'top-right'});
-            })
-            
-        } catch (error) {
+
+        await axios.post(`${HOST_URL}/api/v1/auth/verify-email`, verify)
+        .then(()=>{
+            localStorage.removeItem('evtolUserEmail')
+            navigate('/login');
+            toast.success('Verification successful', {position:'top-right'});
+        })
+        .catch((error)=>{
+            console.log(error);
             toast.error('Verification failed', {position:'top-right'});
             setVerifying(false);
-        }
+        })
     }
 
   return (
@@ -55,7 +55,7 @@ const VerificationPage = () => {
                 <p>An otp has been sent to your email</p>
 
                 <div className="input-wrap" style={{width:'150px', alignItems:'center'}}>
-                    <label htmlFor="otp">OTP</label>
+                    <label htmlFor="otp" style={{fontSize:13}}>OTP</label>
                     <input id="otp" type="text" value={otp} maxLength={6} style={{width:'150px', textAlign:'center'}}
                         onChange={((e)=>setOtp(e.target.value))}
                     />
@@ -71,7 +71,10 @@ const VerificationPage = () => {
                         />
                     </div>
                     :
-                    <button className="register" onClick={handleVerify}>Verify</button>
+                    <button className="register" onClick={handleVerify} 
+                        style={{}}>
+                        Verify
+                    </button>
                 }
 
                 <p style={{fontSize:'13px', color:'#F56565', marginTop:'20px'}}>
